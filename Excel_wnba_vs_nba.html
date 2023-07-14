@@ -1,0 +1,1977 @@
+<!DOCTYPE HTML>
+<!--
+	Strata by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Kristen Haduca Portfolio</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Header -->
+			<header id="header">
+				<div class="inner">
+					<a href="index.html">
+						<h1><strong>KRISTEN HADUCA</strong><br />
+						Data Analysis Portfolio<br />
+						</h1>
+					</a>
+				</div>
+			</header>
+
+		<!-- Main -->
+			<div id="main">
+
+				<!-- One -->
+					<section id="one">
+						<header class="major">
+							<h1>WNBA vs. NBA Salaries [EXCEL]</h1>
+						</header>
+						<p>A comparison of salaries and game statistics of players in the WNBA and the NBA using Excel. PivotTables, PivotCharts, and column charts are used to compare the two leagues' salaries across different player attributes.</p>
+						
+						<header class="major">
+							<h5>PROGRAM USED: <span style='font-weight: bold;'>Excel</span></h5>
+						</header>
+
+						<header class="major">
+							<h5>SKILLS USED:
+								<a href="directory.html#powerquery">#Power Query</a>,
+								<a href="directory.html#datacleaning">#Data Cleaning</a>,
+								<a href="directory.html#datawrangling">#Data Wrangling</a>,
+								<a href="directory.html#centraltendencydispersion">#Central Tendency & Dispersion</a>,
+								<a href="directory.html#visualization">#Visualization</a>
+							</h5>
+						</header>
+
+						<header class="major">
+							<h5>MAIN TOOLS USED: <span style='font-weight: bold;'>PowerQuery, Tables (including filtering), Conditional Formatting, PivotTable (with slicers), PivotChart, Column Chart</span></h5>
+						</header>
+
+                        <header class="major">
+							<h5>MAIN FORMULAS USED: <span style='font-weight: bold;'>INDEX(), MATCH(), IF(), ISERROR(), AGGREGATE(), AVERAGE(), MEDIAN(), MAX(), MIN(), MODE(), VAR.S(), STDEV.S(), SUMIFS(), COUNTIFS(), QUARTILE.INC(), AVERAGEIF()</span></h5>
+						</header>
+
+
+					</section>
+
+
+
+
+				<!-- Navigation -->
+				<section id="navigation">
+					<header class="major">
+						<h5>QUICK NAVIGATION:</h5>
+					</header>
+					<ul>
+						<li>
+							<a href="Excel_wnba_vs_nba.html#datasource">PART 1: Data Source (NBA)</a>
+						</li>
+						<li>
+							<a href="Excel_wnba_vs_nba.html#datacleaning">PART 2: Data Cleaning & Wrangling (NBA)</a>
+						</li>
+						<li>
+							<a href="Excel_wnba_vs_nba.html#filtering">PART 3: Filtering, Central Tendency, & Dispersion (NBA)</a>
+						</li>
+						<li>
+							<a href="Excel_wnba_vs_nba.html#comparison">PART 4: Comparing the WNBA VS NBA</a>
+						</li>
+						<li>
+							<a href="Excel_wnba_vs_nba.html#discussion">PART 5: Summary & Discussion</a>
+						</li>
+					</ul>
+				</section>
+				
+				
+				
+				<!-- Data Source -->
+					<section id="datasource">
+						<header class="major">
+							<h3>PART 1: DATA SOURCE</h3>
+						</header>
+						
+						<p>
+							The following centers around getting data for NBA players. WNBA players' data has already been compiled and cleaned in <a href="Excel_wnba_salaries_stats.html">WNBA Salaries & Statistics [EXCEL]</a>.
+						</p>
+
+						<header class="major">
+							<h4>Salaries Tables:</h4>
+						</header>
+
+						<p>
+							Web scraping using PowerQuery did not work for the <a href="http://www.espn.com/nba/salaries">ESPN website</a>, so information about players, position, team affiliation, and 2020-2021 salary for NBA players is manually copy and pasted and made into a new table.
+						</p>
+
+						<!-- IMAGE -->
+						<p>
+							<a href="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/1.png" class="image fit thumb"><img src="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/1.png"
+								/>
+							</a>
+						</p>
+
+						<p>
+							A new table on a new worksheet is created that includes 2019-2020 salary information from <a href="http://www.espn.com/nba/salaries">ESPN website</a>.
+						</p>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/2.png" class="image fit thumb"><img src="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/2.png"
+								/>
+							</a>
+						</p>
+
+						
+						<header class="major">
+							<h4>Game Statistics Table:</h4>
+						</header>
+						
+						<p>
+							Data scraping using PowerQuery also did not work for the <a href="https://www.nba.com/stats/players/traditional/?sort=PTS&dir=-1&Season=2019-20&SeasonType=Regular%20Season">NBA website</a>, so game statistics from the 2019-2020 season are manually copy and pasted into a new worksheet and made into a new table.
+						</p>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/3.png" class="image fit thumb"><img src="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/3.png"
+								/>
+							</a>
+						</p>
+
+
+						<header class="major">
+							<h4>Draft Year Table:</h4>
+						</header>
+						
+						<p>
+							To get information about years of experience, a new table is manually created on the same worksheet as the Game Statistics Table using another page on the <a href="https://www.nba.com/stats/players/bio/?Season=2019-20&SeasonType=Regular%20Season">NBA website</a>.
+						</p>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/4.png" class="image fit thumb"><img src="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/4.png"
+								/>
+							</a>
+						</p>
+
+
+
+					</section>
+
+
+
+
+
+
+
+				<!-- Data Cleaning -->
+					<section id="datacleaning">
+						<header class="major">
+							<h3>PART 2: DATA CLEANING & WRANGLING</h3>
+						</header>
+						
+						
+						<header class="major">
+							<h4>Main NBA Table:</h4>
+						</header>
+
+						<p>
+							All information gets combined into one main NBA table using <mark><b>INDEX()</b></mark> and <mark><b>MATCH()</b></mark>. First, the tables with the salaries data are combined. <mark><b>ISERROR()</b></mark> is nested within an <mark><b>IF()</b></mark> function to return a blank cell if there is an #N/A error after the INDEX()/MATCH()--this error being caused by no salary information being listed because of things like the player being in college or having not played in the season.
+						</p>
+						<p>
+							<p style="padding:2px 6px 4px 6px; color: #555555; background-color: #eeeeee; border: #dddddd 2px solid">
+								=IF(ISERROR(INDEX('NBA 19-20'!$D$2:$D$529,MATCH('NBA 20-21'!$B2,'NBA 19-20'!$B$2:$B$529,0))),"",INDEX('NBA 19-20'!$D$2:$D$529,MATCH('NBA 20-21'!$B2,'NBA 19-20'!$B$2:$B$529,0)))
+							</p>
+						</p>
+
+						<!-- IMAGE -->
+						<p>
+							<a href="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/5.png" class="image fit thumb"><img src="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/5.png"
+								/>
+							</a>
+						</p>
+						
+
+						<p>
+							PowerQuery is used to separate the player names from their position using a comma and space (", ") as the delimiter. Any blank columns within the main table are deleted as well. Salary amounts are changed to the currency format.
+						</p>
+						<p>
+							<p style="padding:2px 6px 4px 6px; color: #555555; background-color: #eeeeee; border: #dddddd 2px solid">
+								Data Tab > Get Data From Table/Range > Split Column by Delimeter: ", "</br>
+								= Table.TransformColumnTypes(#"Split Column by Delimiter",{{"Player.1", type text}, {"Player.2", type text}})
+							</p>
+						</p>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/6.png" class="image fit thumb"><img src="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/6.png"
+								/>
+							</a>
+						</p>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/7.png" class="image fit thumb"><img src="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/7.png"
+								/>
+							</a>
+						</p>
+
+
+						<p>
+							Game statistics and draft year are appended to the main table from their own respective tables using <mark><b>INDEX()</b></mark> and <mark><b>MATCH()</b></mark>. Once again, an <mark><b>ISERROR()</b></mark> function is nested inside an <mark><b>IF()</b></mark> function to mark any #N/A errors as blanks.
+						</p>
+						<p>
+							<p style="padding:2px 6px 4px 6px; color: #555555; background-color: #eeeeee; border: #dddddd 2px solid">
+								Game statistics:</br>
+								=IF(ISERROR(INDEX(NBA_1920[GP],MATCH([@Player],NBA_1920[PLAYER],0))),"",(INDEX(NBA_1920[GP],MATCH([@Player],NBA_1920[PLAYER],0))))</br>
+								Draft year:</br>
+								=IF(ISERROR(INDEX(NBA_Draft_Dates[Draft Year],MATCH([@Player],NBA_Draft_Dates[Player],0))),"",(INDEX(NBA_Draft_Dates[Draft Year],MATCH([@Player],NBA_Draft_Dates[Player],0))))
+							</p>
+						</p>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/8.png" class="image fit thumb"><img src="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/8.png"
+								/>
+							</a>
+						</p>
+
+
+						<p>
+							In order to list years experience (after the 2019-2020 season), a new column in the main table is created called "NBA Experience." <mark><b>IF()</b></mark> functions are used to return "Undrafted" if the Draft Year column says "Undrafted," a blank if the Draft Year column has a blank, or else the value in Draft Year is subtracted from 2020 to give the number of years of NBA experience by the end of the 2019-2020 season. Conditional Formatting is then used to highlight players without filled in Draft Year (that have either blanks or “Undrafted” listed instead) in red fill.
+						</p>
+					<!-- IMAGE -->
+					<p>
+						<a href="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/9.png" class="image fit thumb"><img src="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/9.png"
+							/>
+						</a>
+					</p>
+					<!-- IMAGE -->
+					<p>
+						<a href="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/10.png" class="image fit thumb"><img src="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/10.png"
+							/>
+						</a>
+					</p>
+
+					<p>
+						Draft year data compiled from the best results of my research (information was from <a href="http://www.espn.com/nba/players">ESPN's individual player pages</a> and player Wikipedia pages if the player was not listed on ESPN) is manually added to fill in any flagged cells.
+					</p>
+					<!-- IMAGE -->
+					<p>
+						<a href="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/11.png" class="image fit thumb"><img src="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/11.png"
+							/>
+						</a>
+					</p>
+					
+					
+						
+					</section>
+
+
+
+				<!-- Filtering -->
+					<section id="filtering">
+						<header class="major">
+							<h2>PART 3: FILTERING, CENTRAL TENDENCY, & DISPERSION CALCULATIONS</h2>
+						</header>
+						<p>
+							In this section, filter options are used on the main NBA table in order to look at interesting subgroups of players and do Central Tendency and Dispersion calculations. Each filtered tables are copy and pasted into their own individual worksheets.
+						</p>
+						<p>
+							<b>NOTE:</b> For the simplistic scope of this project, those who did not play during the 2019-2020 season have blanks in their game statistics. For further computations, Excel will ignore the blanks. This will skew the data a bit, especially because big players like Klay Thompson and Kevin Durant will not be included in the data set. Additionally, players like Stephen Curry were injured this season and have irregular game statistics. These issues will lead to data not being fully accurately captured, but for a simple snapshot, it gives a general overview of the league.
+						</p>
+
+
+
+						<header class="major">
+							<h4>Veterans (5/+ years experience playing in the NBA)</h4>
+						</header>
+
+						<!-- IMAGE -->
+						<p>
+							<a href="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/12.png" class="image fit thumb"><img src="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/12.png"
+								/>
+							</a>
+						</p>
+						
+						
+						<p>
+							Central tendency and dispersion calculations are done using <mark><b>AVERAGE()</b></mark>, <mark><b>MEDIAN()</b></mark>, <mark><b>MAX()</b></mark>, <mark><b>MIN()</b></mark>, <mark><b>MODE()</b></mark>, <mark><b>VAR.S()</b></mark>, and <mark><b>STDEV.S()</b></mark>.
+						</p>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/13.png" class="image fit thumb"><img src="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/13.png"
+								/>
+							</a>
+						</p>
+
+						<p>
+							Median salary (not affected by large outliers in data) for veterans in the NBA is about <b>$8,333,333</b> in 2019-2020 and <b>$7,316,667</b> in 2020-2021. The decrease in median salary between the two years suggests more veterans had salaries towards the lower range of salaries (whether that be salary decreases or more younger players with lower salaries entered the veteran category in 2020-2021).
+						</p>
+						<p>
+							The maximum salary for veterans in the NBA is about <b>$40,231,758</b> in 2019-2020 and <b>$43,006,362</b> in 2020-2021.
+						</p>
+						<p>
+							<b>NOTE:</b> Minimum salary is not fully accurate—in the NBA, there is a minimum salary floor for a full team of 90% of the salary cap (source: <a href="https://www.hoopsrumors.com/2021/11/hoops-rumors-glossary-salary-floor-3.html#:~:text=If%20a%20team%20finishes%20the,the%20difference%20to%20its%20players.">Hoops Rumors</a>)—because the sources included some players who did not actually play during the seasons, had other contract issues, or other inaccuracies. These inaccurate values slightly skew the data, but for the simplistic scope of this project, it gives a general overview of the figures and does not significantly alter the data too much. As stated before, Excel also ignores blank cells in any computations.
+						</p>
+						<p>
+							Average salary (affected by large outliers and thus, less accurate for this data set because of the few inaccurate, outlier salaries reported) for veterans in the NBA is about <b>$11,390,478</b> in 2019-2020 and <b>$10,610,341</b> in 2020-2021, with a standard deviation from the mean of about <b>$10,300,242</b> in 2019-2020 and <b>$10,586,257</b> in 2020-2021.
+						</p>
+
+
+
+
+
+
+						<header class="major">
+							<h4>Rookies (First year in the NBA)</h4>
+						</header>
+
+						<!-- IMAGE -->
+						<p>
+							<a href="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/14.png" class="image fit thumb"><img src="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/14.png"
+								/>
+							</a>
+						</p>
+						
+											
+						<p>
+							Central tendency and dispersion calculations are done using <mark><b>AVERAGE()</b></mark>, <mark><b>MEDIAN()</b></mark>, <mark><b>MAX()</b></mark>, <mark><b>MIN()</b></mark>, <mark><b>MODE()</b></mark>, <mark><b>VAR.S()</b></mark>, and <mark><b>STDEV.S()</b></mark>.
+						</p>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/15.png" class="image fit thumb"><img src="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/15.png"
+								/>
+							</a>
+						</p>
+
+						<p>
+							Median salary (not affected by large outliers in data) for rookies in the NBA is about <b>$1,988,500</b> in 2020-2021.
+						</p>
+						<p>
+							The maximum salary for rookies in the NBA is about <b>$9,757,440</b> in 2020-2021.
+						</p>
+						<p>
+							<b>NOTE:</b> The previous note applies again—the NBA has a minimum salary floor for the whole team of 90% of the salary cap.
+						</p>
+						<p>
+							Average salary (affected by large outliers and thus, less accurate for this data set because of the few inaccurate, outlier salaries reported) for rookies in the NBA is about <b>$2,597,141</b>, with a standard deviation of about <b>$2,299,046</b> in 2020-2021.
+						</p>
+
+
+
+						<header class="major">
+							<h4>All Players in NBA</h4>
+						</header>
+
+						<p>
+							Central tendency and dispersion calculations are done using <mark><b>AGGREGATE()</b></mark> and <mark><b>MODE()</b></mark>.
+						</p>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/16.png" class="image fit thumb"><img src="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/16.png"
+								/>
+							</a>
+						</p>
+
+						<p>
+							Median salary (not affected by large outliers) for all players in the NBA is about <b>$3,500,000</b> in 2019-2020 and <b>$3,095,432</b> in 2020-2021. The decrease in median salary between the two years could suggest more players in the 2020-2021 season were getting salaries towards the lower range of salaries than they were the previous season.
+						</p>
+						<p>
+							The maximum salary for all players in the NBA is about <b>$40,231,758</b> in 2019-2020 and <b>$43,006,362</b> in 2020-2021.
+						</p>
+						<p>
+							<b>NOTE:</b> Once again, the minimum salary is not entirely correct here, as the NBA has a minimum salary floor for the whole team of 90% of the salary cap.
+						</p>
+						<p>
+							Average salary (affected by large outliers and thus, less accurate for this data set because of the few inaccurate, outlier salaries reported) for all players in the NBA is about <b>$7,559,491</b> in 2019-2020 and <b>$7,040,308</b> in 2020-2021, with a standard deviation from the mean of about <b>$8,917,477</b> in 2019-2020 and <b>$8,804,478</b> in 2020-2021.
+						</p>
+
+					</section>
+
+
+					
+
+
+
+
+				<!-- Comparison -->
+					<section id="comparison">
+						<header class="major">
+							<h3>PART 4: COMPARING WNBA VS NBA</h3>
+						</header>
+						<p>
+							In this section, PivotTables, PivotCharts, and column charts are created in order to compare salary across different facets of players between the WNBA and NBA.
+						</p>
+
+						<header class="major">
+							<h5>QUICK NAVIGATION:</h5>
+						</header>
+						<ul>
+							<li>
+								<a href="Excel_wnba_vs_nba.html#comp_vets_avg_med_max">VETERANS - Average, Median, and Maximum Salaries</a>
+							</li>
+							<li>
+								<a href="Excel_wnba_vs_nba.html#comp_vets_exp">VETERANS - Salary by Years Experience</a>
+							</li>
+							<li>
+								<a href="Excel_wnba_vs_nba.html#comp_vets_position">VETERANS - Salary by Position</a>
+							</li>
+							<li>
+								<a href="Excel_wnba_vs_nba.html#comp_rookies_avg_med_max">ROOKIES - Average, Median, and Maximum Salaries</a>
+							</li>
+							<li>
+								<a href="Excel_wnba_vs_nba.html#comp_rookies_position">ROOKIES - Salary by Position</a>
+							</li>
+							<li>
+								<a href="Excel_wnba_vs_nba.html#comp_all_avg_med_max">ALL WNBA & NBA - Average, Median, and Maximum Salaries</a>
+							</li>
+							<li>
+								<a href="Excel_wnba_vs_nba.html#comp_all_PPG">ALL WNBA & NBA - Salary within Top 25% of Points Per Game</a>
+							</li>
+							<li>
+								<a href="Excel_wnba_vs_nba.html#comp_all_MPG">ALL WNBA & NBA - Salary within Top 25% of Minutes Per Game</a>
+							</li>
+							<li>
+								<a href="Excel_wnba_vs_nba.html#comp_all_GP">ALL WNBA & NBA - Salary within Top 25% of Games Played</a>
+							</li>
+						</ul>
+
+						
+						
+						
+						<header class="major" id="comp_vets">
+							<h3><u>VETERANS (5 yrs/+ experience playing in the WNBA or NBA)</u></h3>
+						</header>
+
+						<header class="major" id="comp_vets_avg_med_max">
+							<h5>1. Average, Median, and Maximum Salaries:</h5>
+						</header>
+
+						
+						<p>
+							Using previous calculations, graphs are created comparing WNBA and NBA veterans' average, median, and maximum salaries. Chart title and axis labels are added, axes are formatted, and decimal placements are changed for clearer charts:
+						</p>
+
+						<!-- IMAGE -->
+						<p>
+							<a href="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/17.1.png" class="image fit thumb"><img src="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/17.1.png"
+								/>
+							</a>
+						</p>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/17.2.png" class="image fit thumb"><img src="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/17.2.png"
+								/>
+							</a>
+						</p>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/17.3.png" class="image fit thumb"><img src="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/17.3.png"
+								/>
+							</a>
+						</p>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/17.4.png" class="image fit thumb"><img src="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/17.4.png"
+								/>
+							</a>
+						</p>
+						<p>
+							Average salary for veterans in the WNBA is <b>$136,887.88</b> in 2020 and <b>$155,559.14</b> in 2021. Average salary for veterans in the NBA is <b>$11,390,478.45</b> in 2019-2020 and <b>$10,610,341.01</b> in 2020-2021.</br>
+							Median salary for veterans in the WNBA is <b>$118,510.00</b> in 2020 and <b>$167,500.00</b> in 2021. Median salary for veterans in the NBA is <b>$8,333,333.00</b> in 2019-2020 and <b>$7,316,666.50</b> in 2020-21.</br>
+							Maximum salary for veterans in the WNBA is <b>$215,000.00</b> in 2020 and <b>$221,450.00</b> in 2021. Maximum salary for veterans in the NBA is <b>$40,231,758.00</b> in 2019-2020 and <b>$43,006,362.00</b> in 2020-2021.</br>
+							There is a large difference in average, median, and maximum salaries between veteran players in the WNBA and NBA. Comparing the 2021 WNBA season with the 2020-2021 NBA season, there is a $10,454,781.88 gap in average salary, a $7,149,166.50 gap in median salary, and a $42,784,912.00 gap in maximum salary.
+						</p>
+						
+						
+						
+						
+						
+						<p>
+							Since Excel 2010 does not have the option to add data from different worksheets to the Data Model for a quick shared Slicer in Pivot Tables, two separate PivotTables with Slicers for both WNBA and NBA veterans are created in these following sections:
+						</p>
+
+						
+						
+						<header class="major" id="comp_vets_exp">
+							<h5>2. Experience:</h5>
+						</header>
+
+						<p>
+							A new query in PowerQuery is created to remove the “yrs” addition under the WNBA Experience in order to be cleaner and match with the NBA table.
+						</p>
+
+						<!-- CODE TEXT BOX -->
+						<p>
+							<p style="padding:2px 6px 4px 6px; color: #555555; background-color: #eeeeee; border: #dddddd 2px solid">
+								PowerQuery > Split Column by Delimiter (space) > delete new column that has “yrs” > Close & Load To … Only Create a Connection
+							</p>
+						</p>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/17.png" class="image fit thumb"><img src="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/17.png"
+								/>
+							</a>
+						</p>
+
+						<p>
+							<b>2.a. Averages:</b>
+						</p>
+						<p>
+							A PivotTable of WNBA veterans' experience with the averages of their 2020 and 2021 salaries is created. Then, a slicer is added to easily select between experience level. </br>
+							A PivotTable of NBA veterans' experience with the averages of their 2019-2020 and 2020-2021 salaries is created. A slicer with experience level is added as well.
+						</p>
+						
+						<!-- CODE TEXT BOX -->
+						<p>
+							<p style="padding:2px 6px 4px 6px; color: #555555; background-color: #eeeeee; border: #dddddd 2px solid">
+								PivotTable > use an external data source > select new Query made previously > change number format to currency
+							</p>
+						</p>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/18.png" class="image fit thumb"><img src="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/18.png"
+								/>
+							</a>
+						</p>
+
+						<p>
+							Column PivotCharts are created to compare the average veteran salaries between the two seasons <b>within-leagues</b>. Chart title and axis labels are added, axes are formatted, and decimal placements are changed for clearer charts:
+						</p>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/19.png" class="image fit thumb"><img src="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/19.png"
+								/>
+							</a>
+						</p>
+						<p>
+							NOTE: 14 years is removed in the WNBA chart because the WNBA did not have any players with exactly 14 years in the data set.
+						</p>
+
+						<p>
+							&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>WNBA:</i> Average salary seems to have increased in 2021 from the 2020 season. Overall, the average salaries of veterans tend to be fairly linear with more experience, but more years in the WNBA does not seem to lead to a significant increase in average salary.</br>
+							&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>NBA:</i> Average salary seems to have decreased in 20-21 from the 19-20 season. Overall, there is a slight bell shaped curve to average salaries—the more years in the NBA, the higher the average salary until hitting a peak around 10-14 years, after which average salary decreases.</br>
+						</p>
+
+
+						<p>
+							Column charts are created to compare the average salary for each veteran experience level for the two seasons <b>between the two leagues</b>. Chart title and axis labels are added, axes are formatted, and decimal placements are changed for clearer charts:
+						</p>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/20.png" class="image fit thumb"><img src="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/20.png"
+								/>
+							</a>
+						</p>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/21.png" class="image fit thumb"><img src="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/21.png"
+								/>
+							</a>
+						</p>
+						<p>
+							NOTE: 14 years is removed because the WNBA did not have any players with exactly 14 years in the data set.
+						</p>
+
+						<p>
+							The disparity between the two leagues is clear—average NBA veteran salaries exceed the WNBA's by a large magnitude. For example, veterans who have played for 5 years professionally have a $7,743,253.05 gap on average salary for the WNBA 2020/NBA 2019-2020 seasons and an $8,174,656.18 gap on average salary for the WNBA 2021/NBA 2020-2021 seasons between the two leagues.
+						</p>
+						
+
+
+						<p>
+							<b>2.b. Medians:</b>
+						</p>
+						<p>
+							In order to compare median salaries along with the average salaries, nested <mark><b>IF()</b></mark> functions are used within <mark><b>MEDIAN()</b></mark>—creating an array formula. If Experience is equal to the amount of years we are interested in for each row AND the salary column does NOT equal to "Didn't Play", then salary is used to find the median. A table is then created with the results.
+						</p>
+						<!-- CODE TEXT BOX -->
+						<p>
+							<p style="padding:2px 6px 4px 6px; color: #555555; background-color: #eeeeee; border: #dddddd 2px solid">
+								{=MEDIAN(IF(WNBA_Vets[WNBA Experience]="5 yrs",IF(WNBA_Vets[2020]<>"Didn't play",WNBA_Vets[2020])))}
+							</p>
+						</p>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/22.png" class="image fit thumb"><img src="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/22.png"
+								/>
+							</a>
+						</p>
+
+						<p>
+							This was repeated with the NBA. If Experience is equal to the amount of years we are interested in AND the salary column is not blank, then salary is used to calculate the median.
+						</p>
+						<!-- CODE TEXT BOX -->
+						<p>
+							<p style="padding:2px 6px 4px 6px; color: #555555; background-color: #eeeeee; border: #dddddd 2px solid">
+								{=MEDIAN(IF(NBA_Vets[NBA Experience (after 2020)]=5,IF(NBA_Vets[19-20 Salary]<>"",NBA_Vets[19-20 Salary])))}
+							</p>
+						</p>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/23.png" class="image fit thumb"><img src="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/23.png"
+								/>
+							</a>
+						</p>
+
+
+						<p>
+							Column charts are created to compare the median salaries for each veteran experience level between the two seasons <b>within-leagues</b>. Chart title and axis labels are added, axes are formatted, and decimal placements are changed for clearer charts:
+						</p>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/24.png" class="image fit thumb"><img src="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/24.png"
+								/>
+							</a>
+						</p>
+
+						<p>
+							&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>WNBA:</i> Median salary seems to have increased from 2020 to 2021. The middle salary amount has increased when looking at comparative years of WNBA experience—for example, veterans with 5 years of experience in 2021 received a $48,700 increase in median salary compared to veterans with 5 years of experience in 2020. However, there is not a clear pattern of increased years of experience affecting the median salary amounts.</br>
+							&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>NBA:</i> Median salary for veterans with 5-6 years of NBA experience seems to have increased from 19-20 to 20-21, median salary for veterans with 7-13 years of NBA experience seems to have decreased, and median salary for veterans with 15-17 years of experience seems to have stayed about the same amount. Likewise with the WNBA, there is not a clear relational pattern of years of experience with median salary amounts.
+						</p>
+
+						<p>
+							Column charts are created to compare the median salary for each veteran experience level for the two seasons <b>between the two leagues</b>. Chart title and axis labels are added, axes are formatted (including matching the y-axis to mirror the average salary chart), and decimal placements are changed for clearer charts:
+						</p>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/25.png" class="image fit thumb"><img src="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/25.png"
+								/>
+							</a>
+						</p>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/26.png" class="image fit thumb"><img src="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/26.png"
+								/>
+							</a>
+						</p>
+						<p>
+							NOTE: Once again, the chart is missing 14 years because no veterans in the WNBA had exactly 14 years experience.
+						</p>
+						<p>
+							Similar to the average salaries, the median salaries of NBA veterans greatly outweigh the WNBA's. For example, veterans who have played for 5 years professionally have a $3,527,500 gap on median salary for the WNBA 2020/NBA 2019-2020 seasons and an $4,559,516 gap on median salary for the WNBA 2021/NBA 2020-2021 seasons between the two leagues. The gap between the two leagues is smaller for the median salaries than average salaries (which can also be attributed to the median not being driven by outliers like the average is).
+						</p>
+					
+
+
+
+
+						<header class="major" id="comp_vets_position">
+							<h5>3. Position:</h5>
+						</header>
+
+						<p>
+							The previously created query of WNBA veterans is used as the data source to create another PivotTable looking at the salaries with player positions. The number format is changed to currency and a slicer is added. The same is done to the NBA veterans.
+						</p>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/27.png" class="image fit thumb"><img src="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/27.png"
+								/>
+							</a>
+						</p>
+
+
+						<p>
+							<b>3.a. Averages:</b>
+						</p>
+						
+						<p>
+							Column PivotCharts are created to compare the average veteran salaries between the two seasons <b>within-leagues</b>. Chart title and axis labels are added, axes are formatted, and decimal placements are changed for clearer charts:
+						</p>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/28.png" class="image fit thumb"><img src="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/28.png"
+								/>
+							</a>
+						</p>
+
+						<p>
+							&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>WNBA:</i> The average salaries for the forward, forward-center, forward-guard, guard, and guard-forward positions have increased between the 2020 and 2021 seasons. The average salary for the center-forward position has decreased between the 2020 and 2021 seasons. The average salary for the center position has stayed about the same between the 2020 and 2021 seasons.</br>
+							&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>NBA:</i> The average salaries for the center, forward, power-forward, and point guard positions have increased between the 2019-2020 and 2020-2021 seasons. The average salary for the shooting guard position has decreased between the 2019-2020 and 2020-2021 seasons. The average salaries for the guard and small forward positions have stayed about the same between the 2019-2020 and 2020-2021 seasons.
+						</p>
+
+						<p>
+							In order to do analysis between leagues, positions are grouped together since both leagues name their positions slightly differently:</br>
+							&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>Guard</i> includes the guard and guard-forward positions in the WNBA, and the guard, shooting guard, and point guard positions in the NBA.</br>
+							&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>Center</i> includes the center and center-forward positions in the WNBA, and the center position in the NBA.</br>
+							&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>Forward</i> includes the forward, forward-center, and forward-guard positions in the WNBA, and the forward, power-forward, and small-forward positions in the NBA.
+						</p>
+
+						<p>
+							Averages are found for each grouped position using multiple <mark><b>SUMIFS()</b></mark> divided by multiple <mark><b>COUNTIFS()</b></mark>
+						</p>
+						<!-- CODE TEXT BOX -->
+						<p>
+							<p style="padding:2px 6px 4px 6px; color: #555555; background-color: #eeeeee; border: #dddddd 2px solid">
+								=(SUMIFS(WNBA_Vets[2020],WNBA_Vets[2020],"<>Didn't play",WNBA_Vets[Position],"G")+SUMIFS(WNBA_Vets[2020],WNBA_Vets[2020],"<>Didn't play",WNBA_Vets[Position],"G-F"))/(COUNTIFS(WNBA_Vets[2020],"<>Didn't Play",WNBA_Vets[Position],"G")+COUNTIFS(WNBA_Vets[2020],"<>Didn't Play",WNBA_Vets[Position],"G-F"))
+							</p>
+						</p>
+						<p>
+							Explanation for code:</br>
+							&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>SUMIFS:</i> sum salary IF (salary has a value AND has "G" position) + sum salary IF (salary has a value AND has "G-F" position)</br>
+							&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>COUNTIFS:</i> count IF (salary has a value AND has "G" position) + count IF (salary has a value AND has a "G-F" position)</br>
+							&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Average = Sum/Count
+						</p>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/29.png" class="image fit thumb"><img src="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/29.png"
+								/>
+							</a>
+						</p>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/30.png" class="image fit thumb"><img src="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/30.png"
+								/>
+							</a>
+						</p>
+
+						<p>
+							NOTE: The amounts can be checked by filtering by position, then using the <mark><b>AGGREGATE()</b></mark> function, but this is not dynamic and not preferred for the main method.
+						</p>
+
+						
+						<p>
+							Column charts are created to compare the average salaries for each veteran position between the two seasons <b>within-leagues</b>. Chart title and axis labels are added, axes are formatted, and decimal placements are changed for clearer charts:
+						</p>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/31.png" class="image fit thumb"><img src="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/31.png"
+								/>
+							</a>
+						</p>
+						<p>
+							Across the different positions, there generally is not much spread of veteran average salaries—the WNBA has an average salary around $140,000 no matter the position and the NBA has an average salary around $11,000,000 no matter the position.
+						</p>
+
+						<p>
+							Column charts are created to compare the average salaries for each veteran position between the two seasons <b>between the two leagues</b>. Chart title and axis labels are added, axes are formatted, and decimal placements are changed for clearer charts:
+						</p>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/32.png" class="image fit thumb"><img src="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/32.png"
+								/>
+							</a>
+						</p>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/33.png" class="image fit thumb"><img src="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/33.png"
+								/>
+							</a>
+						</p>
+						<p>
+							Comparing the WNBA and the NBA shows the continued disparity between the leagues: NBA veterans receive an average salary of about $11 million more than WNBA veterans do. 
+						</p>
+
+
+						<p>
+							<b>3.b. Medians:</b>
+						</p>
+
+						<p>
+							Medians for each group position are found using <mark><b>MEDIAN()</b></mark> and nested <mark><b>IF()</b></mark> functions as an array function.
+						</p>
+						<!-- CODE TEXT BOX -->
+						<p>
+							<p style="padding:2px 6px 4px 6px; color: #555555; background-color: #eeeeee; border: #dddddd 2px solid">
+								{=MEDIAN(IF(WNBA_Vets[2020]<>"Didn't play",IF(WNBA_Vets[Position]="G",WNBA_Vets[2020],IF(WNBA_Vets[Position]="G-F",WNBA_Vets[2020]))))}
+							</p>
+						</p>
+						<p>
+							Explanation for code:</br>
+							Find the median IF 2020 salary had a value and was not equal to “Didn't play.” IF this first requirement is TRUE and IF position is "G", then use the 2020 salary value. IF the first requirement is TRUE and IF position is NOT "G", but IS "G-F", then use the 2020 salary value. Otherwise, no value used.
+						</p>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/34.png" class="image fit thumb"><img src="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/34.png"
+								/>
+							</a>
+						</p>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/35.png" class="image fit thumb"><img src="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/35.png"
+								/>
+							</a>
+						</p>
+						
+						<p>
+							Column charts are created to compare the median salaries for each veteran position between the two seasons <b>between the two leagues</b>. Chart title and axis labels are added, axes are formatted, and decimal placements are changed for clearer charts:
+						</p>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/36.png" class="image fit thumb"><img src="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/36.png"
+								/>
+							</a>
+						</p>
+
+						<p>
+							&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>WNBA:</i> Generally, the median salaries for veterans are within around a $40,000 range of each other across positions. There is more variation in median salary across positions than in the average salary.</br>
+							&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>NBA:</i> The guard and forward positions have median salaries around $8 million, while the center position has more variation between the 19-20 and 20-21 seasons (between around $11 million to around $5 million). Veteran centers during the 19-20 season have a smaller range of low salaries and have a majority of the salaries clustered at the top compared to the other positions. In the 20-21 season, multiple players with high salaries had their salaries drastically cut because of injury or other reasons (for example, DeMarcus Cousins received $3.5 million in 19-20 and only $200,000 in 20-21), which shifted the median down much more, as more players were clustered towards the bottom range of salaries.
+						</p>
+
+						<p>
+							Column charts are created to compare the median salaries for each veteran position between the two seasons <b>between the two leagues</b>. Chart title and axis labels are added, axes are formatted, and decimal placements are changed for clearer charts:
+						</p>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/37.png" class="image fit thumb"><img src="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/37.png"
+								/>
+							</a>
+						</p>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/38.png" class="image fit thumb"><img src="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/38.png"
+								/>
+							</a>
+						</p>
+						<p>
+							NBA veteran guards receive a median salary of about $8 million more than WNBA veteran guards do. NBA veteran centers receive a median salary of about $5 million to $11 million more than WNBA veteran centers do. NBA veteran forwards receive a median salary of about $7 million more than WNBA veteran forwards do.
+						</p>
+
+
+
+
+
+						<header class="major" id="comp_rookies">
+							<h3><u>ROOKIES (first year playing in the WNBA or NBA)</u></h3>
+						</header>
+
+						<header class="major" id="comp_rookies_avg_med_max">
+							<h5>1. Average, Median, and Maximum Salaries:</h5>
+						</header>
+						<p>
+							Using previous calculations, graphs are created comparing WNBA and NBA rookies' average, median, and maximum salaries. Chart title and axis labels are added, axes are formatted, and decimal placements are changed for clearer charts:
+						</p>
+
+						<!-- IMAGE -->
+						<p>
+							<a href="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/39.1.png" class="image fit thumb"><img src="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/39.1.png"
+								/>
+							</a>
+						</p>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/39.png" class="image fit thumb"><img src="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/39.png"
+								/>
+							</a>
+						</p>
+						<p>
+							Average salary for rookies in the WNBA is <b>$49,716.32</b> in 2021. Average salary for rookies in the NBA is <b>$2,597,140.68</b> in 2020-2021.</br>
+							Median salary for rookies in the WNBA is <b>$61,543.00</b> in 2021. Median salary for rookies in the NBA is <b>$1,988,500.00</b> in 2020-21.</br>
+							Maximum salary for rookies in the WNBA is <b>$70,040.00</b> in 2021. Maximum salary for rookies in the NBA is <b>$9,757,440.00</b> in 2020-2021.</br>
+							Similar to the pattern of the rest of the leagues, there is a large disparity of average, median, and maximum salaries between rookies of the WNBA and the NBA. Rookies in the NBA make $2,547,424.36 more than their rookie counterparts in the WNBA on average. There is a $1,926,957.00 gap in median salary and a $9,687,400.00 gap in maximum salaries between the two leagues as well.
+						</p>
+
+
+
+						<header class="major" id="comp_rookies_position">
+							<h5>2. Position:</h5>
+						</header>
+
+
+						<p>
+							Averages are found for each grouped position using multiple <mark><b>SUMIFS()</b></mark> divided by multiple <mark><b>COUNTIFS()</b></mark>
+						</p>
+						<!-- CODE TEXT BOX -->
+						<p>
+							<p style="padding:2px 6px 4px 6px; color: #555555; background-color: #eeeeee; border: #dddddd 2px solid">
+								=(SUMIFS(WNBA_Rookies[2021],WNBA_Rookies[2021],"<>",WNBA_Rookies[Position],"G")+SUMIFS(WNBA_Rookies[2021],WNBA_Rookies[2021],"<>",WNBA_Rookies[Position],"G-F"))/(COUNTIFS(WNBA_Rookies[2021],"<>",WNBA_Rookies[Position],"G")+COUNTIFS(WNBA_Rookies[2021],"<>",WNBA_Rookies[Position],"G-F"))
+							</p>
+						</p>
+						<p>
+							Explanation for code:</br>
+							&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>SUMIFS:</i> sum salary IF (salary has a value AND has "G" position) + sum salary IF (salary has a value AND has "G-F" position)</br>
+							&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>COUNTIFS:</i> count IF (salary has a value AND has "G" position) + count IF (salary has a value AND has a "G-F" position)</br>
+							&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Average = Sum/Count
+						</p>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/40.png" class="image fit thumb"><img src="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/40.png"
+								/>
+							</a>
+						</p>
+						
+						<p>
+							Medians for each group position are found using <mark><b>MEDIAN()</b></mark> and nested <mark><b>IF()</b></mark> functions as an array function.
+						</p>
+						<!-- CODE TEXT BOX -->
+						<p>
+							<p style="padding:2px 6px 4px 6px; color: #555555; background-color: #eeeeee; border: #dddddd 2px solid">
+								{=MEDIAN(IF(WNBA_Rookies[2021]<>"",IF(WNBA_Rookies[Position]="G",WNBA_Rookies[2021],IF(WNBA_Rookies[Position]="G-F",WNBA_Rookies[2021]))))}
+							</p>
+						</p>
+						<p>
+							Explanation for code:</br>
+							Find the median IF 2021 salary had a value. IF this first requirement is TRUE and IF position is "G", then use the 2021 salary value. IF the first requirement is TRUE and IF position is NOT "G", but IS "G-F", then use the 2020 salary value. Otherwise, no value used.
+						</p>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/41.png" class="image fit thumb"><img src="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/41.png"
+								/>
+							</a>
+						</p>
+
+						<!-- IMAGE -->
+						<p>
+							<a href="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/42.png" class="image fit thumb"><img src="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/42.png"
+								/>
+							</a>
+						</p>
+
+
+						<p>
+							Column charts are created to compare the average and median salaries for each rookie position between the two seasons <b>between the two leagues</b>. Chart title and axis labels are added, axes are formatted, and decimal placements are changed for clearer charts:
+						</p>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/43.png" class="image fit thumb"><img src="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/43.png"
+								/>
+							</a>
+						</p>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/44.png" class="image fit thumb"><img src="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/44.png"
+								/>
+							</a>
+						</p>
+						<p>
+							Once again, the pattern of players in the WNBA being paid vastly lower average and median salaries compared to those in the NBA continues with the rookies.
+						</p>
+
+
+
+
+						<header class="major" id="comp_all">
+							<h3><u>ALL PLAYERS IN THE WNBA AND NBA</u></h3>
+						</header>
+
+						<header class="major" id="comp_all_avg_med_max">
+							<h5>1. Average, Median, and Maximum Salaries:</h5>
+						</header>
+
+						<p>
+							The previously calculated values of average, median, and maximum salaries are copied into a new table.
+						</p>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/45.png" class="image fit thumb"><img src="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/45.png"
+								/>
+							</a>
+						</p>
+
+						<p>
+							Average salary for all players in the WNBA is <b>$103,557.16</b> in 2020 and <b>$117,879.97</b> in 2021. Average salary for all players in the NBA is <b>$7,559,491.36</b> in 2019-2020 and <b>$7,040,308.19</b> in 2020-2021.
+						</p>
+
+						<p>
+							Median salary for all players in the WNBA is <b>$88,850.00</b> in 2020 and <b>$110,000.00</b> in 2021. Median salary for all players in the NBA is <b>$3,500,000.00</b> in 2019-2020 and <b>$3,095,432.00</b> in 2020-2021.
+						</p>
+
+						<p>
+							Maximum salary for all players in the WNBA is <b>$215,000.00</b> in 2020 and <b>$221,450.00</b> in 2021. Maximum salary for all players in the NBA is <b>$40,231,758.00</b> in 2019-2020 and <b>$43,006,362.00</b> in 2020-2021.
+						</p>
+
+						<p>
+							Column charts are created to compare the average, median, and maximum salaries for each season <b>between the two leagues</b>. Chart title and axis labels are added, axes are formatted, and decimal placements are changed for clearer charts:
+						</p>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/46.png" class="image fit thumb"><img src="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/46.png"
+								/>
+							</a>
+						</p>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/47.png" class="image fit thumb"><img src="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/47.png"
+								/>
+							</a>
+						</p>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/48.png" class="image fit thumb"><img src="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/48.png"
+								/>
+							</a>
+						</p>
+						<p>
+							Looking at the league in its entirety, WNBA players receive a salary that is only a small fraction of what the NBA players do. This disparity is exemplified the most when comparing the maximum salaries between the two leagues--the greatest players of the WNBA make almost 200x less than the greatest players in the NBA do.
+						</p>
+
+
+						<header class="major" id="comp_all_PPG">
+							<h5>2. Average and Median Salaries For Players Within the Top 25% of Points Per Game:</h5>
+						</header>
+
+						<p>
+							In order to find the top 25% of players in Points Per Game, the 3<sup>rd</sup> quartile threshold point is found using the <mark><b>QUARTILE.INC()</b></mark> function for both leagues.
+						</p>
+						<!-- CODE TEXT BOX -->
+						<p>
+							<p style="padding:2px 6px 4px 6px; color: #555555; background-color: #eeeeee; border: #dddddd 2px solid">
+								=QUARTILE.INC(WNBA_Final[Points Per Game],3)
+							</p>
+						</p>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/49.png" class="image fit thumb"><img src="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/49.png"
+								/>
+							</a>
+						</p>
+
+						<p>
+							Using the quartile calculation, average and median salaries for all players above the threshold point are calculated using the <mark><b>AVERAGEIF()</b></mark> function for the average, and the <mark><b>MEDIAN()</b></mark> function paired with an <mark><b>IF()</b></mark> statement in an array formula for the median.
+						</p>
+						<!-- CODE TEXT BOX -->
+						<p>
+							<p style="padding:2px 6px 4px 6px; color: #555555; background-color: #eeeeee; border: #dddddd 2px solid">
+								=AVERAGEIF(WNBA_Final[Points Per Game],">" & $C$55,WNBA_Final[2020])
+							</p>
+						</p>
+						<p>
+							Explanation for code:</br>
+							IF Points Per Game for a player is greater than the 3<sup>rd</sup> quartile threshold (cell C55 in this case), THEN take the average of the 2020 salaries. Using AVERAGEIF() with a value from another cell and a logical operator in the <i>criteria</i> argument requires concatenation with the & character.
+						</p>
+						<!-- CODE TEXT BOX -->
+						<p>
+							<p style="padding:2px 6px 4px 6px; color: #555555; background-color: #eeeeee; border: #dddddd 2px solid">
+								{=MEDIAN(IF(WNBA_Final[Points Per Game]>$C$55,WNBA_Final[2020]))}
+							</p>
+						</p>
+						<p>
+							Explanation for code:</br>
+							IF Points Per Game for a player is greater than the 3<sup>rd</sup> quartile threshold (cell C55 in this case), THEN take the median of the 2020 salaries.
+						</p>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/50.png" class="image fit thumb"><img src="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/50.png"
+								/>
+							</a>
+						</p>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/51.png" class="image fit thumb"><img src="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/51.png"
+								/>
+							</a>
+						</p>
+
+						<p>
+							The upper 25% of Points Per Game represents players that, on average, score more than <b>14.45 points per game</b> in the WNBA and more than <b>13.2 points per game</b> in the NBA.</br>
+							Average salary for the players in the WNBA within the top 25% of PPG is <b>$131,908.72</b> in 2020 and <b>$150,083.45</b> in 2021. Average salary for the players in the NBA within the top 25% of PPG is <b>$16,778,363.21</b> in 2019-2020 and <b>$18,394,712.50</b> in 2020-2021.</br>
+							Median salary for the players in the WNBA within the top 25% of PPG is <b>$119,500</b> in 2020 and <b>$190,000</b> in 2021. Median salary for the players in the NBA within the top 25% of PPG is <b>$6,517,414.50</b> in 2019-2020 and <b>$4,998,000.00</b> in 2020-2021.
+						</p>
+
+						<p>
+							Column charts are created to compare the average and median salaries for the players within the top 25% of PPG for each season <b>between the two leagues</b>. Chart title and axis labels are added, axes are formatted, and decimal placements are changed for clearer charts:
+						</p>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/52.png" class="image fit thumb"><img src="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/52.png"
+								/>
+							</a>
+						</p>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/53.png" class="image fit thumb"><img src="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/53.png"
+								/>
+							</a>
+						</p>
+
+						<p>
+							The average salaries of the players within the top 25% of PPG increased between seasons for both leagues. The median salaries increased between seasons for the WNBA, but dropped for the NBA. This could suggest, for the WNBA, that more players had salaries towards the upper range. For the NBA, it could potentially suggest that more players had salaries towards the lower range (reducing the median) yet even larger salaries for those players in the higher range (increasing the average), compared to the previous season.</br>
+							The trend in the disparity between the WNBA and NBA salaries continues when comparing the top scorers of the two leagues.
+						</p>
+
+
+
+						<header class="major" id="comp_all_MPG">
+							<h5>3. Average and Median Salaries For Players Within the Top 25% of Minutes Per Game:</h5>
+						</header>
+
+						<p>
+							In order to find the top 25% of players in Minutes Per Game, the 3<sup>rd</sup> quartile threshold point is found using the <mark><b>QUARTILE.INC()</b></mark> function for both leagues.
+						</p>
+						<!-- CODE TEXT BOX -->
+						<p>
+							<p style="padding:2px 6px 4px 6px; color: #555555; background-color: #eeeeee; border: #dddddd 2px solid">
+								=QUARTILE.INC(WNBA_Final[Minutes Per Game],3)
+							</p>
+						</p>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/54.png" class="image fit thumb"><img src="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/54.png"
+								/>
+							</a>
+						</p>
+
+						<p>
+							Using the quartile calculation, average and median salaries for all players above the threshold point are calculated using the <mark><b>AVERAGEIF()</b></mark> function for the average, and the <mark><b>MEDIAN()</b></mark> function paired with an <mark><b>IF()</b></mark> statement in an array formula for the median.
+						</p>
+						<!-- CODE TEXT BOX -->
+						<p>
+							<p style="padding:2px 6px 4px 6px; color: #555555; background-color: #eeeeee; border: #dddddd 2px solid">
+								=AVERAGEIF(WNBA_Final[Minutes Per Game],">" & $C$93,WNBA_Final[2020])
+							</p>
+						</p>
+						<p>
+							Explanation for code:</br>
+							IF Minutes Per Game for a player is greater than the 3<sup>rd</sup> quartile threshold (cell C93 in this case), THEN take the average of the 2020 salaries. Using AVERAGEIF() with a value from another cell and a logical operator in the <i>criteria</i> argument requires concatenation with the & character.
+						</p>
+						<!-- CODE TEXT BOX -->
+						<p>
+							<p style="padding:2px 6px 4px 6px; color: #555555; background-color: #eeeeee; border: #dddddd 2px solid">
+								{=MEDIAN(IF(WNBA_Final[Minutes Per Game]>$C$93,WNBA_Final[2020]))}
+							</p>
+						</p>
+						<p>
+							Explanation for code:</br>
+							IF Minutes Per Game for a player is greater than the 3<sup>rd</sup> quartile threshold (cell C93 in this case), THEN take the median of the 2020 salaries.
+						</p>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/55.png" class="image fit thumb"><img src="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/55.png"
+								/>
+							</a>
+						</p>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/56.png" class="image fit thumb"><img src="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/56.png"
+								/>
+							</a>
+						</p>
+
+						<p>
+							The upper 25% of Minutes Per Game represents players that, on average, play more than <b>28.255 minutes per game</b> in the WNBA and more than <b>28.95 minutes per game</b> in the NBA.</br>
+							Average salary for the players in the WNBA within the top 25% of MPG is <b>$136,231.24</b> in 2020 and <b>$157,137.10</b> in 2021. Average salary for the players in the NBA within the top 25% of MPG is <b>$15,968,663.61</b> in 2019-2020 and <b>$17,808,708.81</b> in 2020-2021.</br>
+							Median salary for the players in the WNBA within the top 25% of MPG is <b>$119,500.00</b> in 2020 and <b>$190,000.00</b> in 2021. Median salary for the players in the NBA within the top 25% of MPG is <b>$5,700,00.00</b> in 2019-2020 and <b>$4,692,840.00</b> in 2020-2021.
+						</p>
+
+						<p>
+							Column charts are created to compare the average and median salaries for the players within the top 25% of MPG for each season <b>between the two leagues</b>. Chart title and axis labels are added, axes are formatted, and decimal placements are changed for clearer charts:
+						</p>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/57.png" class="image fit thumb"><img src="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/57.png"
+								/>
+							</a>
+						</p>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/58.png" class="image fit thumb"><img src="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/58.png"
+								/>
+							</a>
+						</p>
+
+						<p>
+							Similar to PPG, the average salaries of the players within the top 25% of MPG increased between seasons for both leagues. The median salaries increased between seasons for the WNBA, but dropped for the NBA. This could suggest, for the WNBA, that more players had salaries towards the upper range. For the NBA, it could potentially suggest that more players had salaries towards the lower range (reducing the median) yet even larger salaries for those players in the higher range (increasing the average), compared to the previous season.</br>
+							The salary discrepancy still exists when comparing players who play similar relative minutes between the two leagues.
+						</p>
+
+
+
+						<header class="major" id="comp_all_GP">
+							<h5>4. Average and Median Salaries For Players Within the Top 25% of Games Played:</h5>
+						</header>
+
+						<p>
+							In order to find the top 25% of players in Games Played, the 3<sup>rd</sup> quartile threshold point is found using the <mark><b>QUARTILE.INC()</b></mark> function for both leagues.
+						</p>
+						<!-- CODE TEXT BOX -->
+						<p>
+							<p style="padding:2px 6px 4px 6px; color: #555555; background-color: #eeeeee; border: #dddddd 2px solid">
+								=QUARTILE.INC(WNBA_Final[Games Played],3)
+							</p>
+						</p>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/59.png" class="image fit thumb"><img src="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/59.png"
+								/>
+							</a>
+						</p>
+
+						<p>
+							Using the quartile calculation, average and median salaries for all players above the threshold point are calculated using the <mark><b>AVERAGEIF()</b></mark> function for the average, and the <mark><b>MEDIAN()</b></mark> function paired with an <mark><b>IF()</b></mark> statement in an array formula for the median.
+						</p>
+						<!-- CODE TEXT BOX -->
+						<p>
+							<p style="padding:2px 6px 4px 6px; color: #555555; background-color: #eeeeee; border: #dddddd 2px solid">
+								=AVERAGEIF(WNBA_Final[Games Played],">" & $C$130,WNBA_Final[2020])
+							</p>
+						</p>
+						<p>
+							Explanation for code:</br>
+							IF Games Played is greater than the 3<sup>rd</sup> quartile threshold (cell C130 in this case), THEN take the average of the 2020 salaries. Using AVERAGEIF() with a value from another cell and a logical operator in the <i>criteria</i> argument requires concatenation with the & character.
+						</p>
+						<!-- CODE TEXT BOX -->
+						<p>
+							<p style="padding:2px 6px 4px 6px; color: #555555; background-color: #eeeeee; border: #dddddd 2px solid">
+								{=MEDIAN(IF(WNBA_Final[Games Played]>$C$130,WNBA_Final[2020]))}
+							</p>
+						</p>
+						<p>
+							Explanation for code:</br>
+							IF Games Played is greater than the 3<sup>rd</sup> quartile threshold (cell C130 in this case), THEN take the median of the 2020 salaries.
+						</p>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/60.png" class="image fit thumb"><img src="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/60.png"
+								/>
+							</a>
+						</p>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/61.png" class="image fit thumb"><img src="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/61.png"
+								/>
+							</a>
+						</p>
+
+						<p>
+							The upper 25% of Games Played represents players that, on average, play more than <b>22 games</b> in the WNBA and <b>63 games</b> in the NBA.</br>
+							Average salary for the players in the WNBA within the top 25% of GP is <b>$138,016.92</b> in 2020 and <b>$169,370.54</b> in 2021. Average salary for the players in the NBA within the top 25% of GP is <b>$9,499,023.19</b> in 2019-2020 and <b>$10,319,697.01</b> in 2020-2021.</br>
+							Median salary for the players in the WNBA within the top 25% of GP is <b>$117,520.00</b> in 2020 and <b>$175,000.00</b> in 2021. Median salary for the players in the NBA within the top 25% of MPG is <b>$3,490,993.00</b> in 2019-2020 and <b>$3,379,200.00</b> in 2020-2021.
+						</p>
+
+						<p>
+							Column charts are created to compare the average and median salaries for the players within the top 25% of GP for each season <b>between the two leagues</b>. Chart title and axis labels are added, axes are formatted, and decimal placements are changed for clearer charts:
+						</p>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/62.png" class="image fit thumb"><img src="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/62.png"
+								/>
+							</a>
+						</p>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/63.png" class="image fit thumb"><img src="images_Excel_WNBA_vs_NBA/Excel_WNBA_vs_NBA/63.png"
+								/>
+							</a>
+						</p>
+
+						<p>
+							Just like in PPG and MPG, the average salaries of the players within the top 25% of GP increased between seasons for both leagues. The median salaries increased between seasons for the WNBA, but dropped slightly for the NBA. Again, this could suggest an increased number of players with salaries in the upper range for the WNBA. For the NBA, the reduced median could suggest an increase in the number of players with salaries toward the lower range, and the increased average could suggest larger salaries for those players in the higher range, compared to the previous season.</br>
+							When comparing the players who contribute to and play the most games in their respective leagues, the NBA players continue to be paid much more than the WNBA players.
+						</p>
+
+
+
+				
+
+				<!-- Discussion -->
+				<section id="discussion">
+					<header class="major">
+						<h2>PART 5: Summary & Discussion</h2>
+					</header>
+					
+					<header class="major">
+						<h3><u>Summary</u></h3>
+					</header>
+
+					<p>
+						<b>Rookies (First year in the WNBA or the NBA):</b>
+					</p>
+					
+					<p>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <u><b>Average, Median, Maximum Salaries:</b></u></br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b>WNBA:</b></br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>Maximum Salary:</i></br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2021: $70,040.00 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>Median Salary:</i></br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2021: $61,543.00 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>Average Salary:</i></br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2021: $49,716.32 </br>
+					
+					</p>
+					<p>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b>NBA:</b></br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>Maximum Salary:</i></br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2020-2021: $9,757,440.00 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>Median Salary:</i></br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2020-2021: $1,988,500.00 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>Average Salary:</i></br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2020-2021: $2,597,140.68 </br>
+					
+					</p>
+
+					<p>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <u><b>Salary by Position:</b></u></br>
+						<table>
+							<tr>
+							  <th>WNBA ROOKIE POSITION</th>
+							  <th>AVERAGE OF 2021</th>
+							  <th>MEDIAN OF 2021</th>
+							</tr>
+							<tr>
+							  <td>Guard</td>
+							  <td>$48,679.63</td>
+							  <td>$61,543.00</td>
+							</tr>
+							<tr>
+							  <td>Center</td>
+							  <td>$64,375.00</td>
+							  <td>$64,375.00</td>
+							</tr>
+							<tr>
+								<td>Forward</td>
+								<td>$47,897.71</td>
+								<td>$66,555.00</td>
+							  </tr>
+						  </table> 
+					</p>
+					<p>
+						<table>
+							<tr>
+							  <th>NBA ROOKIE POSITION</th>
+							  <th>AVERAGE OF 2020-2021</th>
+							  <th>MEDIAN OF 2020-2021</th>
+							</tr>
+							<tr>
+							  <td>Guard</td>  
+							  <td>$2,453,116.48</td>
+							  <td>$2,105,520.00</td>
+							</tr>
+							<tr>
+							  <td>Center</td>
+							  <td>$2,299,386.00</td>
+							  <td>$1,325,000.00</td>
+							</tr>
+							<tr>
+								<td>Forward</td>
+								<td>$2,854,595.24</td>
+								<td>$2,284,800.00</td>
+							  </tr>
+						  </table> 
+					</p>
+					
+
+					<p>
+						<b>Veterans (5/+ years experience playing in the WNBA or NBA):</b>
+					</p>
+					<p>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <u><b>Average, Median, Maximum Salaries:</b></u></br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b>WNBA:</b></br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>Maximum Salary:</i></br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2020: $215,000.00 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2021: $221,450.00 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>Median Salary:</i></br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2020: $118,510.00 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2021: $167,500.00 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>Average Salary:</i></br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2020: $136,887.88 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2021: $155,559.14 </br>
+					</p>
+					<p>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b>NBA:</b></br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>Maximum Salary:</i></br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2019-2020: $40,231,758.00 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2020-2021: $43,006,362.00 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>Median Salary:</i></br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2019-2020: $8,333,333.00 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2020-2021: $7,316,666.50 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>Average Salary:</i></br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2019-2020: $11,390,478.45 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2020-2021: $10,610,341.01 </br>
+					</p>
+					
+					<p>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <u><b>Average Salary by Experience:</b></u></br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b>WNBA:</b> Average salary seems to have increased in 2021 from the 2020 season. Average salaries are fairly linear with more experience, but more years in the WNBA does not seem to lead to a significant increase in average salary.</br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b>NBA:</b> Average salary seems to have decreased in 20-21 from the 19-20 season. There is a slight bell shaped curve to average salaries—the more years in the NBA, the higher the average salary until hitting a peak around 10-14 years, after which average salary decreases.</br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b>Between leagues:</b> There is a large disparity between the average NBA and the WNBA veteran salary amounts. For example, for veterans who have 5 years of professional experience, there is an $8,174,656.18 gap on average salary for the WNBA 2021/NBA 2020-2021 seasons between the two leagues.
+					</p>
+
+					<p>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <u><b>Median Salary by Experience:</b></u></br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b>WNBA:</b> Across the two seasons, median salary amount has increased when looking at comparative years of WNBA experience. However, overall, there is not a clear pattern of increased years of experience affecting the median salary amounts.</br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b>NBA:</b> Across the two seasons, median salary for veterans with 5-6 years of NBA experience seems to have increased from 19-20 to 20-21, median salary for veterans with 7-13 years of NBA experience seems to have decreased, and median salary for veterans with 15-17 years of experience seems to have stayed about the same amount. Overall, there is not a clear pattern of increased years of experience affecting the median salary amounts.</br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b>Between leagues:</b> Median salaries of the NBA veterans greatly outweigh the WNBA's. For example, veterans who have played for 5 years professionally have a $4,559,516 gap on median salary for the WNBA 2021/NBA 2020-2021 seasons between the two leagues. The gap between the two leagues is smaller for the median salaries than average salaries (which can also be attributed to the median not being driven by outliers like the average is).
+					</p>
+
+					<p>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <u><b>Average Salary by Position:</b></u></br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Across the different positions, there generally is not much spread of veteran average salaries—the WNBA has an average salary around $140,000 no matter the position and the NBA has an average salary around $11,000,000 no matter the position.</br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b>Between leagues:</b> NBA veterans receive an average salary of about $11 million more than WNBA veterans do.
+					</p>
+					<p>
+						<table>
+							<tr>
+							  <th>WNBA VETERAN POSITION</th>
+							  <th>AVERAGE OF 2020</th>
+							  <th>AVERAGE OF 2021</th>
+							</tr>
+							<tr>
+							  <td>Guard</td>  
+							  <td>$140,545.19</td>
+							  <td>$152,888.79</td>
+							</tr>
+							<tr>
+							  <td>Center</td>
+							  <td>$149,875.22</td>
+							  <td>$141,218.33</td>
+							</tr>
+							<tr>
+								<td>Forward</td>
+								<td>$127,086.36</td>
+								<td>$144,247.39</td>
+							  </tr>
+						  </table> 
+					</p>
+					<p>
+						<table>
+							<tr>
+							  <th>NBA VETERAN POSITION</th>
+							  <th>AVERAGE OF 2019-2020</th>
+							  <th>AVERAGE OF 2020-2021</th>
+							</tr>
+							<tr>
+							  <td>Guard</td>  
+							  <td>$11,278,511.74</td>
+							  <td>$11,312,076.77</td>
+							</tr>
+							<tr>
+							  <td>Center</td>
+							  <td>$11,902,994.70</td>
+							  <td>$9,627,108.11</td>
+							</tr>
+							<tr>
+								<td>Forward</td>
+								<td>$11,203,987.87</td>
+								<td>$10,459,767.16</td>
+							  </tr>
+						  </table> 
+					</p>
+
+
+					<p>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <u><b>Median Salary by Position:</b></u></br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b>WNBA:</b> Generally, the median salaries for veterans are within around a $40,000 range between each of the positions.</br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b>NBA:</b> The guard and forward positions have median salaries around $8 million, while the center position has more variation between the 19-20 and 20-21 seasons (between around $11 million to around $5 million). Veteran centers during the 19-20 season have a smaller range of low salaries and have a majority of the salaries clustered at the top compared to the other positions. In the 20-21 season, some players with high salaries had their salaries drastically cut because of injury or other reasons, which shifted the median down much more.</br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b>Between leagues:</b> NBA veteran guards receive a median salary of about $8 million more than WNBA veteran guards do. NBA veteran centers receive a median salary of about $5 million to $11 million more than WNBA veteran centers do. NBA veteran forwards receive a median salary of about $7 million more than WNBA veteran forwards do.
+					</p>
+					<p>
+						<table>
+							<tr>
+							  <th>WNBA VETERAN POSITION</th>
+							  <th>MEDIAN OF 2020</th>
+							  <th>MEDIAN OF 2021</th>
+							</tr>
+							<tr>
+							  <td>Guard</td>  
+							  <td>$119,500.00</td>
+							  <td>$165,000.00</td>
+							</tr>
+							<tr>
+							  <td>Center</td>
+							  <td>$165,627.00</td>
+							  <td>$119,000.00</td>
+							</tr>
+							<tr>
+								<td>Forward</td>
+								<td>$117,000.00</td>
+								<td>$170,000.00</td>
+							  </tr>
+						  </table> 
+					</p>
+					<p>
+						<table>
+							<tr>
+							  <th>NBA VETERAN POSITION</th>
+							  <th>MEDIAN OF 2019-2020</th>
+							  <th>MEDIAN OF 2020-2021</th>
+							</tr>
+							<tr>
+							  <td>Guard</td>  
+							  <td>$8,211,307.50</td>
+							  <td>$7,758,688.00</td>
+							</tr>
+							<tr>
+							  <td>Center</td>
+							  <td>$11,286,516.00</td>
+							  <td>$5,285,394.00</td>
+							</tr>
+							<tr>
+								<td>Forward</td>
+								<td>$7,741,100.00</td>
+								<td>$7,333,333.00</td>
+							  </tr>
+						  </table> 
+					</p>
+
+
+
+
+					<p>
+						<b>All Players:</b>
+					</p>
+					
+					<p>
+						The average salaries of the players increased between seasons for both leagues. The median salaries increased between seasons for the WNBA, but dropped for the NBA.
+					</p>
+
+					<p>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <u><b>Average, Median, Maximum Salaries:</b></u></br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b>WNBA:</b></br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>Maximum Salary:</i></br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2020: $215,000.00 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2021: $221,450.00 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>Median Salary:</i></br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2020: $88,850.00 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2021: $110,000.00 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>Average Salary:</i></br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2020: $103,557.16 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2021: $117,879.97 </br>
+					</p>
+					<p>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b>NBA:</b></br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>Maximum Salary:</i></br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2019-2020: $40,231,758.00 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2020-2021: $43,006,362.00 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>Median Salary:</i></br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2019-2020: $3,500,000.00 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2020-2021: $3,095,432.00 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>Average Salary:</i></br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2019-2020: $7,559,491.36 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2020-2021: $7,040,308.19 </br>
+					</p>
+
+					<p>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <u><b>Salary by Top 25% of Points Per Game:</b></u></br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; The upper 25% of Points Per Game represents players that, on average, score more than <b>14.45 points per game</b> in the WNBA and more than <b>13.2 points per game</b> in the NBA. </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b>WNBA:</b></br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>Median Salary:</i></br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2020: $119,500.00 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2021: $190,000.00 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>Average Salary:</i></br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2020: $131,908.72 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2021: $150,083.45 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b>NBA:</b></br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>Median Salary:</i></br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2019-2020: $6,517,414.50 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2020-2021: $4,998,000.00 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>Average Salary:</i></br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2019-2020: $16,778,363.21 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2020-2021: $18,394,712.50 </br>
+					</p>
+
+					<p>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <u><b>Salary by Top 25% of Minutes Per Game:</b></u></br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; The upper 25% of Minutes Per Game represents players that, on average, play more than <b>28.255 minutes per game</b> in the WNBA and more than <b>28.95 minutes per game</b> in the NBA. </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b>WNBA:</b></br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>Median Salary:</i></br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2020: $119,500.00 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2021: $190,000.00 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>Average Salary:</i></br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2020: $136,231.24 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2021: $157,137.10 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b>NBA:</b></br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>Median Salary:</i></br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2019-2020: $5,700,00.00 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2020-2021: $4,692,840.00 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>Average Salary:</i></br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2019-2020: $15,968,663.61 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2020-2021: $17,808,708.81 </br>
+					</p>
+					
+					<p>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <u><b>Salary by Top 25% of Games Played:</b></u></br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; The upper 25% of Games Played represents players that, on average, play more than <b>22 games</b> in the WNBA and more than <b>63 games</b> in the NBA. </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b>WNBA:</b></br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>Median Salary:</i></br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2020: $117,520.00 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2021: $175,000.00 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>Average Salary:</i></br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2020: $138,016.92 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2021: $169,370.54 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b>NBA:</b></br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>Median Salary:</i></br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2019-2020: $3,490,993.00 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2020-2021: $3,379,200.00 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>Average Salary:</i></br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2019-2020: $9,499,023.19 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2020-2021: $10,319,697.01 </br>
+					</p>
+
+					
+					<header class="major">
+						<h3><u>Discussion</u></h3>
+					</header>
+					
+					<p>
+						This project examined the differences in salary amounts paid to the players across the WNBA and the NBA. Average, median, and maximum salary amounts were calculated for the overall leagues, charts were made to compare the two leagues, and then further comparison was done for subgroups within: veterans, rookies, those players who were within the Top 25% of Points Per Game, players within the Top 25% of Minutes Per Game, and players within the Top 25% of Games Played. Within the veterans group, WNBA and NBA salaries were also compared across similar years experience levels and across similar player positions. Within the rookies group, comparisons were also done across similar player positions.
+					</p>
+
+					<p>
+						No matter which subgroup was looked at, there was a clear discrepancy between the salaries that players within the WNBA and NBA receive—the NBA players received a great magnitude of larger salaries than their WNBA counterparts did. For rookies, the maximum salary in the NBA was $9,757,440.00 in 2020-2021, compared to the WNBA's maximum salary of $70,040.00 in 2021—a difference of $9,687,400. The median salary for rookies in the NBA was $1,988,500.00 in 2020-21, versus the WNBA's $61,543.00 in 2021—a gap of $1,926,957. For veterans and within the leagues overall, the maximum salary in the NBA was $43,006,362.00 in 2020-2021 and only $221,450.00 in 2021 for the WNBA—for a whopping $42,784,912.00 difference. The median salary for veterans was $7,316,666.50 in 2020-21 in the NBA and $167,500.00 in 2021 in the WNBA—a gap of $7,149,166.50. The median salary in the entire NBA was $3,095,432.00 in 2020-2021 and $110,000.00 in 2021 in the entire WNBA—a disparity of $2,985,432.00.
+					</p>
+					
+					<p>
+						Looking at comparative attributes of players (similar years experience, position played, and being in the top 25% of the league in Points Per Game, Minutes Per Game, and Games Played) across the two leagues, this disparity in pay continues. For rookies, players in the WNBA had a median of about $60,000 in 2021 no matter the position, whereas the NBA players had a median of about $1,000,000 to $2,000,000 in 2020-2021. For veterans, similar years of experience led to major gaps between the leagues—for example, veterans who played 5 years professionally had a median salary difference of $4,559,516 during the WNBA 2021/NBA 2020-2021 seasons. WNBA veteran athletes had a median salary of around $170,000 for each position in the 2021 season, compared to the NBA veteran atheletes that had around $5,000,000 to $7,000,000 for each position during the 2020-2021 season. For the players in the entirety of the leagues within the top 25% of Points Per Game during the WNBA 2020/NBA 2020-2021 seasons, there was a gap in median salary of about $4,808,000; for players with similar scoring output, the women are paid far less than their male counterparts for contributing the same percentage of points within their own league. Similarly, for players who played comparatively the same number of minutes and were within the top 25% of Minutes Per Game, there was a gap of median salary of about $4,502,840 for the WNBA 2021/NBA 2020-2021 seasons—NBA players are rewarded far more than the WNBA players are for similar minutes of playing time per game. Finally, for players within the top 25% of Games Played during the WNBA 2020/NBA 2020-2021 season, the difference in median salary was about $3,204,200—despite being just as important players as and having to play a similar high percentage of games as the NBA players do, the WNBA players continue to be paid much less.
+					</p>
+
+					<p>
+						The gender wage gap is not a phenomenon new or unique to professional basketball. According to the <a href="https://www.census.gov/content/dam/Census/library/publications/2021/demo/p60-273.pdf">United States Census Bureau</a>, in 2020, the median female-to-male earnings ratio was 0.830—women earned 83 cents to every dollar made by men. Furthermore, the wage gap widens when also accounting for race. Black and African American women—a large makeup of the league—have lower median incomes than non-Hispanic white women do. Despite putting in the same amount of effort and work, and having comparable contributions to their respective teams, professional women basketball athletes receive only a small percentage of what the men do. Veteran players have the most experience and tend to contribute the most to their teams. However, in the WNBA 2021/NBA 2020-2021 season, the highest paid WNBA veteran received a salary ($221,450) about 44 times less than the highest paid NBA rookie did ($9,757,440). The median salary for WNBA veterans ($167,500) was about 12 times less than what the median salary for NBA rookies ($1,988,500) was in the same seasons. To be a professional athlete means to be an incredibly skilled and high level performer in your sport. Add in the physicality and toll on one's body basketball does, the wages that the WNBA players receive are unaccetable.
+					</p>
+
+					<p>
+						While there are numerous reasons and hurdles behind the lack of popularity towards women's sports, it is reasonable to acknowledge there most likely will never be the same amount of interest and financial success in the WNBA as there is in the NBA. To expect there to be complete parity in salaries and have the women making tens of millions of dollars is unrealistic. However, there can be improvements made to support the best women's basketball athletes and lessen these major salary disparities. There are already new contract deals that were signed to steadily increase salary amounts over time, increase the number of games shown on major TV networks, and provide bonuses and benefits to the players (including better travel accomodations and improved family planning options). However, if these salary amounts are not properly addressed going forward, we will continue to see the pattern we already have—WNBA players will spend their off-seasons on international teams, risking injury and sometimes personal safety, to <a href="https://queenballers.club/basketball/overseas-womens-basketball-salary">sometimes make more than a million dollars</a>.
+					</p>
+					
+					
+					<p>
+						While the WNBA will most likely never reach the height of popularity the NBA enjoys and, therefore, will not have players receiving salaries as high as the NBA, these professional athletes deserve to be paid an appropriate rate to reflect their skills and hard work. Women's sports need to be supported and to do that, there needs to be increased positive media exposure and negotiations to increase pay so that some of the best athletes in the world are fairly compensated.
+					</p>
+					
+					
+					
+					
+					
+					
+					
+				</section>
+
+
+
+
+
+
+
+
+
+
+
+				<!-- Six -->
+				<!--
+					<section id="six">
+						<h2>Elements</h2>
+
+						<section>
+							<h4>Text</h4>
+							<p>This is <b>bold</b> and this is <strong>strong</strong>. This is <i>italic</i> and this is <em>emphasized</em>.
+							This is <sup>superscript</sup> text and this is <sub>subscript</sub> text.
+							This is <u>underlined</u> and this is code: <code>for (;;) { ... }</code>. Finally, <a href="#">this is a link</a>.</p>
+							<hr />
+							<header>
+								<h4>Heading with a Subtitle</h4>
+								<p>Lorem ipsum dolor sit amet nullam id egestas urna aliquam</p>
+							</header>
+							<p>Nunc lacinia ante nunc ac lobortis. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus ornare mi ut ante amet placerat aliquet. Volutpat eu sed ante lacinia sapien lorem accumsan varius montes viverra nibh in adipiscing blandit tempus accumsan.</p>
+							<header>
+								<h5>Heading with a Subtitle</h5>
+								<p>Lorem ipsum dolor sit amet nullam id egestas urna aliquam</p>
+							</header>
+							<p>Nunc lacinia ante nunc ac lobortis. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus ornare mi ut ante amet placerat aliquet. Volutpat eu sed ante lacinia sapien lorem accumsan varius montes viverra nibh in adipiscing blandit tempus accumsan.</p>
+							<hr />
+							<h2>Heading Level 2</h2>
+							<h3>Heading Level 3</h3>
+							<h4>Heading Level 4</h4>
+							<h5>Heading Level 5</h5>
+							<h6>Heading Level 6</h6>
+							<hr />
+							<h5>Blockquote</h5>
+							<blockquote>Fringilla nisl. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan faucibus. Vestibulum ante ipsum primis in faucibus lorem ipsum dolor sit amet nullam adipiscing eu felis.</blockquote>
+							<h5>Preformatted</h5>
+							<pre><code>i = 0;
+
+while (!deck.isInOrder()) {
+print 'Iteration ' + i;
+deck.shuffle();
+i++;
+}
+
+print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
+						</section>
+
+						<section>
+							<h4>Lists</h4>
+							<div class="row">
+								<div class="col-6 col-12-xsmall">
+									<h5>Unordered</h5>
+									<ul>
+										<li>Dolor pulvinar etiam magna etiam.</li>
+										<li>Sagittis adipiscing lorem eleifend.</li>
+										<li>Felis enim feugiat dolore viverra.</li>
+									</ul>
+									<h5>Alternate</h5>
+									<ul class="alt">
+										<li>Dolor pulvinar etiam magna etiam.</li>
+										<li>Sagittis adipiscing lorem eleifend.</li>
+										<li>Felis enim feugiat dolore viverra.</li>
+									</ul>
+								</div>
+								<div class="col-6 col-12-xsmall">
+									<h5>Ordered</h5>
+									<ol>
+										<li>Dolor pulvinar etiam magna etiam.</li>
+										<li>Etiam vel felis at lorem sed viverra.</li>
+										<li>Felis enim feugiat dolore viverra.</li>
+										<li>Dolor pulvinar etiam magna etiam.</li>
+										<li>Etiam vel felis at lorem sed viverra.</li>
+										<li>Felis enim feugiat dolore viverra.</li>
+									</ol>
+									<h5>Icons</h5>
+									<ul class="icons">
+										<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+										<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+										<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+										<li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
+										<li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>
+										<li><a href="#" class="icon brands fa-tumblr"><span class="label">Tumblr</span></a></li>
+									</ul>
+								</div>
+							</div>
+							<h5>Actions</h5>
+							<ul class="actions">
+								<li><a href="#" class="button primary">Default</a></li>
+								<li><a href="#" class="button">Default</a></li>
+							</ul>
+							<ul class="actions small">
+								<li><a href="#" class="button primary small">Small</a></li>
+								<li><a href="#" class="button small">Small</a></li>
+							</ul>
+							<div class="row">
+								<div class="col-6 col-12-small">
+									<ul class="actions stacked">
+										<li><a href="#" class="button primary">Default</a></li>
+										<li><a href="#" class="button">Default</a></li>
+									</ul>
+								</div>
+								<div class="col-6 col-12-small">
+									<ul class="actions stacked">
+										<li><a href="#" class="button primary small">Small</a></li>
+										<li><a href="#" class="button small">Small</a></li>
+									</ul>
+								</div>
+								<div class="col-6 col-12-small">
+									<ul class="actions stacked">
+										<li><a href="#" class="button primary fit">Default</a></li>
+										<li><a href="#" class="button fit">Default</a></li>
+									</ul>
+								</div>
+								<div class="col-6 col-12-small">
+									<ul class="actions stacked">
+										<li><a href="#" class="button primary small fit">Small</a></li>
+										<li><a href="#" class="button small fit">Small</a></li>
+									</ul>
+								</div>
+							</div>
+						</section>
+
+						<section>
+							<h4>Table</h4>
+							<h5>Default</h5>
+							<div class="table-wrapper">
+								<table>
+									<thead>
+										<tr>
+											<th>Name</th>
+											<th>Description</th>
+											<th>Price</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>Item One</td>
+											<td>Ante turpis integer aliquet porttitor.</td>
+											<td>29.99</td>
+										</tr>
+										<tr>
+											<td>Item Two</td>
+											<td>Vis ac commodo adipiscing arcu aliquet.</td>
+											<td>19.99</td>
+										</tr>
+										<tr>
+											<td>Item Three</td>
+											<td> Morbi faucibus arcu accumsan lorem.</td>
+											<td>29.99</td>
+										</tr>
+										<tr>
+											<td>Item Four</td>
+											<td>Vitae integer tempus condimentum.</td>
+											<td>19.99</td>
+										</tr>
+										<tr>
+											<td>Item Five</td>
+											<td>Ante turpis integer aliquet porttitor.</td>
+											<td>29.99</td>
+										</tr>
+									</tbody>
+									<tfoot>
+										<tr>
+											<td colspan="2"></td>
+											<td>100.00</td>
+										</tr>
+									</tfoot>
+								</table>
+							</div>
+
+							<h5>Alternate</h5>
+							<div class="table-wrapper">
+								<table class="alt">
+									<thead>
+										<tr>
+											<th>Name</th>
+											<th>Description</th>
+											<th>Price</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>Item One</td>
+											<td>Ante turpis integer aliquet porttitor.</td>
+											<td>29.99</td>
+										</tr>
+										<tr>
+											<td>Item Two</td>
+											<td>Vis ac commodo adipiscing arcu aliquet.</td>
+											<td>19.99</td>
+										</tr>
+										<tr>
+											<td>Item Three</td>
+											<td> Morbi faucibus arcu accumsan lorem.</td>
+											<td>29.99</td>
+										</tr>
+										<tr>
+											<td>Item Four</td>
+											<td>Vitae integer tempus condimentum.</td>
+											<td>19.99</td>
+										</tr>
+										<tr>
+											<td>Item Five</td>
+											<td>Ante turpis integer aliquet porttitor.</td>
+											<td>29.99</td>
+										</tr>
+									</tbody>
+									<tfoot>
+										<tr>
+											<td colspan="2"></td>
+											<td>100.00</td>
+										</tr>
+									</tfoot>
+								</table>
+							</div>
+						</section>
+
+						<section>
+							<h4>Buttons</h4>
+							<ul class="actions">
+								<li><a href="#" class="button primary">Primary</a></li>
+								<li><a href="#" class="button">Default</a></li>
+							</ul>
+							<ul class="actions">
+								<li><a href="#" class="button large">Large</a></li>
+								<li><a href="#" class="button">Default</a></li>
+								<li><a href="#" class="button small">Small</a></li>
+							</ul>
+							<ul class="actions fit">
+								<li><a href="#" class="button primary fit">Fit</a></li>
+								<li><a href="#" class="button fit">Fit</a></li>
+							</ul>
+							<ul class="actions fit small">
+								<li><a href="#" class="button primary fit small">Fit + Small</a></li>
+								<li><a href="#" class="button fit small">Fit + Small</a></li>
+							</ul>
+							<ul class="actions">
+								<li><a href="#" class="button primary icon solid fa-download">Icon</a></li>
+								<li><a href="#" class="button icon solid fa-download">Icon</a></li>
+							</ul>
+							<ul class="actions">
+								<li><span class="button primary disabled">Primary</span></li>
+								<li><span class="button disabled">Default</span></li>
+							</ul>
+						</section>
+
+						<section>
+							<h4>Form</h4>
+							<form method="post" action="#">
+								<div class="row gtr-uniform gtr-50">
+									<div class="col-6 col-12-xsmall">
+										<input type="text" name="demo-name" id="demo-name" value="" placeholder="Name" />
+									</div>
+									<div class="col-6 col-12-xsmall">
+										<input type="email" name="demo-email" id="demo-email" value="" placeholder="Email" />
+									</div>
+									<div class="col-12">
+										<select name="demo-category" id="demo-category">
+											<option value="">- Category -</option>
+											<option value="1">Manufacturing</option>
+											<option value="1">Shipping</option>
+											<option value="1">Administration</option>
+											<option value="1">Human Resources</option>
+										</select>
+									</div>
+									<div class="col-4 col-12-small">
+										<input type="radio" id="demo-priority-low" name="demo-priority" checked>
+										<label for="demo-priority-low">Low Priority</label>
+									</div>
+									<div class="col-4 col-12-small">
+										<input type="radio" id="demo-priority-normal" name="demo-priority">
+										<label for="demo-priority-normal">Normal Priority</label>
+									</div>
+									<div class="col-4 col-12-small">
+										<input type="radio" id="demo-priority-high" name="demo-priority">
+										<label for="demo-priority-high">High Priority</label>
+									</div>
+									<div class="col-6 col-12-small">
+										<input type="checkbox" id="demo-copy" name="demo-copy">
+										<label for="demo-copy">Email me a copy of this message</label>
+									</div>
+									<div class="col-6 col-12-small">
+										<input type="checkbox" id="demo-human" name="demo-human" checked>
+										<label for="demo-human">I am a human and not a robot</label>
+									</div>
+									<div class="col-12">
+										<textarea name="demo-message" id="demo-message" placeholder="Enter your message" rows="6"></textarea>
+									</div>
+									<div class="col-12">
+										<ul class="actions">
+											<li><input type="submit" value="Send Message" class="primary" /></li>
+											<li><input type="reset" value="Reset" /></li>
+										</ul>
+									</div>
+								</div>
+							</form>
+						</section>
+
+						<section>
+							<h4>Image</h4>
+							<h5>Fit</h5>
+							<div class="box alt">
+								<div class="row gtr-50 gtr-uniform">
+									<div class="col-12"><span class="image fit"><img src="images_Excel_WNBA_vs_NBA/fulls/05.jpg" alt="" /></span></div>
+									<div class="col-4"><span class="image fit"><img src="images_Excel_WNBA_vs_NBA/thumbs/01.jpg" alt="" /></span></div>
+									<div class="col-4"><span class="image fit"><img src="images_Excel_WNBA_vs_NBA/thumbs/02.jpg" alt="" /></span></div>
+									<div class="col-4"><span class="image fit"><img src="images_Excel_WNBA_vs_NBA/thumbs/03.jpg" alt="" /></span></div>
+									<div class="col-4"><span class="image fit"><img src="images_Excel_WNBA_vs_NBA/thumbs/04.jpg" alt="" /></span></div>
+									<div class="col-4"><span class="image fit"><img src="images_Excel_WNBA_vs_NBA/thumbs/05.jpg" alt="" /></span></div>
+									<div class="col-4"><span class="image fit"><img src="images_Excel_WNBA_vs_NBA/thumbs/06.jpg" alt="" /></span></div>
+									<div class="col-4"><span class="image fit"><img src="images_Excel_WNBA_vs_NBA/thumbs/03.jpg" alt="" /></span></div>
+									<div class="col-4"><span class="image fit"><img src="images_Excel_WNBA_vs_NBA/thumbs/02.jpg" alt="" /></span></div>
+									<div class="col-4"><span class="image fit"><img src="images_Excel_WNBA_vs_NBA/thumbs/01.jpg" alt="" /></span></div>
+								</div>
+							</div>
+							<h5>Left &amp; Right</h5>
+							<p><span class="image left"><img src="images_Excel_WNBA_vs_NBA/avatar.jpg" alt="" /></span>Fringilla nisl. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent.</p>
+							<p><span class="image right"><img src="images_Excel_WNBA_vs_NBA/avatar.jpg" alt="" /></span>Fringilla nisl. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent.</p>
+						</section>
+
+					</section>
+				-->
+
+			</div>
+
+		<!-- Footer -->
+			<footer id="footer">
+				<div class="inner">
+					<ul class="icons">
+						<li><a href="https://www.linkedin.com/in/kristenhaduca/" target="_blank" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+						<li><a href="https://github.com/kristenhaduca" class="icon brands fa-github"><span class="label">Github</span></a></li>
+					</ul>
+					<ul class="copyright">
+						<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.poptrox.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
