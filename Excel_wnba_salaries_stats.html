@@ -1,0 +1,1740 @@
+<!DOCTYPE HTML>
+<!--
+	Strata by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Kristen Haduca Portfolio</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Header -->
+			<header id="header">
+				<div class="inner">
+					<a href="index.html">
+						<h1><strong>KRISTEN HADUCA</strong><br />
+						Data Analysis Portfolio<br />
+						</h1>
+					</a>
+				</div>
+			</header>
+
+		<!-- Main -->
+			<div id="main">
+
+				<!-- One -->
+					<section id="one">
+						<header class="major">
+							<h1>WNBA Salaries & Statistics [EXCEL]</h1>
+						</header>
+						<p>A data exploration into the relationship between salaries and game statistics of players in the WNBA using Excel. Linear regression analysis and hypothesis testing is done to see relationships between the two.</p>
+						
+						<header class="major">
+							<h5>PROGRAM USED: <span style='font-weight: bold;'>EXCEL</span></h5>
+						</header>
+
+						<header class="major">
+							<h5>SKILLS USED:
+								<a href="directory.html#datascraping">#Data Scraping</a>,
+								<a href="directory.html#powerquery">#Power Query</a>,
+								<a href="directory.html#datacleaning">#Data Cleaning</a>,
+								<a href="directory.html#datawrangling">#Data Wrangling</a>,
+								<a href="directory.html#centraltendencydispersion">#Central Tendency & Dispersion</a>,
+								<a href="directory.html#visualization">#Visualization</a>,
+								<a href="directory.html#regression">#Linear Regression Analysis</a>,
+								<a href="directory.html#hypothesistesting">#Hypothesis Testing</a>
+							</h5>
+						</header>
+
+						<header class="major">
+							<h5>MAIN TOOLS USED: <span style='font-weight: bold;'>PowerQuery, Data Analysis ToolPak, Find and Select, Conditional Formatting, Tables (including filtering), Scatter Plot Chart, Column Chart, PivotTable (with slicers), PivotChart</span></h5>
+						</header>
+
+                        <header class="major">
+							<h5>MAIN FORMULAS USED: <span style='font-weight: bold;'>INDEX(), MATCH(), IFS(), SUMIFS(), COUNTIFS(), AVERAGEIF(), ISERROR(), AGGREGATE(), AVERAGE(), MEDIAN(), MAX(), MIN(), MODE(), VAR.S(), STDEV.S(), LINEST(), TINV(), QUARTILE.INC() </span></h5>
+						</header>
+
+					</section>
+
+				<!-- Navigation -->
+					<section id="navigation">
+						<header class="major">
+							<h5>QUICK NAVIGATION:</h5>
+						</header>
+						<ul>
+							<li>
+								<a href="Excel_wnba_salaries_stats.html#datasource">PART 1: Data Source & Data Scraping</a>
+							</li>
+							<li>
+								<a href="Excel_wnba_salaries_stats.html#datacleaning">PART 2: Data Cleaning & Wrangling</a>
+							</li>
+							<li>
+								<a href="Excel_wnba_salaries_stats.html#filtering">PART 3: Filtering, Central Tendency, & Dispersion</a>
+							</li>
+							<li>
+								<a href="Excel_wnba_salaries_stats.html#regression">PART 4: Regression</a>
+							</li>
+							<li>
+								<a href="Excel_wnba_salaries_stats.html#discussion">PART 5: Summary & Discussion</a>
+							</li>
+						</ul>
+					</section>
+
+
+				<!-- Data Source -->
+					<section id="datasource">
+						<header class="major">
+							<h2>PART 1: DATA SOURCE & DATA SCRAPING USING POWER QUERY</h2>
+						</header>
+						
+						<p>
+							The 2021 salary data for all players of each team is scraped using Power Query from <a href="https://herhoopstats.com/salary-cap-sheet/wnba/summary/2021/">Her Hoop Stats</a> and made into individual team tables.
+						</p>
+
+						<!-- IMAGE -->
+						<p>
+							<a href="images_Excel_WNBA_salaries/Excel_WNBA_salaries/1.png" class="image fit thumb"><img src="images_Excel_WNBA_salaries/Excel_WNBA_salaries/1.png"
+								/>
+							</a>
+						</p>
+
+						<p>
+							The 2020 game statistics for all players are also scraped using Power Query from <a href="https://herhoopstats.com/salary-cap-sheet/wnba/players/salary_2021/stats_2021/?stats_to_show=per_game&stat_to_show=pts_per_game">Her Hoop Stats</a> and made into one table.
+						</p>
+
+						<!-- IMAGE -->
+						<p>
+							<a href="images_Excel_WNBA_salaries/Excel_WNBA_salaries/2.png" class="image fit thumb"><img src="images_Excel_WNBA_salaries/Excel_WNBA_salaries/2.png"
+								/>
+							</a>
+						</p>
+
+					</section>
+
+				<!-- Data Cleaning -->
+					<section id="datacleaning">
+						<header class="major">
+							<h2>PART 2: DATA CLEANING & WRANGLING</h2>
+						</header>
+						
+						<header class="major">
+							<h4>Salaries Table</h4>
+						</header>
+
+						<p>
+							All of the individual team salary tables are merged into one main worksheet (WNBA Main) and a main salary table. All of the salaries are changed to currency format. Since the project is looking at 2020 and 2021 salaries, and Her Hoops Stats only has the salaries tables going back to 2021 at earliest, 2020 salary data is manually added from another page of <a href="https://herhoopstats.substack.com/p/updated-2020-wnba-rosters-and-salary">Her Hoop Stats</a> where there are additional images listing salary data for 2020. Excess columns with future years are removed.
+						</p>
+
+						<!-- IMAGE -->
+						<p>
+							<a href="images_Excel_WNBA_salaries/Excel_WNBA_salaries/3.png" class="image fit thumb"><img src="images_Excel_WNBA_salaries/Excel_WNBA_salaries/3.png"
+								/>
+							</a>
+						</p>
+
+
+
+						<header class="major">
+							<h4>2020 Statistics Table</h4>
+						</header>
+						
+						<p>
+							Power Query included repeated player name information under the Player column, so this excess text is split into a new column using Text to Columns with the semicolon delimiter (this can also be done within Power Query itself):
+						</p>
+						<p>
+							<p style="padding:2px 6px 4px 6px; color: #555555; background-color: #eeeeee; border: #dddddd 2px solid">
+								Data tab > Text to Columns > Delimited by Semicolon
+							</p>
+						</p>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_Excel_WNBA_salaries/Excel_WNBA_salaries/4.png" class="image fit thumb"><img src="images_Excel_WNBA_salaries/Excel_WNBA_salaries/4.png"
+								/>
+							</a>
+						</p>
+						
+						
+						<header class="major">
+							<h4>Combining Both Tables Into One Table</h4>
+						</header>
+						<p>
+							The game statistics of interest (Games Played, Minutes Per Game, and Points Per Game) from the 2020 Statistics Table are appended to the Salary Table on the WNBA Main worksheet using <mark><b>INDEX()</b></mark> and <mark><b>MATCH()</b></mark> to index the statistics and match them by player name. These functions are nested within the <mark><b>IF()</b></mark> and <mark><b>ISERROR()</b></mark> functions to return a blank cell if there is an #N/A error after the INDEX()/MATCH()--this error being caused by no statistics information in the 2020 Statistics Table because of things such as the player having been in college or not playing during the 2020 season. The table containing both the salaries and statistics will now be referred to as the Full WNBA Table.
+						</p>
+						<p>
+							<p style="padding:2px 6px 4px 6px; color: #555555; background-color: #eeeeee; border: #dddddd 2px solid">
+								=IF(ISERROR(INDEX(Stats_2020[Games played],MATCH([@Player],Stats_2020[Player],0))),"",(INDEX(Stats_2020[Games played],MATCH([@Player],Stats_2020[Player],0))))
+							</p>
+						</p>
+
+						<p>
+							At this point, I noticed some discrepancies between the 2021 salaries on some players listed on the salaries page and on the 2020 statistics page of Her Hoops Stats. Working on the WNBA Main worksheet, I add a new column indexing the 2021 salaries listed per player on the 2020 Statistics Table using <mark><b>INDEX()</b></mark> and <mark><b>MATCH()</b></mark>.
+						</p>
+						<p>
+							<p style="padding:2px 6px 4px 6px; color: #555555; background-color: #eeeeee; border: #dddddd 2px solid">
+								=INDEX('2020 Stats'!$C$2:$C$128,MATCH('WNBA MAIN'!$B2,'2020 Stats'!$A$2:$A$128,0))
+							</p>
+						</p>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_Excel_WNBA_salaries/Excel_WNBA_salaries/5.png" class="image fit thumb"><img src="images_Excel_WNBA_salaries/Excel_WNBA_salaries/5.png"
+								/>
+							</a>
+						</p>
+
+						<p>
+							These two values are compared using <mark><b>IF()</b></mark>--labeled "Same" if they are the same, and "Different" if they are different. #N/A errors designate those players without salaries listed on the 2020 statistics page.
+						</p>
+						<p>
+							<p style="padding:2px 6px 4px 6px; color: #555555; background-color: #eeeeee; border: #dddddd 2px solid">
+								=IF($D2=$K2,"Same","Different")
+							</p>
+						</p>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_Excel_WNBA_salaries/Excel_WNBA_salaries/6.png" class="image fit thumb"><img src="images_Excel_WNBA_salaries/Excel_WNBA_salaries/6.png"
+								/>
+							</a>
+						</p>
+
+						<p>
+							Find & Select is used to find all cells with "Different" and highlight them (Conditional Formatting can also be used instead).
+						</p>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_Excel_WNBA_salaries/Excel_WNBA_salaries/7.png" class="image fit thumb"><img src="images_Excel_WNBA_salaries/Excel_WNBA_salaries/7.png"
+								/>
+							</a>
+						</p>
+
+						<p>
+							After researching the players with discrepencies, I manually update the 2021 salary figures to the best results from my research.
+						</p>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_Excel_WNBA_salaries/Excel_WNBA_salaries/8.png" class="image fit thumb"><img src="images_Excel_WNBA_salaries/Excel_WNBA_salaries/8.png"
+								/>
+							</a>
+						</p>
+
+
+
+						<header class="major">
+							<h4>Adding Position and WNBA Experience Data</h4>
+						</header>
+						<p>
+							New tables are manually copy and pasted from the <a href="https://www.wnba.com/teams/">official WNBA's website's</a> team roster lists and are reformatted into tables on each teams' individual worksheets.
+						</p>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_Excel_WNBA_salaries/Excel_WNBA_salaries/9.png" class="image fit thumb"><img src="images_Excel_WNBA_salaries/Excel_WNBA_salaries/9.png"
+								/>
+							</a>
+						</p>
+
+						<p>
+							Postion data is appended to the Full WNBA Table using <mark><b>INDEX()</b></mark> and <mark><b>MATCH()</b></mark>.
+						</p>
+						<p>
+							<p style="padding:2px 6px 4px 6px; color: #555555; background-color: #eeeeee; border: #dddddd 2px solid">
+								=INDEX('Atlanta Dream'!$L$2:$L$16,MATCH('WNBA MAIN'!$B2,'Atlanta Dream'!$K$2:$K$16,0))
+							</p>
+						</p>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_Excel_WNBA_salaries/Excel_WNBA_salaries/10.png" class="image fit thumb"><img src="images_Excel_WNBA_salaries/Excel_WNBA_salaries/10.png"
+								/>
+							</a>
+						</p>
+
+						<p>
+							Some player information was missing and giving #N/A errors. These new tables are updated by manually adding Position and Experience data taken from individual player profile pages.
+						</p>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_Excel_WNBA_salaries/Excel_WNBA_salaries/11.png" class="image fit thumb"><img src="images_Excel_WNBA_salaries/Excel_WNBA_salaries/11.png"
+								/>
+							</a>
+						</p>
+
+						<p>
+							Then, WNBA experience data is also added to the Full WNBA Table using <mark><b>INDEX()</b></mark> and <mark><b>MATCH()</b></mark>.
+						</p>
+						<p>
+							<p style="padding:2px 6px 4px 6px; color: #555555; background-color: #eeeeee; border: #dddddd 2px solid">
+								=INDEX('Atlanta Dream'!$P$2:$P$16,MATCH('WNBA MAIN'!$B2,'Atlanta Dream'!$K$2:$K$16,0))
+							</p>
+						</p>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_Excel_WNBA_salaries/Excel_WNBA_salaries/12.png" class="image fit thumb"><img src="images_Excel_WNBA_salaries/Excel_WNBA_salaries/12.png"
+								/>
+							</a>
+						</p>
+
+						
+						
+						
+						<header class="major">
+							<h4>Adding Missing Data for Big Players</h4>
+						</header>
+						<p>
+							Because the 2020 WNBA season took place inside the pandemic Bubble, many key players did not play due to health concerns. I acknowledge that mixing 2019 stats with 2020 stats would skew the data a bit (for example, certain players who are filling in for these players would have altered stats in 2020 that they wouldn't have in previous years due to limited playing time). While it would be best practice to use a comparison of 2018 and 2019 stats to give a more accurate picture of a normal season, for the sake of this project's scope and including the newer, evolving salary negotiations--in addition to there only being a handful of players (all important WNBA figures whose absence in this data would be remiss) who opted out--it was easiest to include their 2019 stats with the rest of the 2020 stats to give a general overlook.
+						</p>
+						<p>
+							These players are included in the 2021 salary data, but have blanks within the 2020 statistics data. A new column containing an <mark><b>IF()</b></mark> statement is used to find those players that had a salary listed but no stats from 2020--and to differentiate them from the rookies coming out of college. If the Games Played column cell is blank and the 2020 Salary column cell is "College", then "College" will be listed. If the Games Played column cell is blank and the 2020 Salary column cell is a number (using <mark><b>ISNUMBER()</b></mark>), then "Blank" will be listed--the desired outcome for filtering those players who have salaries listed but no stats data. Otherwise, both salary and stats data is fully listed (or are listed as waived, suspended, or otherwise did not play and will not be looked at later in this project) and a 0 will be returned.
+						</p>
+						<p>
+							<p style="padding:2px 6px 4px 6px; color: #555555; background-color: #eeeeee; border: #dddddd 2px solid">
+								=IF(AND($E2="",$C2="College"),"College",IF(AND($E2="",ISNUMBER($C2)),"Blank",0))
+							</p>
+						</p>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_Excel_WNBA_salaries/Excel_WNBA_salaries/13.png" class="image fit thumb"><img src="images_Excel_WNBA_salaries/Excel_WNBA_salaries/13.png"
+								/>
+							</a>
+						</p>
+
+						<p>
+							Conditional Formatting is used with a <mark><b>FIND()</b></mark> formula to highlight in red cells that contain "Blank" (with cell N2 being a reference cell containing "Blank").
+						</p>
+						<p>
+							<p style="padding:2px 6px 4px 6px; color: #555555; background-color: #eeeeee; border: #dddddd 2px solid">
+								Conditional Formatting > New Rule > Use a formula to determine which cells to format > Set formatting to red fill
+							</p>
+						</p>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_Excel_WNBA_salaries/Excel_WNBA_salaries/14.png" class="image fit thumb"><img src="images_Excel_WNBA_salaries/Excel_WNBA_salaries/14.png"
+								/>
+							</a>
+						</p>
+
+						<p>
+							The 2019 stats are retrieved from individual player profile pages and manually added to the 2020 Statistics page for those players flagged.
+						</p>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_Excel_WNBA_salaries/Excel_WNBA_salaries/15.png" class="image fit thumb"><img src="images_Excel_WNBA_salaries/Excel_WNBA_salaries/15.png"
+								/>
+							</a>
+						</p>
+
+					</section>
+
+				<!-- Filtering -->
+					<section id="filtering">
+						<header class="major">
+							<h2>PART 3: FILTERING, CENTRAL TENDENCY, & DISPERSION CALCULATIONS</h2>
+						</header>
+						<p>
+							In this section, filter options are used on the Full WNBA Table in order to look at interesting subgroups of players and do Central Tendency and Dispersion calculations. Each filtered tables are copy and pasted into their own individual worksheets.
+						</p>
+
+
+
+						<header class="major">
+							<h4>Veterans (5/+ years experience playing in the WNBA)</h4>
+						</header>
+
+						<!-- IMAGE -->
+						<p>
+							<a href="images_Excel_WNBA_salaries/Excel_WNBA_salaries/16.png" class="image fit thumb"><img src="images_Excel_WNBA_salaries/Excel_WNBA_salaries/16.png"
+								/>
+							</a>
+						</p>
+
+						
+						<p>
+							Central tendency and dispersion calculations are done using <mark><b>AVERAGE()</b></mark>, <mark><b>MEDIAN()</b></mark>, <mark><b>MAX()</b></mark>, <mark><b>MIN()</b></mark>, <mark><b>MODE()</b></mark>, <mark><b>VAR.S()</b></mark>, and <mark><b>STDEV.S()</b></mark>.
+						</p>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_Excel_WNBA_salaries/Excel_WNBA_salaries/17.png" class="image fit thumb"><img src="images_Excel_WNBA_salaries/Excel_WNBA_salaries/17.png"
+								/>
+							</a>
+						</p>
+
+						<p>
+							Median salary (not affected by large outliers in data) for veterans in the WNBA is about <b>$118,510</b> in 2020 and <b>$167,500</b> in 2021. This increase in median salary between the two years suggests more veterans had their salaries increased in 2021 (as opposed to only a few outlier top players getting paid more).
+						</p>
+						<p>
+							The maximum salary for veterans in the WNBA is about <b>$215,000</b> in 2020 and <b>$221,450</b> in 2021.
+						</p>
+						<p>
+							<b>NOTE:</b> Minimum salary is not fully accurate—WNBA has a minimum salary floor for players with 3+ years experience at $70,040 in 2021 (source: <a href="https://herhoopstats.com/salary-cap-sheet/wnba/summary/2021/">Her Hoops Stats</a>), but some players are listed on the site with a lower salary (due to not actually playing, being contract players, etc). These inaccurate values slightly skew the data, but for the simplistic scope of this project, it gives a general overview of the figures and does not significantly alter the data too much. Additionally, any blank cells are automatically ignored in Excel's computations.
+						</p>
+						<p>
+							Average salary (affected by large outliers and thus, less accurate for this data set because of the few inaccurate, outlier salaries reported) for veterans in the WNBA is about <b>$136,888</b> in 2020 and <b>$155,559</b> in 2021, with a standard deviation from the mean of about <b>$42,843</b> in 2020 and <b>$47,129</b> in 2021.
+						</p>
+
+
+						<header class="major">
+							<h4>Rookies (First year in the WNBA)</h4>
+						</header>
+
+						<!-- IMAGE -->
+						<p>
+							<a href="images_Excel_WNBA_salaries/Excel_WNBA_salaries/18.png" class="image fit thumb"><img src="images_Excel_WNBA_salaries/Excel_WNBA_salaries/18.png"
+								/>
+							</a>
+						</p>
+						<p>
+							<b>NOTE:</b> I am including all the players that have the "R" under their experience as listed on the official WNBA website's team rosters. There are some players here that have odd inaccuracies and aren't listed as being "College" for their 2020 salaries despite being supposedly listed as a rookie on the official website, but again, for the sake of the scope of this project I will include all the players the WNBA has listed as a rookie. Excel ignores entries with blanks when doing computations, so those with blanks will not alter anything.
+						</p>
+
+						<p>
+							Central tendency and dispersion calculations are done using <mark><b>AVERAGE()</b></mark>, <mark><b>MEDIAN()</b></mark>, <mark><b>MAX()</b></mark>, <mark><b>MIN()</b></mark>, <mark><b>MODE()</b></mark>, <mark><b>VAR.S()</b></mark>, and <mark><b>STDEV.S()</b></mark>.
+						</p>
+						
+						<!-- IMAGE -->
+						<p>
+							<a href="images_Excel_WNBA_salaries/Excel_WNBA_salaries/19.png" class="image fit thumb"><img src="images_Excel_WNBA_salaries/Excel_WNBA_salaries/19.png"
+								/>
+							</a>
+						</p>
+						
+						<p>
+							Median salary (not affected by large outliers in data) for rookies in the WNBA is about <b>$61,543</b> in 2021.
+						</p>
+						<p>
+							The maximum salary for rookies in the WNBA in 2021 is about <b>$70,040</b>.
+						</p>
+						<p>
+							NOTE: The previous note applies again--the WNBA has a minimum salary floor for rookies at $58,710 in 2021 (source: <a href="https://herhoopstats.com/salary-cap-sheet/wnba/summary/2021/">Her Hoops Stats</a>).
+						</p>
+						<p>
+							Average salary (affected by large outliers) for rookies in the WNBA is about <b>$49,716</b> in 2021, with a standard deviation of about <b>$25,551</b>.
+						</p>
+
+						
+						
+						<header class="major">
+							<h4>All Players in WNBA</h4>
+						</header>
+
+						<p>
+							Central tendency and dispersion calculations are done using <mark><b>AGGREGATE()</b></mark> (an alternate to using each individual formula) and <mark><b>MODE()</b></mark>.
+						</p>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_Excel_WNBA_salaries/Excel_WNBA_salaries/20.png" class="image fit thumb"><img src="images_Excel_WNBA_salaries/Excel_WNBA_salaries/20.png"
+								/>
+							</a>
+						</p>
+						<p>
+							Median salary for all WNBA players (not affected by large outliers) is <b>$88,850</b> in 2020 and <b>$110,000</b> in 2021. This increase suggests more players had been paid higher salaries in 2021, compared to 2020.
+						</p>
+						<p>
+							The maximum salary for all WNBA players is $215,000 in 2020 and $221,450 in 2021.
+						</p>
+						<p>
+							NOTE: The previous note applies once again--the minimum salary listed is not entirely accurate because WNBA has a minimum salary floor for players with 0-2 years experience at $58,710 in 2021 and players with 3+ years experience at $70,040 in 2021.
+						</p>
+						<p>
+							Average salary (affected by large outliers) for all WNBA players is about <b>$103,557</b> in 2020 and <b>$117,880</b> in 2021, with a standard deviation of about <b>$50,026</b> in 2020 and <b>$58,910</b> in 2021.
+						</p>
+
+						<p>
+							An additional pivot table is created with each WNBA team and their average 2021 salaries. The number format is changed to currency and a slicer is added to easily select the team.
+						</p>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_Excel_WNBA_salaries/Excel_WNBA_salaries/20.1_pivot.png" class="image fit thumb"><img src="images_Excel_WNBA_salaries/Excel_WNBA_salaries/20.1_pivot.png"
+								/>
+							</a>
+						</p>
+
+
+					</section>
+				
+					
+
+				<!-- Regression - Vets -->
+				<section id="regression">
+					<header class="major">
+						<h2>PART 4: Regression</h2>
+					</header>
+					<p>
+						In this section, regression analysis is run on two sections: Veterans and All WNBA Players. First, simple linear regressions are run for each game statistic to see the relationship between each individual statistic and salary. Then, multiple linear regression is run to find out which statistic is a better predictor of salary. NOTE: I treat the statistics that were taken from 2020 as a constant between 2020 and 2021 for these regressions for simplicity's sake.
+					</p>
+					<header class="major">
+						<h5>QUICK NAVIGATION:</h5>
+					</header>
+					<ul>
+						<li>
+							<a href="Excel_wnba_salaries_stats.html#reg_vets_GP">VETERANS - Salary by Games Played</a>
+						</li>
+						<li>
+							<a href="Excel_wnba_salaries_stats.html#reg_vets_MPG">VETERANS - Salary by Minutes Per Game</a>
+						</li>
+						<li>
+							<a href="Excel_wnba_salaries_stats.html#reg_vets_PPG">VETERANS - Salary by Points Per Game</a>
+						</li>
+						<li>
+							<a href="Excel_wnba_salaries_stats.html#reg_vets_multi">VETERANS - Multiple Regression</a>
+						</li>
+						<li>
+							<a href="Excel_wnba_salaries_stats.html#reg_wnba_GP">ALL WNBA - Salary by Games Played</a>
+						</li>
+						<li>
+							<a href="Excel_wnba_salaries_stats.html#reg_wnba_MPG">ALL WNBA - Salary by Minutes Per Game</a>
+						</li>
+						<li>
+							<a href="Excel_wnba_salaries_stats.html#reg_wnba_PPG">ALL WNBA - Salary by Points Per Game</a>
+						</li>
+						<li>
+							<a href="Excel_wnba_salaries_stats.html#reg_wnba_multi">ALL WNBA - Multiple Regression</a>
+						</li>
+					</ul>
+
+
+
+					<header class="major">
+						<h3><u>VETERANS (5 yrs/+ experience playing in the WNBA)</u></h3>
+					</header>
+
+					<p>
+						EXTRA DATA CLEANING NOTE: The Data Analysis ToolPak gave errors for cells with text or blanks. The Veterans table is copied to a new worksheet, sorted by smallest to largest, and the players with text or blanks are removed from the table. Initially, I had wanted to preserve these players for other potentially interesting comparisons of the league as a whole in the future. Because there are so few of these players with incompatible data and, again, for the sake of the simplistic scope of this project, it still gave a general overview of the relationships between the dependent and independent variables—even if it is not 100% accurate or fully consistent. I also ran the regression analysis (via <mark><b>LINEST()</b></mark>) between both the dataset containing these players with blanks and the dataset with them removed, and the small differences between the two did not seem significant enough to warrant concern.
+					</p>
+
+					<header class="major">
+						<h4>SIMPLE LINEAR REGRESSIONS:</h4>
+					</header>
+
+					<header class="major" id="reg_vets_GP">
+						<h5>1. Salary by Games Played:</h5>
+					</header>
+					
+					<p>
+						A scatter plot chart is created with Salary on the y-axis (dependent variable) and Games Played on the x-axis (independent variable).
+					</p>
+					<!-- IMAGE -->
+					<p>
+						<a href="images_Excel_WNBA_salaries/Excel_WNBA_salaries/21.png" class="image fit thumb"><img src="images_Excel_WNBA_salaries/Excel_WNBA_salaries/21.png"
+							/>
+						</a>
+					</p>
+					<p>
+						The chart is edited by adding chart title, axis labels, changing the size and shape of the markers, adding trendlines with the equations and R<sup>2</sup>s labeled, changing the width and colors of the trendlines and equation information, adding median salary lines, changing the width and color of the median salary lines, and resizing the chart.
+					</p>
+					<!-- IMAGE -->
+					<p>
+						<a href="images_Excel_WNBA_salaries/Excel_WNBA_salaries/22.png" class="image fit thumb"><img src="images_Excel_WNBA_salaries/Excel_WNBA_salaries/22.png"
+							/>
+						</a>
+					</p>
+					
+					<p>
+						Regressions are then run via the Data Analysis ToolPak:
+					</p>
+					<!-- CODE TEXT BOX -->
+					<p>
+						<p style="padding:2px 6px 4px 6px; color: #555555; background-color: #eeeeee; border: #dddddd 2px solid">
+							Data tab > Data Analysis > Regression</br>
+					</p>
+					
+					<p>
+						<b>2020:</b>
+					</p>
+					<!-- IMAGE -->
+					<p>
+						<a href="images_Excel_WNBA_salaries/Excel_WNBA_salaries/23.png" class="image fit thumb"><img src="images_Excel_WNBA_salaries/Excel_WNBA_salaries/23.png"
+							/>
+						</a>
+					</p>
+					<p>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>Hypothesis:</i></br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; H<sub>0</sub>: b<sub>1</sub>=0 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; H<sub>1</sub>: b<sub>1</sub>≠0 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>Correlation coefficient:</i> r = 0.0273 Very weak positive relationship, close to no relationship </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>R<sup>2</sup>=</i>0.000746  In 2020, about 0.0746% of the variation of salary is explained by the variation of games played. Number of games played is not very helpful in explaining salary. </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>p-value:</i> p=0.842 > &alpha;=0.05, c-value (using <mark><b>TINV()</b></mark>)=2.0049 > t=|-0.201|</br>
+						<i>Interpretation:</i> We fail to reject the null hypothesis that salary and games played are not related (r(54)=0.0273, p>0.05). There is not enough evidence for a statistically significant relationship between salary and games played.
+					</p>
+
+					<p>
+						<b>2021:</b>
+					</p>
+					<!-- IMAGE -->
+					<p>
+						<a href="images_Excel_WNBA_salaries/Excel_WNBA_salaries/24.png" class="image fit thumb"><img src="images_Excel_WNBA_salaries/Excel_WNBA_salaries/24.png"
+							/>
+						</a>
+					</p>
+					<p>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>Hypothesis:</i></br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; H<sub>0</sub>: b<sub>1</sub>=0 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; H<sub>1</sub>: b<sub>1</sub>≠0 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>Correlation coefficient:</i> r = 0.18 Weak positive relationship</br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>R<sup>2</sup>=</i>0.0323  In 2021, about 3.23% of the variation of salary is explained by the variation of games played. Number of games played is not very helpful in explaining salary. (However, increases between the years can imply that variation in salary is more related with how many games played than previously.) </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>p-value:</i> p=0.185 > &alpha;=0.05, c-value (using <mark><b>TINV()</b></mark>)=2.0049 > t=|1.342|</br>
+						<i>Interpretation:</i> We fail to reject the null hypothesis that salary and games played are not related (r(54)=0.18, p>0.05). There is not enough evidence for a statistically significant relationship between salary and games played.
+					</p>
+					
+					<p>
+						<i>Overall Intuitive Interpretation:</i> Veterans usually play more games due to being the most experienced at the game compared to other teammates. However, there is not enough evidence to suggest that it reflects in salary amounts.
+					</p>
+
+
+
+
+
+					<header class="major" id="reg_vets_MPG">
+						<h5>2. Salary by Minutes Per Game:</h5>
+					</header>
+					
+					<p>
+						A scatter plot chart is created, trendlines and labels are added, and formatting of the visuals are edited.
+					</p>
+					<!-- IMAGE -->
+					<p>
+						<a href="images_Excel_WNBA_salaries/Excel_WNBA_salaries/25.png" class="image fit thumb"><img src="images_Excel_WNBA_salaries/Excel_WNBA_salaries/25.png"
+							/>
+						</a>
+					</p>
+					
+					<p>
+						Regressions are run via the Data Analysis ToolPak:
+					</p>
+					
+					<p>
+						<b>2020:</b>
+					</p>
+					<!-- IMAGE -->
+					<p>
+						<a href="images_Excel_WNBA_salaries/Excel_WNBA_salaries/26.png" class="image fit thumb"><img src="images_Excel_WNBA_salaries/Excel_WNBA_salaries/26.png"
+							/>
+						</a>
+					</p>
+					<p>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>Hypothesis:</i></br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; H<sub>0</sub>: b<sub>1</sub>=0 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; H<sub>1</sub>: b<sub>1</sub>≠0 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>Correlation coefficient:</i> r = 0.271 Weak positive relationship </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>R<sup>2</sup>=</i>0.0736  In 2020, about 7.36% of the variation in salary is explained by the variation in minutes per game. Minutes per game is not very helpful in explaining and making an accurate prediction of salary (as there is much unexplained variance). </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>p-value:</i> p=0.0431 < 0.05, c-value: 2.0049 < t=|2.071|</br>
+						<i>Interpretation:</i> We reject the null hypothesis that salary and minutes per game are not related (r(54)=0.271, p < 0.05). There is a statistically significant positive relationship between salary and minutes per game. As minutes per game increases, salary also tends to increase.
+					</p>
+					
+					<p>
+						<b>2021:</b>
+					</p>
+					<!-- IMAGE -->
+					<p>
+						<a href="images_Excel_WNBA_salaries/Excel_WNBA_salaries/27.png" class="image fit thumb"><img src="images_Excel_WNBA_salaries/Excel_WNBA_salaries/27.png"
+							/>
+						</a>
+					</p>
+					<p>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>Hypothesis:</i></br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; H<sub>0</sub>: b<sub>1</sub>=0 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; H<sub>1</sub>: b<sub>1</sub>≠0 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>Correlation coefficient:</i> r = 0.58 Moderate positive relationship </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>R<sup>2</sup>=</i>0.336  In 2021, about 33.6% of the variation in salary is explained by the variation in minutes per game. Minutes per game is somewhat helpful in explaining salary. </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>p-value:</i> p=0.00000279 < 0.05, c-value: 2.0049 < t=|5.233|</br>
+						<i>Interpretation:</i> We reject the null hypothesis that salary and minutes per game are not related (r(54)=0.58, p < 0.05). There is a statistically significant positive relationship between salary and minutes per game. As minutes per game increases, salary also tends to increase.
+					</p>
+
+					<p>
+						<i>Overall Intuitive Interpretation:</i> Like with games played, veterans also generally play more minutes per game due to more experience. In 2020, the minutes per game did not seem to really reflect salary differences. However in 2021, it seems to have had a stronger relationship and those who played more minutes per game also received higher salaries—those veterans were compensated more while also playing the most time in games.
+					</p>
+				
+
+
+
+
+					<header class="major" id="reg_vets_PPG">
+						<h5>3. Salary by Points Per Game:</h5>
+					</header>
+					
+					<p>
+						A scatter plot chart is created, trendlines and labels are added, and formatting of the visuals are edited.
+					</p>
+					<!-- IMAGE -->
+					<p>
+						<a href="images_Excel_WNBA_salaries/Excel_WNBA_salaries/28.png" class="image fit thumb"><img src="images_Excel_WNBA_salaries/Excel_WNBA_salaries/28.png"
+							/>
+						</a>
+					</p>
+					
+					<p>
+						Regressions are run via the Data Analysis ToolPak:
+					</p>
+				
+					<p>
+						<b>2020:</b>
+					</p>
+					<!-- IMAGE -->
+					<p>
+						<a href="images_Excel_WNBA_salaries/Excel_WNBA_salaries/29.png" class="image fit thumb"><img src="images_Excel_WNBA_salaries/Excel_WNBA_salaries/29.png"
+							/>
+						</a>
+					</p>
+					<p>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>Hypothesis:</i></br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; H<sub>0</sub>: b<sub>1</sub>=0 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; H<sub>1</sub>: b<sub>1</sub>≠0 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>Correlation coefficient:</i> r = 0.428 Weak positive relationship </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>R<sup>2</sup>=</i>0.183  In 2020, about 18.3% of the variation in salary is explained by the variation in points per game. Points per game is somewhat helpful in explaining salary. </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>p-value:</i> p=0.001 < 0.05, c-value: 2.0049 < t=|3.478|</br>
+						<i>Interpretation:</i> We reject the null hypothesis that salary and points per game are not related (r(54)=0.428, p < 0.05). There is a statistically significant positive relationship between salary and points per game. As points per game increases, salary also increases.
+					</p>
+
+					<p>
+						<b>2021:</b>
+					</p>
+					<!-- IMAGE -->
+					<p>
+						<a href="images_Excel_WNBA_salaries/Excel_WNBA_salaries/30.png" class="image fit thumb"><img src="images_Excel_WNBA_salaries/Excel_WNBA_salaries/30.png"
+							/>
+						</a>
+					</p>
+					<p>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>Hypothesis:</i></br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; H<sub>0</sub>: b<sub>1</sub>=0 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; H<sub>1</sub>: b<sub>1</sub>≠0 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>Correlation coefficient:</i> r = 0.663 Moderate positive relationship </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>R<sup>2</sup>=</i>0.44  In 2021, about 44% of the variation in salary is explained by the variation in points per game. Points per game is pretty helpful in explaining salary. </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>p-value:</i> p=0.0000000254 < 0.05, c-value: 2.0049 < t=|6.513|</br>
+						<i>Interpretation:</i> We reject the null hypothesis that salary and points per game are not related (r(54)=0.663, p < 0.05). There is a statistically significant positive relationship between salary and points per game. As points per game increases, salary also increases.
+					</p>
+
+					<p>
+						<i>Overall Intuitive Interpretation:</i> Those players who score more points per game tend to also have higher salaries—highlighting the positive relationship between those who contribute to the team the most and greater compensation. The higher salary allotment to teams in 2021 and higher maximum salary seems to allow the teams to more consistently give higher salaries to those who make the most points compared to in 2020.
+					</p>
+
+
+					
+					<p>
+						<b>Veterans' Simple Linear Regressions Overall Intuitive Interpretation:</b>
+					</p>
+					<p>
+						Overall, veteran salaries seem to have a somewhat positive relationship with minutes played per game and points made per game. Veterans who tend to play the most and contribute the most points-wise seem to also receive the higher salaries—as logically expected.
+					</p>
+
+
+
+
+
+					<header class="major" id="reg_vets_multi">
+						<h4>MULTIPLE LINEAR REGRESSIONS:</h4>
+					</header>
+					<p>
+						To identify which game statistics are better predictors of salary, a correlation matrix between all the variables is created, and then multiple linear regression is run.
+					</p>
+
+					<header class="major">
+						<h5>1. Correlation Matrix:</h5>
+					</header>
+					<p>
+						A correlation matrix is created to show the linear correlation between each pair of variables and to identify any multicollinearity issues. The independent variables (game statistics) should have low correlations with each other and a high correlation with the dependent variable (salary). The correlation matrix is made using the Correlation option in the Data Analysis ToolPak.
+					</p>
+					<!-- CODE TEXT BOX -->
+					<p>
+						<p style="padding:2px 6px 4px 6px; color: #555555; background-color: #eeeeee; border: #dddddd 2px solid">
+							Data tab > Data Analysis > Correlation</br>
+					</p>
+
+					<p>
+						<b>2020:</b>
+					</p>
+					<!-- IMAGE -->
+					<p>
+						<a href="images_Excel_WNBA_salaries/Excel_WNBA_salaries/31.png" class="image fit thumb"><img src="images_Excel_WNBA_salaries/Excel_WNBA_salaries/31.png"
+							/>
+						</a>
+					</p>
+					<p>
+						The game stats do not have particularly high correlation with salary, with Points Per Game being the highest at 0.428. Minutes Per Game and Points Per Game have a high correlation with each other (if a player plays more minutes, they are more likely to also score more points), so it does not make much sense to include both of these variables. Because Minutes Per Game has the lowest correlation with salary, it will be dropped prior to running the regression.
+					</p>
+
+
+					<p>
+						<b>2021:</b>
+					</p>
+					<!-- IMAGE -->
+					<p>
+						<a href="images_Excel_WNBA_salaries/Excel_WNBA_salaries/32.png" class="image fit thumb"><img src="images_Excel_WNBA_salaries/Excel_WNBA_salaries/32.png"
+							/>
+						</a>
+					</p>
+					<p>
+						Minutes Per Game and Points Per Game have a stronger correlation with salary in 2021, compared to 2020. Games Played continues to have a low correlation with salary. Minutes Per Game and Points Per Game also continue to have a high correlation with each other because we are taking these statistics as constant both years—Minutes Per Game is redundant and will be dropped again.
+					</p>
+
+					
+					
+					<header class="major">
+						<h5>2. Multiple Linear Regression:</h5>
+					</header>
+					
+					<p>
+						<b>2020:</b>
+					</p>
+					<p>
+						Because the Data Analysis Toolpak's Regression option cannot use input data that is not a contiguous reference, a new table is created with only the relevant data (Salary, Games Played, and Points Per Game).
+					</p>
+					<!-- IMAGE -->
+					<p>
+						<a href="images_Excel_WNBA_salaries/Excel_WNBA_salaries/33.png" class="image fit thumb"><img src="images_Excel_WNBA_salaries/Excel_WNBA_salaries/33.png"
+							/>
+						</a>
+					</p>
+					<p>
+						Then, the regression with Salary, Games Played, and Points Per Game is run through the Data Analysis ToolPak:
+					</p>
+					<!-- IMAGE -->
+					<p>
+						<a href="images_Excel_WNBA_salaries/Excel_WNBA_salaries/34.png" class="image fit thumb"><img src="images_Excel_WNBA_salaries/Excel_WNBA_salaries/34.png"
+							/>
+						</a>
+					</p>
+					<p>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>Hypotheses:</i></br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  Games Played:</br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; H<sub>0</sub>: b<sub>1</sub>=0 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; H<sub>1</sub>: b<sub>1</sub>≠0 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  Points Per Game:</br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; H<sub>0</sub>: b<sub>2</sub>=0 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; H<sub>1</sub>: b<sub>2</sub>≠0 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>Multiple Regression Equation:</i> Salary = -791.497GP + 4340.495PPG+102990.227</br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; If games played increased by 1 game, salary would decrease by $791.50 on average, assuming points per game is constant.
+						If points per game increased by 1 point, salary would increase by $4,340.50 on average, assuming games played is constant.</br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>p-values:</i> </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Significance F: F=0.003 < 0.05 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Games Played: p=0.345 > 0.05 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Points Per Game: p=0.0007 < 0.05 </br>
+						<i>Interpretation:</i> </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>Significance F:</i> The regression model as a whole, with explanatory variables Games Played and Points Per Game combined, have a statistically significant association with Salary (F=0.003 < 0.05).</br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>Games Played:</i> We fail to reject the null hypothesis that salary and games played are not related (p=0.345 > 0.05). There is not enough evidence for a statistically significant relationship between salary and games played. Because of the high p-value, the number of games played has poor predictive ability. Logically, it also does not make sense that playing more games would result in a lower salary.</br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>Points Per Game:</i> We reject the null hypothesis that salary and points per game are not related (p=0.0007 < 0.05). There is a statistically significant positive relationship between salary and points per game. As points per game increases, salary also tends to increase.
+					</p>
+					<p>
+						Because Games Played has a high p-value, it is removed from the regression and the regression is run again with just Points Per Game. The result is the same as the previous simple linear regression with it by itself. Points Per Game is the best predictor of Salary in this instance.
+					</p>
+
+
+					<p>
+						<b>2021:</b>
+					</p>
+					<p>
+						Like the 2020 data, a new table is created with only the relevant data (Salary, Games Played, and Points Per Game).
+					</p>
+					<!-- IMAGE -->
+					<p>
+						<a href="images_Excel_WNBA_salaries/Excel_WNBA_salaries/35.png" class="image fit thumb"><img src="images_Excel_WNBA_salaries/Excel_WNBA_salaries/35.png"
+							/>
+						</a>
+					</p>
+					<p>
+						Then, the regression with Salary, Games Played, and Points Per Game is run through the Data Analysis ToolPak:
+					</p>
+					<!-- IMAGE -->
+					<p>
+						<a href="images_Excel_WNBA_salaries/Excel_WNBA_salaries/36.png" class="image fit thumb"><img src="images_Excel_WNBA_salaries/Excel_WNBA_salaries/36.png"
+							/>
+						</a>
+					</p>
+					<p>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>Hypotheses:</i></br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  Games Played:</br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; H<sub>0</sub>: b<sub>1</sub>=0 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; H<sub>1</sub>: b<sub>1</sub>≠0 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  Points Per Game:</br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; H<sub>0</sub>: b<sub>2</sub>=0 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; H<sub>1</sub>: b<sub>2</sub>≠0 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>Multiple Regression Equation:</i> Salary = 301.70GP + 6248.403PPG + 82519.441</br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; If games played increased by 1 game, salary would increase by $301.70 on average, assuming points per game is constant.
+						If points per game increased by 1 point, salary would increase by $6,248.40 on average, assuming games played is constant.</br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>p-values:</i> </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Significance F: F=0.000000193 < 0.05 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Games Played: p=0.663 > 0.05 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Points Per Game: p=0.0000000755 < 0.05 </br>
+						<i>Interpretation:</i> </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>Significance F:</i> The regression model as a whole, with explanatory variables Games Played and Points Per Game combined, have a statistically significant association with Salary (F=0.000000193 < 0.05).</br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>Games Played:</i> We fail to reject the null hypothesis that salary and games played are not related (p=0.663 > 0.05). There is not enough evidence for a statistically significant relationship between salary and games played. Because of the high p-value, the number of games played has poor predictive ability.</br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>Points Per Game:</i> We reject the null hypothesis that salary and points per game are not related (p=0. 0000000755 < 0.05). There is a statistically significant positive relationship between salary and points per game. As points per game increases, salary also tends to increase.
+					</p>
+					<p>
+						Because Games Played has a high p-value, it is once again removed from the regression and the regression is run again using only Points Per Game. This has the same result as the simple linear regression done before.
+					</p>
+
+					<p>
+						<b>Veterans' Multiple Linear Regressions Overall Intuitive Interpretation:</b>
+					</p>
+					<p>
+						Overall, veterans salaries seem to have a weak-to-moderate positive relationship with points made per game. Veterans who score more points for the team tend to be rewarded for their contributions and have higher salaries.
+					</p>
+
+				
+
+
+
+
+
+
+					<header class="major">
+						<h3><u>ALL WNBA PLAYERS</u></h3>
+					</header>
+					
+					<p>
+						This section includes all players in the WNBA with full statistics, irrespective of number of years experience. Rookies are not included in this data set, as they do not have game statistics from playing in the WNBA.
+					</p>
+
+					<p>
+						EXTRA DATA CLEANING NOTE: Like with the veterans, regression analysis via the Data Analysis tab gives an error for those with blank cells. To give a general overview of the data, the data set is copy and pasted into a new worksheet, and the data is cleaned to remove those players with any blanks. First, Conditional Formatting is used to fill in blank cells with red so that they are easily identifiable. This left 125 players overall.
+					</p>
+					<!-- CODE TEXT BOX -->
+					<p>
+						<p style="padding:2px 6px 4px 6px; color: #555555; background-color: #eeeeee; border: #dddddd 2px solid">
+							Conditional Formatting > New Rule > Format only cells that contain: Blanks > Set formatting to red fill</br>
+					</p>
+					<!-- IMAGE -->
+					<p>
+						<a href="images_Excel_WNBA_salaries/Excel_WNBA_salaries/37.png" class="image fit thumb"><img src="images_Excel_WNBA_salaries/Excel_WNBA_salaries/37.png"
+							/>
+						</a>
+					</p>
+					<p>
+						Then, Conditional Formatting and <mark><b>ISTEXT()</b></mark> are used to flag and fill with color any players who had a non-numeric in the salary column. This left 116 players overall. Again, for the scope of this project and getting a general overview without extraneous hassle, this will give an adequate snapshot of the relationships between salary and these other factors.
+					</p>
+					<!-- CODE TEXT BOX -->
+					<p>
+						<p style="padding:2px 6px 4px 6px; color: #555555; background-color: #eeeeee; border: #dddddd 2px solid">
+							Conditional Formatting > New Rule > Use a formula to determine which cells to format > Set formatting to red fill</br>
+					</p>
+					<!-- IMAGE -->
+					<p>
+						<a href="images_Excel_WNBA_salaries/Excel_WNBA_salaries/38.png" class="image fit thumb"><img src="images_Excel_WNBA_salaries/Excel_WNBA_salaries/38.png"
+							/>
+						</a>
+					</p>
+
+					
+					
+					
+					<header class="major">
+						<h4>SIMPLE LINEAR REGRESSIONS:</h4>
+					</header>
+
+					<header class="major" id="reg_wnba_GP">
+						<h5>1. Salary by Games Played:</h5>
+					</header>
+
+					<p>
+						A scatter plot chart is created, trendlines and labels are added, and formatting of the visuals are edited.
+					</p>
+					<!-- IMAGE -->
+					<p>
+						<a href="images_Excel_WNBA_salaries/Excel_WNBA_salaries/39.png" class="image fit thumb"><img src="images_Excel_WNBA_salaries/Excel_WNBA_salaries/39.png"
+							/>
+						</a>
+					</p>
+
+					<p>
+						Regressions are run via the Data Analysis ToolPak:
+					</p>
+					
+					<p>
+						<b>2020:</b>
+					</p>
+					<!-- IMAGE -->
+					<p>
+						<a href="images_Excel_WNBA_salaries/Excel_WNBA_salaries/40.png" class="image fit thumb"><img src="images_Excel_WNBA_salaries/Excel_WNBA_salaries/40.png"
+							/>
+						</a>
+					</p>
+					<p>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>Hypothesis:</i></br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; H<sub>0</sub>: b<sub>1</sub>=0 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; H<sub>1</sub>: b<sub>1</sub>≠0 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>Correlation coefficient:</i> r = 0.0714 Very weak positive relationship, close to no relationship </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>R<sup>2</sup>=</i>0.005103  In 2020, about 0.5103% of the variation in salary is explained by the variation in games played. Games played is not very helpful in explaining salary. </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>p-value:</i> p=0.446 > 0.05, c-value: 1.981 > t=|0.765|</br>
+						<i>Interpretation:</i> We fail to reject the null hypothesis that salary and games played are not related (r(114)=0.0714, p > 0.05). There is not enough evidence for a statistically significant relationship between salary and games played.
+					</p>
+
+					<p>
+						<b>2021:</b>
+					</p>
+					<!-- IMAGE -->
+					<p>
+						<a href="images_Excel_WNBA_salaries/Excel_WNBA_salaries/41.png" class="image fit thumb"><img src="images_Excel_WNBA_salaries/Excel_WNBA_salaries/41.png"
+							/>
+						</a>
+					</p>
+					<p>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>Hypothesis:</i></br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; H<sub>0</sub>: b<sub>1</sub>=0 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; H<sub>1</sub>: b<sub>1</sub>≠0 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>Correlation coefficient:</i> r = 0.201 Weak positive relationship </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>R<sup>2</sup>=</i>0.0405  In 2021, about 4.05% of the variation in salary is explained by the variation in games played. Games played is not very helpful in explaining salary. </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>p-value:</i> p=0.0302 < 0.05, c-value: 1.981 < t=|2.195|</br>
+						<i>Interpretation:</i> We reject the null hypothesis that salary and game played are not related (r(114)=0.201, p < 0.05). There is a statistically significant positive relationship between salary and games played. As games played increases, salary also tends to increase.
+					</p>
+				
+					<p>
+						<i>Overall Intuitive Interpretation:</i> In 2020, the number of games played seems to not have much relationship with what salary a player receives. In 2021, there was a small, but statistically significant (i.e. unlikely for this result to be merely by chance) positive relationship between games played and salary. Even though there seems to be a significant relationship between the two, overall, this is not very useful for practical interpretation, as 95.95% of variation in salary is explained by other variables other than games played.
+					</p>
+				
+
+
+
+
+
+					<header class="major" id="reg_wnba_MPG">
+						<h5>2. Salary by Minutes Per Game:</h5>
+					</header>
+
+					<p>
+						A scatter plot chart is created, trendlines and labels are added, and formatting of the visuals are edited.
+					</p>
+					<!-- IMAGE -->
+					<p>
+						<a href="images_Excel_WNBA_salaries/Excel_WNBA_salaries/42.png" class="image fit thumb"><img src="images_Excel_WNBA_salaries/Excel_WNBA_salaries/42.png"
+							/>
+						</a>
+					</p>
+
+					<p>
+						Regressions are run via the Data Analysis ToolPak:
+					</p>
+					
+					<p>
+						<b>2020:</b>
+					</p>
+					<!-- IMAGE -->
+					<p>
+						<a href="images_Excel_WNBA_salaries/Excel_WNBA_salaries/43.png" class="image fit thumb"><img src="images_Excel_WNBA_salaries/Excel_WNBA_salaries/43.png"
+							/>
+						</a>
+					</p>
+					<p>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>Hypothesis:</i></br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; H<sub>0</sub>: b<sub>1</sub>=0 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; H<sub>1</sub>: b<sub>1</sub>≠0 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>Correlation coefficient:</i> r = 0.3306 Weak positive relationship </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>R<sup>2</sup>=</i>0.109  In 2020, about 10.9% of the variation in salary is explained by the variation in minutes per game. Minutes per game is not very helpful in explaining salary. </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>p-value:</i> p=0.000289 < 0.05, c-value: 1.981 < t=|3.740|</br>
+						<i>Interpretation:</i> We reject the null hypothesis that salary and minutes per game are not related (r(114)=0.3306, p < 0.05). There is a statistically significant positive relationship between salary and minutes per game. As minutes per game increases, salary also tends to increase.
+					</p>
+				
+					<p>
+						<b>2021:</b>
+					</p>
+					<!-- IMAGE -->
+					<p>
+						<a href="images_Excel_WNBA_salaries/Excel_WNBA_salaries/44.png" class="image fit thumb"><img src="images_Excel_WNBA_salaries/Excel_WNBA_salaries/44.png"
+							/>
+						</a>
+					</p>
+					<p>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>Hypothesis:</i></br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; H<sub>0</sub>: b<sub>1</sub>=0 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; H<sub>1</sub>: b<sub>1</sub>≠0 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>Correlation coefficient:</i> r = 0.48 Weak positive relationship </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>R<sup>2</sup>=</i>0.2302  In 2021, about 23.02% of the variation in salary is explained by the variation in minutes per game. Minutes per game is somewhat helpful in explaining salary. </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>p-value:</i> p=0.00000005059 < 0.05, c-value: 1.981 < t=|5.838|</br>
+						<i>Interpretation:</i> We reject the null hypothesis that salary and minutes per game are not related (r(114)=0.48, p < 0.05). There is a statistically significant positive relationship between salary and minutes per game. As minutes per game increases, salary also tends to increase.
+					</p>
+
+					<p>
+						<i>Overall Intuitive Interpretation:</i> There is a weak but statistically significant relationship between salary and minutes per game. Those who play more minutes per game tend to also receive higher salaries for their contributions. This relationship is better reflected in 2021 than in 2020, though since the relationship is weak, it is questionable how much practical usefulness this has.
+					</p>
+				
+
+
+
+
+					<header class="major" id="reg_wnba_PPG">
+						<h5>3. Salary by Points Per Game:</h5>
+					</header>
+					<p>
+						A scatter plot chart is created, trendlines and labels are added, and formatting of the visuals are edited.
+					</p>
+					<!-- IMAGE -->
+					<p>
+						<a href="images_Excel_WNBA_salaries/Excel_WNBA_salaries/45.png" class="image fit thumb"><img src="images_Excel_WNBA_salaries/Excel_WNBA_salaries/45.png"
+							/>
+						</a>
+					</p>
+
+					<p>
+						Regressions are run via the Data Analysis ToolPak:
+					</p>
+					
+					<p>
+						<b>2020:</b>
+					</p>
+					<!-- IMAGE -->
+					<p>
+						<a href="images_Excel_WNBA_salaries/Excel_WNBA_salaries/46.png" class="image fit thumb"><img src="images_Excel_WNBA_salaries/Excel_WNBA_salaries/46.png"
+							/>
+						</a>
+					</p>
+					<p>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>Hypothesis:</i></br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; H<sub>0</sub>: b<sub>1</sub>=0 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; H<sub>1</sub>: b<sub>1</sub>≠0 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>Correlation coefficient:</i> r = 0.385 Weak positive relationship </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>R<sup>2</sup>=</i>0.148  In 2020, about 14.8% of the variation in salary is explained by the variation in points per game. Points per game is not very helpful in explaining salary. </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>p-value:</i> p=0.0000197 < 0.05, c-value: 1.981 < t=|4.456| </br>
+						<i>Interpretation:</i> We reject the null hypothesis that salary and points per game are not related (r(114)=0.385, p < 0.05). There is a statistically significant positive relationship between salary and points per game. As points per game increases, salary also tends to increase.
+					</p>
+				
+					<p>
+						<b>2021:</b>
+					</p>
+					<!-- IMAGE -->
+					<p>
+						<a href="images_Excel_WNBA_salaries/Excel_WNBA_salaries/47.png" class="image fit thumb"><img src="images_Excel_WNBA_salaries/Excel_WNBA_salaries/47.png"
+							/>
+						</a>
+					</p>
+					<p>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>Hypothesis:</i></br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; H<sub>0</sub>: b<sub>1</sub>=0 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; H<sub>1</sub>: b<sub>1</sub>≠0 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>Correlation coefficient:</i> r = 0.482 Weak positive relationship </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>R<sup>2</sup>=</i>0.232  In 2021, about 23.2% of the variation in salary is explained by the variation in points per game. Points per game is somewhat helpful in explaining salary. </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>p-value:</i> p=0.0000000445 < 0.05, c-value: 1.981 < t=|5.866| </br>
+						<i>Interpretation:</i> We reject the null hypothesis that salary and points per game are not related (r(114)=0.482, p < 0.05). There is a statistically significant positive relationship between salary and points per game. As points per game increases, salary also tends to increase.
+					</p>
+
+					<p>
+						<i>Overall Intuitive Interpretation:</i> There is a weak, but statistically significant relationship between salary and points per game. Those who score more points per game tend to also have a higher salary—as they contribute more to the team. 2021 reflects this relationship a bit better than in 2020, but the relationship is overall relatively weak, so it is questionable how much practical usefulness this has.
+					</p>
+
+					
+					<p>
+						<b>All WNBA Simple Linear Regressions Overall Intuitive Interpretation:</b>
+					</p>
+					<p>
+						Overall, the league's players' salaries tend to have a somewhat positive relationship with games played, minutes per game, and points per game. Those players who contribute the most to their team's success also tend to have the highest salaries. While the relationships are statistically significant, the strength of their correlations tend to be quite weak (with 2021's minutes per game and points per game having the strongest correlations) and do not seem to have much practical value.
+					</p>
+
+
+
+
+
+
+
+
+
+					<header class="major" id="reg_wnba_multi">
+						<h4>MULTIPLE LINEAR REGRESSIONS:</h4>
+					</header>
+					<p>
+						To identify which game statistics are better predictors of salary, a correlation matrix between all the variables is created, and then multiple linear regression is run.
+					</p>
+				
+
+					<header class="major">
+						<h5>1. Correlation Matrix:</h5>
+					</header>
+					<p>
+						A correlation matrix is created to show the linear correlation between each pair of variables and to identify any multi-collinearity issues. The independent variables (game statistics) should have low correlations with each other and a high correlation with the dependent variable (salary). The correlation matrix is once again made using the Correlation option in the Data Analysis ToolPak.
+					</p>
+
+					<p>
+						<b>2020:</b>
+					</p>
+					<!-- IMAGE -->
+					<p>
+						<a href="images_Excel_WNBA_salaries/Excel_WNBA_salaries/48.png" class="image fit thumb"><img src="images_Excel_WNBA_salaries/Excel_WNBA_salaries/48.png"
+							/>
+						</a>
+					</p>
+					<p>
+						Looking at all WNBA players has a similar pattern as looking at just the veterans: the game stats do not have particularly high correlation with salary, with Points Per Game continuing to be the highest at 0.385. Minutes Per Game and Points Per Game also continue to have a high correlation with each other due to taking these statistics as constant both years, so Minutes Per Game will be dropped prior to running the regression as it has the lowest correlation with salary.
+					</p>
+
+					<p>
+						<b>2021:</b>
+					</p>
+					<!-- IMAGE -->
+					<p>
+						<a href="images_Excel_WNBA_salaries/Excel_WNBA_salaries/49.png" class="image fit thumb"><img src="images_Excel_WNBA_salaries/Excel_WNBA_salaries/49.png"
+							/>
+						</a>
+					</p>
+					<p>
+						Just like with the veterans, Minutes Per Game and Points Per Game have as stronger correlation with salary in 2021, compared to 2020. Games Played continues to have a low correlation with salary but the correlation does increase a bit. Minutes Per Game and Points Per Game continue to have a high correlation with each other—Minutes Per Game is redundant and will be dropped again.
+					</p>
+
+
+
+
+
+					<header class="major">
+						<h5>2. Multiple Linear Regression:</h5>
+					</header>
+					
+					<p>
+						<b>2020:</b>
+					</p>
+					<p>
+						A new table with contiguous Salary, Games Played, and Points Per Game is created to run the regression.
+					</p>
+					<!-- IMAGE -->
+					<p>
+						<a href="images_Excel_WNBA_salaries/Excel_WNBA_salaries/50.png" class="image fit thumb"><img src="images_Excel_WNBA_salaries/Excel_WNBA_salaries/50.png"
+							/>
+						</a>
+					</p>
+					<p>
+						Then, the Regression with Salary, Games Played, and Points Per Game is run through the Data Analysis ToolPak:
+					</p>
+					<!-- IMAGE -->
+					<p>
+						<a href="images_Excel_WNBA_salaries/Excel_WNBA_salaries/51.png" class="image fit thumb"><img src="images_Excel_WNBA_salaries/Excel_WNBA_salaries/51.png"
+							/>
+						</a>
+					</p>
+					<p>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>Hypotheses:</i></br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  Games Played:</br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; H<sub>0</sub>: b<sub>1</sub>=0 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; H<sub>1</sub>: b<sub>1</sub>≠0 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  Points Per Game:</br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; H<sub>0</sub>: b<sub>2</sub>=0 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; H<sub>1</sub>: b<sub>2</sub>≠0 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>Multiple Regression Equation:</i> Salary = 23.186GP + 3895.489PPG + 63578.70</br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; If games played increased by 1 game, salary would increase by $23.19 on average, assuming points per game is constant.
+						If points per game increased by 1 point, salary would increase by $3,895.49 on average, assuming games played is constant.</br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>p-values:</i> </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Significance F: F=0.000115 < 0.05 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Games Played: p=0.975 > 0.05 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Points Per Game: p=0.0000289 < 0.055 </br>
+						<i>Interpretation:</i> </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>Significance F:</i> The regression model as a whole, with explanatory variables Games Played and Points Per Game combined, have a statistically significant association with Salary (F=0.000115 < 0.05).</br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>Games Played:</i> We fail to reject the null hypothesis that salary and games played are not related (p=0.975 > 0.05). There is not enough evidence for a statistically significant relationship between salary and games played. Because of the high p-value, the number of games played has poor predictive ability.</br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>Points Per Game:</i> We reject the null hypothesis that salary and points per game are not related (p=0.0000289 < 0.05). There is a statistically significant positive relationship between salary and points per game. As points per game increases, salary also tends to increase.
+					</p>
+					<p>
+						Because Games Played has a high p-value, it is removed from the regression and the regression is run again with just Points Per Game. The result is the same as the previous simple linear regression with it by itself. Points Per Game is the best predictor of Salary in this instance.
+					</p>
+
+
+					<p>
+						<b>2021:</b>
+					</p>
+					<p>
+						A new table is created with just Salary, Games Played, and Points Per Game in order to successfully run the regression.
+					</p>
+					<!-- IMAGE -->
+					<p>
+						<a href="images_Excel_WNBA_salaries/Excel_WNBA_salaries/52.png" class="image fit thumb"><img src="images_Excel_WNBA_salaries/Excel_WNBA_salaries/52.png"
+							/>
+						</a>
+					</p>
+					<p>
+						Then, the Regression with Salary, Games Played, and Points Per Game is run through the Data Analysis ToolPak:
+					</p>
+					<!-- IMAGE -->
+					<p>
+						<a href="images_Excel_WNBA_salaries/Excel_WNBA_salaries/53.png" class="image fit thumb"><img src="images_Excel_WNBA_salaries/Excel_WNBA_salaries/53.png"
+							/>
+						</a>
+					</p>
+					<p>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>Hypotheses:</i></br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  Games Played:</br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; H<sub>0</sub>: b<sub>1</sub>=0 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; H<sub>1</sub>: b<sub>1</sub>≠0 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  Points Per Game:</br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; H<sub>0</sub>: b<sub>2</sub>=0 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; H<sub>1</sub>: b<sub>2</sub>≠0 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>Multiple Regression Equation:</i> Salary = 1196.318GP + 5489.046PPG + 38153.879</br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; If games played increased by 1 game, salary would increase by $1,196.32 on average, assuming points per game is constant.
+						If points per game increased by 1 point, salary would increase by $5,489.05 on average, assuming games played is constant.</br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>p-values:</i> </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Significance F: F=0.000000122 < 0.05 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Games Played: p=0.154 > 0.05 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Points Per Game: p=0.000000198 < 0.05 </br>
+						<i>Interpretation:</i> </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>Significance F:</i> The regression model as a whole, with explanatory variables Games Played and Points Per Game combined, have a statistically significant association with Salary (F=0. 0.000000122 < 0.05).</br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>Games Played:</i> We fail to reject the null hypothesis that salary and games played are not related (p=0.154 > 0.05). There is not enough evidence for a statistically significant relationship between salary and games played. Because of the high p-value, the number of games played has poor predictive ability.</br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>Points Per Game:</i> We reject the null hypothesis that salary and points per game are not related (p=0. 000000198 < 0.05). There is a statistically significant positive relationship between salary and points per game. As points per game increases, salary also tends to increase.
+					</p>
+					<p>
+						Because Games Played has a high p-value, it is once again removed from the regression and the regression is run again using only Points Per Game. This has the same result as the simple linear regression done before.
+					</p>
+
+					<p>
+						<b>WNBA Multiple Linear Regressions Overall Intuitive Interpretation:</b>
+					</p>
+					<p>
+						Similarly to the veterans, overall WNBA salary seems to have a weak positive relationship with points made per game. Those who score more tend to also have higher salaries.
+					</p>
+
+
+				
+				</section>
+
+
+
+
+
+				
+				
+				
+				
+				<!-- Discussion -->
+				<section id="discussion">
+					<header class="major">
+						<h2>PART 5: Summary & Discussion</h2>
+					</header>
+					
+					<header class="major">
+						<h3><u>Summary</u></h3>
+					</header>
+					
+					<p>
+						<b>Rookies (First year in the WNBA):</b>
+					</p>
+					<p>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>Maximum Salary:</i></br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2021:  $70,040 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>Median Salary:</i></br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2021: $61,543 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>Average Salary:</i></br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2021: $49,716 (s=$25,551) </br>
+					
+					</p>
+
+					<p>
+						<b>Veterans (5/+ years experience playing in the WNBA):</b>
+					</p>
+					<p>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>Maximum Salary:</i></br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2020: $215,000 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2021: $221,450 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>Median Salary:</i></br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2020: $118,510 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2021: $167,500 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>Average Salary:</i></br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2020: $136,888 (s=$42,843) </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2021: $155,5598 (s=$47,129) </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>Simple Linear Regressions:</i></br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Statistically significant relationship with Salary: </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2020: Minutes Per Game (r(54)=0.271, p < 0.05), Points Per Game (r(54)=0.385, p < 0.05) </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2021: Minutes Per Game (r(54)=0.58, p < 0.05), Points Per Game (r(54)=0.482, p < 0.05) </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Not enough evidence to conclude relationship with Salary: </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2020: Games Played (r(54)=0.0273, p > 0.05) </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2021: Games Played (r(54)=0.18, p > 0.05) </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>Multiple Linear Regression:</i></br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; There is a high correlation between Minutes Per Game and Points Per Game in both years (r=0.772, with both of the years being the same due to the statistics being held as constant), suggesting multicollinearity. Points Per Game has the highest correlation with salary (2020: r=0.385, 2021: r=0.482) and is the best predictor of it out of the three statistics that were analyzed. </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2020: If Points Per Game increased by 1 point, salary would be expected to increase by $4,105.07 on average, assuming all else is constant. </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2021:  If Points Per Game increased by 1 point, salary would be expected to increase by $6,338.14 on average, assuming all else is constant. </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Of course, there are multiple factors contributing to salary: the amount of variation in salary explained by the variation in Points Per Game is about 18.3% in 2020 and about 44% in 2021. </br>
+						
+					</p>
+					
+					
+	
+
+					<p>
+						<b>All WNBA:</b>
+					</p>
+					<p>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>Maximum Salary:</i></br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2020: $215,000 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2021: $221,450 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>Median Salary:</i></br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2020: $88,850 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2021: $110,00 </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>Average Salary:</i></br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2020: $103,557.16 (s=$50,025.55) </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2021: $117,879.97 (s=$58,910.13) </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>Simple Linear Regressions:</i></br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Statistically significant relationship with Salary: </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2020: Minutes Per Game (r(114)=0.3306, p < 0.05), Points Per Game (r(114)=0.385, p < 0.05) </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2021: Games Played (r(114)=0.201, p < 0.05), Minutes Per Game (r(114)=0.48, p < 0.05), Points Per Game (r(114)=0.482, p < 0.05) </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Not enough evidence to conclude relationship with Salary: </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2020: Games Played (r(114)=0.0714, p > 0.05) </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>Multiple Linear Regression:</i></br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; There is a high correlation between Minutes Per Game and Points Per Game in both years (r=0.839, with both of the years being the same due to the statistics being held as constant), suggesting multicollinearity. Points Per Game has the highest correlation with salary (2020: r=0.385, 2021: r=0.482) and is the best predictor of it out of the three statistics that were analyzed. </br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2020: If Points Per Game increased by 1 point, salary would be expected to increase by $3,900.41 on average, assuming all else is constant.</br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2021:  If Points Per Game increased by 1 point, salary would be expected to increase by $5,742.87 on average, assuming all else is constant.</br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Again, salary is determined by other factors: the amount of variation in salary explained by the variation in points per game is about 14.8% in 2020 and about 23.2% in 2021. </br>
+						
+					</p>
+					
+					
+					<header class="major">
+						<h3><u>Discussion</u></h3>
+					</header>
+					<p>
+						This exploration looked at the salaries of WNBA players, and at the relationships between salaries and three game statistics (Games Played, Minutes Per Game, and Points Per Game). More granular exploration was also done to see the differences between veterans (5/+ years experience in the WNBA) and the entirety of players in the WNBA.
+					</p>
+					<p>
+						In 2020, median salary was $118,510 for veterans and $88,850 for all WNBA players. In 2021, median salary was $167,500 for veterans and $110,00 for all WNBA players. As one would expect, veterans have a higher median salary than the general WNBA due to them having more experience and, therefore, more of them getting paid on the higher range of salaries. With increases in team budgets afforded to the WNBA league in 2021, median salaries increased between 2020 and 2021--showing that more players were getting higher salaries (as opposed to only veterans or a few star players getting salary increases).
+					</p>
+					<p>
+						Veterans tend to have a stronger relationship between their salaries and their game statistics than the general WNBA. In 2021, the percent of variation in salary that is explained by variation in Minutes Per Game was 33.6% for the veterans and 23.02% in the general WNBA. In 2021, the percent of variation in salary that is explained by variation in Points Per Game was 44% for veterans and 23.2% in the general WNBA. However, correlation does not equal causation, and there could be a lot of different reasons why there are relationships between salary and the various game stats. For the veterans, it could be that veterans tend to have the most experience so they get the highest salaries while also playing the most time and scoring the most points—the relationship between salary and these stats are tighter because those contributing the most for the longest amount of time get compensated for that effort. The relationship between salary and the game stats might be weaker in the general WNBA players group because there is such a spread of who gets to play (limited playing time with only five players on the court at once), how well they perform when they actually play (if they are brought in from the bench, are they consistent enough in their performance to have their skills accurately portrayed?), and the base salaries they can get. Due to salary budgets, players can not get up to the supermax salaries veterans can receive until they reach a certain number of years played; superstar new players who are putting in the most on the stats sheets might not be able to be properly compensated for their efforts the way veteran players can already be. 2021 allowed for higher team budgets and increased individual player salaries, so the relationships with salary probably were closer compared to 2020 because teams were allowed to more equitably distribute salaries to those who contributed more.
+					</p>
+					<p>
+						When looking at what game statistics are better predictors of salary, Points Per Game seems to be the best out of the three that were looked at for both the entire WNBA and veterans only. Points production tends to be associated with the bigger driver in salary amounts—a player may play multiple games and play more minutes, but they need to be able to convert that into points. Of course, this is just one facet of the game and players who do not necessarily score the most points but are defensive specialists or contribute in other ways can also have a salary reflecting that effort. A possible follow up to this project would be to look at more game statistics.
+					</p>
+
+
+				</section>
+
+
+
+
+
+
+
+
+
+				<!-- Six -->
+				<!--
+					<section id="six">
+						<h2>Elements</h2>
+
+						<section>
+							<h4>Text</h4>
+							<p>This is <b>bold</b> and this is <strong>strong</strong>. This is <i>italic</i> and this is <em>emphasized</em>.
+							This is <sup>superscript</sup> text and this is <sub>subscript</sub> text.
+							This is <u>underlined</u> and this is code: <code>for (;;) { ... }</code>. Finally, <a href="#">this is a link</a>.</p>
+							<hr />
+							<header>
+								<h4>Heading with a Subtitle</h4>
+								<p>Lorem ipsum dolor sit amet nullam id egestas urna aliquam</p>
+							</header>
+							<p>Nunc lacinia ante nunc ac lobortis. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus ornare mi ut ante amet placerat aliquet. Volutpat eu sed ante lacinia sapien lorem accumsan varius montes viverra nibh in adipiscing blandit tempus accumsan.</p>
+							<header>
+								<h5>Heading with a Subtitle</h5>
+								<p>Lorem ipsum dolor sit amet nullam id egestas urna aliquam</p>
+							</header>
+							<p>Nunc lacinia ante nunc ac lobortis. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus ornare mi ut ante amet placerat aliquet. Volutpat eu sed ante lacinia sapien lorem accumsan varius montes viverra nibh in adipiscing blandit tempus accumsan.</p>
+							<hr />
+							<h2>Heading Level 2</h2>
+							<h3>Heading Level 3</h3>
+							<h4>Heading Level 4</h4>
+							<h5>Heading Level 5</h5>
+							<h6>Heading Level 6</h6>
+							<hr />
+							<h5>Blockquote</h5>
+							<blockquote>Fringilla nisl. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan faucibus. Vestibulum ante ipsum primis in faucibus lorem ipsum dolor sit amet nullam adipiscing eu felis.</blockquote>
+							<h5>Preformatted</h5>
+							<pre><code>i = 0;
+
+while (!deck.isInOrder()) {
+print 'Iteration ' + i;
+deck.shuffle();
+i++;
+}
+
+print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
+						</section>
+
+						<section>
+							<h4>Lists</h4>
+							<div class="row">
+								<div class="col-6 col-12-xsmall">
+									<h5>Unordered</h5>
+									<ul>
+										<li>Dolor pulvinar etiam magna etiam.</li>
+										<li>Sagittis adipiscing lorem eleifend.</li>
+										<li>Felis enim feugiat dolore viverra.</li>
+									</ul>
+									<h5>Alternate</h5>
+									<ul class="alt">
+										<li>Dolor pulvinar etiam magna etiam.</li>
+										<li>Sagittis adipiscing lorem eleifend.</li>
+										<li>Felis enim feugiat dolore viverra.</li>
+									</ul>
+								</div>
+								<div class="col-6 col-12-xsmall">
+									<h5>Ordered</h5>
+									<ol>
+										<li>Dolor pulvinar etiam magna etiam.</li>
+										<li>Etiam vel felis at lorem sed viverra.</li>
+										<li>Felis enim feugiat dolore viverra.</li>
+										<li>Dolor pulvinar etiam magna etiam.</li>
+										<li>Etiam vel felis at lorem sed viverra.</li>
+										<li>Felis enim feugiat dolore viverra.</li>
+									</ol>
+									<h5>Icons</h5>
+									<ul class="icons">
+										<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+										<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+										<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+										<li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
+										<li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>
+										<li><a href="#" class="icon brands fa-tumblr"><span class="label">Tumblr</span></a></li>
+									</ul>
+								</div>
+							</div>
+							<h5>Actions</h5>
+							<ul class="actions">
+								<li><a href="#" class="button primary">Default</a></li>
+								<li><a href="#" class="button">Default</a></li>
+							</ul>
+							<ul class="actions small">
+								<li><a href="#" class="button primary small">Small</a></li>
+								<li><a href="#" class="button small">Small</a></li>
+							</ul>
+							<div class="row">
+								<div class="col-6 col-12-small">
+									<ul class="actions stacked">
+										<li><a href="#" class="button primary">Default</a></li>
+										<li><a href="#" class="button">Default</a></li>
+									</ul>
+								</div>
+								<div class="col-6 col-12-small">
+									<ul class="actions stacked">
+										<li><a href="#" class="button primary small">Small</a></li>
+										<li><a href="#" class="button small">Small</a></li>
+									</ul>
+								</div>
+								<div class="col-6 col-12-small">
+									<ul class="actions stacked">
+										<li><a href="#" class="button primary fit">Default</a></li>
+										<li><a href="#" class="button fit">Default</a></li>
+									</ul>
+								</div>
+								<div class="col-6 col-12-small">
+									<ul class="actions stacked">
+										<li><a href="#" class="button primary small fit">Small</a></li>
+										<li><a href="#" class="button small fit">Small</a></li>
+									</ul>
+								</div>
+							</div>
+						</section>
+
+						<section>
+							<h4>Table</h4>
+							<h5>Default</h5>
+							<div class="table-wrapper">
+								<table>
+									<thead>
+										<tr>
+											<th>Name</th>
+											<th>Description</th>
+											<th>Price</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>Item One</td>
+											<td>Ante turpis integer aliquet porttitor.</td>
+											<td>29.99</td>
+										</tr>
+										<tr>
+											<td>Item Two</td>
+											<td>Vis ac commodo adipiscing arcu aliquet.</td>
+											<td>19.99</td>
+										</tr>
+										<tr>
+											<td>Item Three</td>
+											<td> Morbi faucibus arcu accumsan lorem.</td>
+											<td>29.99</td>
+										</tr>
+										<tr>
+											<td>Item Four</td>
+											<td>Vitae integer tempus condimentum.</td>
+											<td>19.99</td>
+										</tr>
+										<tr>
+											<td>Item Five</td>
+											<td>Ante turpis integer aliquet porttitor.</td>
+											<td>29.99</td>
+										</tr>
+									</tbody>
+									<tfoot>
+										<tr>
+											<td colspan="2"></td>
+											<td>100.00</td>
+										</tr>
+									</tfoot>
+								</table>
+							</div>
+
+							<h5>Alternate</h5>
+							<div class="table-wrapper">
+								<table class="alt">
+									<thead>
+										<tr>
+											<th>Name</th>
+											<th>Description</th>
+											<th>Price</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>Item One</td>
+											<td>Ante turpis integer aliquet porttitor.</td>
+											<td>29.99</td>
+										</tr>
+										<tr>
+											<td>Item Two</td>
+											<td>Vis ac commodo adipiscing arcu aliquet.</td>
+											<td>19.99</td>
+										</tr>
+										<tr>
+											<td>Item Three</td>
+											<td> Morbi faucibus arcu accumsan lorem.</td>
+											<td>29.99</td>
+										</tr>
+										<tr>
+											<td>Item Four</td>
+											<td>Vitae integer tempus condimentum.</td>
+											<td>19.99</td>
+										</tr>
+										<tr>
+											<td>Item Five</td>
+											<td>Ante turpis integer aliquet porttitor.</td>
+											<td>29.99</td>
+										</tr>
+									</tbody>
+									<tfoot>
+										<tr>
+											<td colspan="2"></td>
+											<td>100.00</td>
+										</tr>
+									</tfoot>
+								</table>
+							</div>
+						</section>
+
+						<section>
+							<h4>Buttons</h4>
+							<ul class="actions">
+								<li><a href="#" class="button primary">Primary</a></li>
+								<li><a href="#" class="button">Default</a></li>
+							</ul>
+							<ul class="actions">
+								<li><a href="#" class="button large">Large</a></li>
+								<li><a href="#" class="button">Default</a></li>
+								<li><a href="#" class="button small">Small</a></li>
+							</ul>
+							<ul class="actions fit">
+								<li><a href="#" class="button primary fit">Fit</a></li>
+								<li><a href="#" class="button fit">Fit</a></li>
+							</ul>
+							<ul class="actions fit small">
+								<li><a href="#" class="button primary fit small">Fit + Small</a></li>
+								<li><a href="#" class="button fit small">Fit + Small</a></li>
+							</ul>
+							<ul class="actions">
+								<li><a href="#" class="button primary icon solid fa-download">Icon</a></li>
+								<li><a href="#" class="button icon solid fa-download">Icon</a></li>
+							</ul>
+							<ul class="actions">
+								<li><span class="button primary disabled">Primary</span></li>
+								<li><span class="button disabled">Default</span></li>
+							</ul>
+						</section>
+
+						<section>
+							<h4>Form</h4>
+							<form method="post" action="#">
+								<div class="row gtr-uniform gtr-50">
+									<div class="col-6 col-12-xsmall">
+										<input type="text" name="demo-name" id="demo-name" value="" placeholder="Name" />
+									</div>
+									<div class="col-6 col-12-xsmall">
+										<input type="email" name="demo-email" id="demo-email" value="" placeholder="Email" />
+									</div>
+									<div class="col-12">
+										<select name="demo-category" id="demo-category">
+											<option value="">- Category -</option>
+											<option value="1">Manufacturing</option>
+											<option value="1">Shipping</option>
+											<option value="1">Administration</option>
+											<option value="1">Human Resources</option>
+										</select>
+									</div>
+									<div class="col-4 col-12-small">
+										<input type="radio" id="demo-priority-low" name="demo-priority" checked>
+										<label for="demo-priority-low">Low Priority</label>
+									</div>
+									<div class="col-4 col-12-small">
+										<input type="radio" id="demo-priority-normal" name="demo-priority">
+										<label for="demo-priority-normal">Normal Priority</label>
+									</div>
+									<div class="col-4 col-12-small">
+										<input type="radio" id="demo-priority-high" name="demo-priority">
+										<label for="demo-priority-high">High Priority</label>
+									</div>
+									<div class="col-6 col-12-small">
+										<input type="checkbox" id="demo-copy" name="demo-copy">
+										<label for="demo-copy">Email me a copy of this message</label>
+									</div>
+									<div class="col-6 col-12-small">
+										<input type="checkbox" id="demo-human" name="demo-human" checked>
+										<label for="demo-human">I am a human and not a robot</label>
+									</div>
+									<div class="col-12">
+										<textarea name="demo-message" id="demo-message" placeholder="Enter your message" rows="6"></textarea>
+									</div>
+									<div class="col-12">
+										<ul class="actions">
+											<li><input type="submit" value="Send Message" class="primary" /></li>
+											<li><input type="reset" value="Reset" /></li>
+										</ul>
+									</div>
+								</div>
+							</form>
+						</section>
+
+						<section>
+							<h4>Image</h4>
+							<h5>Fit</h5>
+							<div class="box alt">
+								<div class="row gtr-50 gtr-uniform">
+									<div class="col-12"><span class="image fit"><img src="images_Excel_WNBA_salaries/fulls/05.jpg" alt="" /></span></div>
+									<div class="col-4"><span class="image fit"><img src="images_Excel_WNBA_salaries/thumbs/01.jpg" alt="" /></span></div>
+									<div class="col-4"><span class="image fit"><img src="images_Excel_WNBA_salaries/thumbs/02.jpg" alt="" /></span></div>
+									<div class="col-4"><span class="image fit"><img src="images_Excel_WNBA_salaries/thumbs/03.jpg" alt="" /></span></div>
+									<div class="col-4"><span class="image fit"><img src="images_Excel_WNBA_salaries/thumbs/04.jpg" alt="" /></span></div>
+									<div class="col-4"><span class="image fit"><img src="images_Excel_WNBA_salaries/thumbs/05.jpg" alt="" /></span></div>
+									<div class="col-4"><span class="image fit"><img src="images_Excel_WNBA_salaries/thumbs/06.jpg" alt="" /></span></div>
+									<div class="col-4"><span class="image fit"><img src="images_Excel_WNBA_salaries/thumbs/03.jpg" alt="" /></span></div>
+									<div class="col-4"><span class="image fit"><img src="images_Excel_WNBA_salaries/thumbs/02.jpg" alt="" /></span></div>
+									<div class="col-4"><span class="image fit"><img src="images_Excel_WNBA_salaries/thumbs/01.jpg" alt="" /></span></div>
+								</div>
+							</div>
+							<h5>Left &amp; Right</h5>
+							<p><span class="image left"><img src="images_Excel_WNBA_salaries/avatar.jpg" alt="" /></span>Fringilla nisl. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent.</p>
+							<p><span class="image right"><img src="images_Excel_WNBA_salaries/avatar.jpg" alt="" /></span>Fringilla nisl. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent.</p>
+						</section>
+
+					</section>
+				-->
+
+			</div>
+
+		<!-- Footer -->
+			<footer id="footer">
+				<div class="inner">
+					<ul class="icons">
+						<li><a href="https://www.linkedin.com/in/kristenhaduca/" target="_blank" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+						<li><a href="https://github.com/kristenhaduca" class="icon brands fa-github"><span class="label">Github</span></a></li>
+					</ul>
+					<ul class="copyright">
+						<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.poptrox.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
