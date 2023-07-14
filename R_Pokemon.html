@@ -1,0 +1,1058 @@
+<!DOCTYPE HTML>
+<!--
+	Strata by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Kristen Haduca Portfolio</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Header -->
+			<header id="header">
+				<div class="inner">
+					<a href="index.html">
+						<h1><strong>KRISTEN HADUCA</strong><br />
+						Data Analysis Portfolio<br />
+						</h1>
+					</a>
+				</div>
+			</header>
+
+		<!-- Main -->
+			<div id="main">
+
+				<!-- One -->
+					<section id="one">
+						<header class="major">
+							<h1>Data Exploration of Pokemon [R]</h1>
+						</header>
+						<p>A data exploration of non-Mega Evolution, non-legendary, Generation 1-6 Pokemon using R. Pokemon are split into similar type groups and central tendency calculations are done across each stat using user-defined functions, along with visualizations of type groups against various stats.</p>
+						
+						<header class="major">
+							<h5>LANGUAGE USED: <span style='font-weight: bold;'>R</span></h5>
+						</header>
+
+						<header class="major">
+							<h5>SKILLS USED:
+								<a href="directory.html#datawrangling">#DataWrangling</a>,
+                                <a href="directory.html#Rfunctions">#R User-Defined Functions</a>,
+								<a href="directory.html#Rforloop">#R For Loop</a>,
+                                <a href="directory.html#centraltendencydispersion">#Central Tendency & Dispersion</a>,
+                                <a href="directory.html#visualization">#Visualization</a>
+							</h5>
+						</header>
+
+						<header class="major">
+							<h5>MAIN FUNCTIONS USED: <span style='font-weight: bold;'>readxl::read.csv(), tidyverse::filter(), grepl(), split(), for loop, tidyverse::map(), ggplot2::ggplot(), ggplot2::geom_*()</span></h5>
+						</header>
+					</section>
+
+
+
+
+
+				<!-- Data Source -->
+					<section id="datasource">
+						<header class="major">
+							<h3>PART 1: DATA SOURCE</h3>
+						</header>
+						<p>
+							The data is from <a href="https://www.kaggle.com/datasets/mlomuscio/pokemon">Michael Lomuscio's Kaggle dataset</a>. It contains an Excel worksheet of Pokemon from Generations 1 through 6, including their types, stats, generations, and legendary designations. It includes Mega Evolutions (including the Primal Forms for Kyogre and Groudon) and different Forms as their own separate entries.
+						</p>
+
+						<!-- IMAGE -->
+						<p>
+							<a href="images_R_Pokemon/R_Pokemon/original_data.png" class="image fit thumb"><img src="images_R_Pokemon/R_Pokemon/original_data.png"
+								/>
+							</a>
+						</p>
+
+					</section>
+
+
+
+
+
+
+				<!-- Data Wrangling -->
+					<section id="datawrangling">
+						<header class="major">
+							<h3>PART 2: DATA WRANGLING</h3>
+						</header>
+						<p>
+							The Excel dataset is imported into R using the <b>readxl</b> package.
+						</p>
+						
+						<!-- CODE TEXT BOX -->
+						<p>
+							<p style="padding:2px 6px 4px 6px; color: #555555; background-color: #eeeeee; border: #dddddd 2px solid">
+								library(readxl)</br>
+								pokemon = read.csv(file="PokemonData.csv", header=TRUE, stringsAsFactors=TRUE)</br>
+								head(pokemon)</br>
+								<a href="images_R_Pokemon/R_Pokemon/pokemon.png" class="image fit thumb"><img src="images_R_Pokemon/R_Pokemon/pokemon.png"
+									/>
+								</a>
+							</p>
+						</p>
+
+						<p>
+							For this exploration, only non-Mega Evolution and non-legendary Pokemon will be looked at. Mega Evolutions and Legendaries are vastly more powerful than the rest of the normal Pokemon and would act like outliers, skewing the data.
+						</p>
+						
+						<header class="major">
+							<h4>Mega Evolutions:</h4>
+						</header>
+
+						<p>
+							Two new variables are created to differentiate between Mega Evolutions or not. Since all Mega Evolutions in the data have the word "Mega" in their names followed by a space, <mark><b>grepl()</b></mark> is used to pattern match these observations. <mark><b>tidyverse::filter()</b></mark> is used to filter out Mega Evolutions—pulling out all Mega Evolutions in the first code, and all the non-Mega Evolutions in the second.
+						</p>
+						
+						<!-- CODE TEXT BOX -->
+						<p>
+							<p style="padding:2px 6px 4px 6px; color: #555555; background-color: #eeeeee; border: #dddddd 2px solid">
+								#Find Mega Evolutions:</br>
+								megas = pokemon %>% </br>
+								&nbsp; &nbsp; &nbsp; filter(grepl("Mega ", Name, ignore.case = TRUE))</br>
+								megas</br>
+								<a href="images_R_Pokemon/R_Pokemon/megas.png" class="image fit thumb"><img src="images_R_Pokemon/R_Pokemon/megas.png"
+									/>
+								</a>
+							</p>
+						</p>
+
+						<!-- CODE TEXT BOX -->
+						<p>
+							<p style="padding:2px 6px 4px 6px; color: #555555; background-color: #eeeeee; border: #dddddd 2px solid">
+								#Find Non-Mega Evolutions:</br>
+								pokemon_nonmegas = pokemon %>% </br>
+								&nbsp; &nbsp; &nbsp; filter(!grepl("Mega ", Name, ignore.case = TRUE))</br>
+								pokemon_nonmegas</br>
+								<a href="images_R_Pokemon/R_Pokemon/pokemon_nonmegas.png" class="image fit thumb"><img src="images_R_Pokemon/R_Pokemon/pokemon_nonmegas.png"
+									/>
+								</a>
+							</p>
+						</p>
+
+
+						<header class="major">
+							<h4>Legendaries:</h4>
+						</header>
+
+						<p>
+							Two new variables are created to differentiate between legendaries or not within the non-Mega Evolution group. <mark><b>tidyverse::filter()</b></mark> is used along with an equality test to see whether the Legendary column is TRUE or FALSE.
+						</p>
+
+						<!-- CODE TEXT BOX -->
+						<p>
+							<p style="padding:2px 6px 4px 6px; color: #555555; background-color: #eeeeee; border: #dddddd 2px solid">
+								#Find legendaries:</br>
+								legendaries = pokemon_nonmegas %>% </br>
+								&nbsp; &nbsp; &nbsp;  filter(Legendary == "TRUE")</br>
+								legendaries</br>
+								<a href="images_R_Pokemon/R_Pokemon/legendaries.png" class="image fit thumb"><img src="images_R_Pokemon/R_Pokemon/legendaries.png"
+									/>
+								</a>
+							</p>
+						</p>
+
+						<!-- CODE TEXT BOX -->
+						<p>
+							<p style="padding:2px 6px 4px 6px; color: #555555; background-color: #eeeeee; border: #dddddd 2px solid">
+								#Find non-legendaries:</br>
+								non_legendaries = pokemon_nonmegas %>% </br>
+								&nbsp; &nbsp; &nbsp; filter(Legendary == "FALSE")</br>
+								non_legendaries</br>
+								<a href="images_R_Pokemon/R_Pokemon/non_legendaries.png" class="image fit thumb"><img src="images_R_Pokemon/R_Pokemon/non_legendaries.png"
+									/>
+								</a>
+							</p>
+						</p>
+
+
+
+						<header class="major">
+							<h4>Non-Mega Evolution, non-legendaries:</h4>
+						</header>
+
+						<p>
+							The <b>non_legendaries</b> variable contains all Generation 1-6 Pokemon that are not legendaries nor Mega Evolutions. To do analysis, these Pokemon will be grouped together by their Type1 designations (for simplicity's sake, this primary type will be viewed as the most representative of a Pokemon's typing). A new variable, <b>non_legendaries_by_type</b>, is created using <mark><b>split()</b></mark> and has the Pokemon grouped into each of the 18 types.
+						</p>
+
+						<!-- CODE TEXT BOX -->
+						<p>
+							<p style="padding:2px 6px 4px 6px; color: #555555; background-color: #eeeeee; border: #dddddd 2px solid">
+								non_legendaries_by_type = non_legendaries %>%</br>
+								&nbsp; &nbsp; &nbsp; split(non_legendaries$Type1)</br>
+								non_legendaries_by_type</br>
+								<a href="images_R_Pokemon/R_Pokemon/non_legendaries_by_type.png" class="image fit thumb"><img src="images_R_Pokemon/R_Pokemon/non_legendaries_by_type.png"
+									/>
+								</a>
+							</p>
+						</p>
+
+
+						<p>
+							To make creating user-defined functions easier, two other variables are created. The <b>name_types</b> variable is a character vector containing the names of each type (Bug, Dark, Dragon, etc.). The <b>name_stats</b> variable is a character vector containing the headers of the columns within each type (Num, Name, Type1, HP, etc.).
+						</p>
+
+						<!-- CODE TEXT BOX -->
+						<p>
+							<p style="padding:2px 6px 4px 6px; color: #555555; background-color: #eeeeee; border: #dddddd 2px solid">
+								#character vector with names of each Type1 ($Bug, $Dark, etc):</br>
+								name_types = names(non_legendaries_by_type)</br>
+								name_types</br>
+								<a href="images_R_Pokemon/R_Pokemon/name_types.png" class="image fit thumb"><img src="images_R_Pokemon/R_Pokemon/name_types.png"
+									/>
+								</a></br>
+								#character vector with headers within each Type1 ($Bug -> Num/Name/HP/etc):</br>
+								name_stats = colnames(non_legendaries_by_type[[1]])</br>
+								name_stats</br>
+								<a href="images_R_Pokemon/R_Pokemon/name_stats.png" class="image fit thumb"><img src="images_R_Pokemon/R_Pokemon/name_stats.png"
+									/>
+								</a>
+							</p>
+						</p>
+
+
+					</section>
+
+
+
+				<!-- Functions -->
+					<section id="functions">
+						<header class="major">
+							<h3>PART 3: User-Defined Functions</h3>
+						</header>
+					
+						<p>
+							In this section, user-defined functions are created in order to easily find the mean and median of each stat of a specified Pokemon type.
+						</p>
+
+						<header class="major">
+							<h4>Mean:</h4>
+						</header>
+
+						<p>
+							The <b>mean_stats</b> function takes a varying number of types parameters (allowing the user to easily specify certain types they want to look at or by passing the <b>name_types</b> variable to run the function for every type), and the data source parameter. The <mark><b>For Loop</b></mark> states that for all types specified in the function, return the mean of each stat. Within the <mark><b>For Loop</b></mark> for each stat being calculated, first, the names within the <b>types</b> variable get iterated (for example, if <i>types=c("Bug", "Dark")</i>, <i>data[types[i]]</i> would be equivalent to <i>non_legendaries_by_type["Bug"] = Bug</i>, then iterates to "Dark" next). Then, <mark><b>tidyverse::map()</b></mark> is used to map the name of each stat (for example, <i>name_stats[5] = HP</i> since it is the 5th element within name_stats [alternatively: the stat name could be hardcoded and written as simply <i>map("HP")</i>, but is less flexible]) to the <mark><b>mean</b></mark>. The <mark><b>mean</b></mark> is calculated for each of the 6 stats for each type the user specifies when running the function. The result is stored in a matrix of 6 rows for each stat, and however many columns as the number of arguments passed in the <b>types</b> variable. Rows are named as the stats and columns are named as the types.
+						</p>
+
+						<!-- CODE TEXT BOX -->
+						<p>
+							<p style="padding:2px 6px 4px 6px; color: #555555; background-color: #eeeeee; border: #dddddd 2px solid">
+								mean_stats = function(..., data){</br>
+									&nbsp; &nbsp; &nbsp; types = c(...)</br>
+									&nbsp; &nbsp; &nbsp; result = matrix(vector("double", 6*length(types)), nrow=6) </br>
+									&nbsp; &nbsp; &nbsp; for(i in seq_along(types)){ </br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; result[,i] = c(</br>
+											&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; HP = data[types[i]] %>%</br>
+												&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; map(name_stats[5]) %>%</br>
+												&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; map_dbl(mean, na.rm=T),</br>
+											&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Attack = data[types[i]] %>%</br>
+												&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; map(name_stats[6]) %>%</br>
+												&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; map_dbl(mean, na.rm=T),</br>
+											&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Defense = data[types[i]] %>%</br>
+												&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; map(name_stats[7]) %>%</br>
+												&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; map_dbl(mean, na.rm=T),</br>
+											&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; SpAtk = data[types[i]] %>%</br>
+												&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; map(name_stats[8]) %>%</br>
+												&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; map_dbl(mean, na.rm=T),</br>
+											&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; SpDef = data[types[i]] %>%</br>
+												&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; map(name_stats[9]) %>%</br>
+												&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; map_dbl(mean, na.rm=T),</br>
+											&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Speed = data[types[i]] %>%</br>
+												&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; map(name_stats[10]) %>%</br>
+												&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; map_dbl(mean, na.rm=T)</br>
+												&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; )</br>
+									&nbsp; &nbsp; &nbsp; }</br>
+									&nbsp; &nbsp; &nbsp; rownames(result) = name_stats[5:10]</br>
+									&nbsp; &nbsp; &nbsp; colnames(result) = types</br>
+									&nbsp; &nbsp; &nbsp; result</br>
+								  }</br>
+								</br>
+								mean_stats(name_types, data=non_legendaries_by_type)</br>
+								<a href="images_R_Pokemon/R_Pokemon/mean_stats.png" class="image fit thumb"><img src="images_R_Pokemon/R_Pokemon/mean_stats.png"
+									/>
+								</a>
+							</p>
+						</p>
+
+						<p>
+							This information can be used to compare mean stats within a type, or across multiple types. For example, the maximum and minimum mean stats of a Bug type Pokemon can be found using <mark><b>max</b></mark> and <mark><b>min</b></mark>.
+						</p>
+
+						<!-- CODE TEXT BOX -->
+						<p>
+							<p style="padding:2px 6px 4px 6px; color: #555555; background-color: #eeeeee; border: #dddddd 2px solid">
+								#find max mean stat of Bug:</br>
+								max(mean_stats(name_types, data=non_legendaries_by_type)[,1])</br>
+								</br>
+								<a href="images_R_Pokemon/R_Pokemon/max_mean_Bug.png" class="image fit thumb"><img src="images_R_Pokemon/R_Pokemon/max_mean_Bug.png"
+									/>
+								</a></br>
+								#find min mean stat of Bug:</br>
+								min(mean_stats(name_types, data=non_legendaries_by_type)[,1])</br>
+								</br>
+								<a href="images_R_Pokemon/R_Pokemon/min_mean_Bug.png" class="image fit thumb"><img src="images_R_Pokemon/R_Pokemon/min_mean_Bug.png"
+									/>
+								</a>
+							</p>
+						</p>
+
+						<p>
+							For Bug type Pokemon, Special Attack is their lowest average stat and Defense is their highest average stat.
+						</p>
+					
+
+						<header class="major">
+							<h4>Median:</h4>
+						</header>
+
+						<p>
+							A similar function, <b>median_stats</b>, is created calculating the median of each of the 6 stats for each type passed. The median is not influenced by outliers the way the mean is.
+						</p>
+
+						<!-- CODE TEXT BOX -->
+						<p>
+							<p style="padding:2px 6px 4px 6px; color: #555555; background-color: #eeeeee; border: #dddddd 2px solid">
+								median_stats = function(..., data){</br>
+									&nbsp; &nbsp; &nbsp; types = c(...)</br>
+									&nbsp; &nbsp; &nbsp; result = matrix(vector("double", 6*length(types)), nrow=6) </br>
+									&nbsp; &nbsp; &nbsp; for(i in seq_along(types)){ </br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; result[,i] = c(</br>
+											&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; HP = data[types[i]] %>%</br>
+												&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; map(name_stats[5]) %>%</br>
+												&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; map_dbl(median, na.rm=T),</br>
+											&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Attack = data[types[i]] %>%</br>
+												&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; map(name_stats[6]) %>%</br>
+												&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; map_dbl(median, na.rm=T),</br>
+											&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Defense = data[types[i]] %>%</br>
+												&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; map(name_stats[7]) %>%</br>
+												&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; map_dbl(median, na.rm=T),</br>
+											&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; SpAtk = data[types[i]] %>%</br>
+												&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; map(name_stats[8]) %>%</br>
+												&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; map_dbl(median, na.rm=T),</br>
+											&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; SpDef = data[types[i]] %>%</br>
+												&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; map(name_stats[9]) %>%</br>
+												&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; map_dbl(median, na.rm=T),</br>
+											&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Speed = data[types[i]] %>%</br>
+												&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; map(name_stats[10]) %>%</br>
+												&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; map_dbl(median, na.rm=T)</br>
+												&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; )</br>
+									&nbsp; &nbsp; &nbsp; }</br>
+									&nbsp; &nbsp; &nbsp; rownames(result) = name_stats[5:10]</br>
+									&nbsp; &nbsp; &nbsp; colnames(result) = types</br>
+									&nbsp; &nbsp; &nbsp; result</br>
+								  }</br>
+								</br>
+								median_stats(name_types, data=non_legendaries_by_type)</br>
+								<a href="images_R_Pokemon/R_Pokemon/median_stats.png" class="image fit thumb"><img src="images_R_Pokemon/R_Pokemon/median_stats.png"
+									/>
+								</a>
+							</p>
+						</p>
+					
+					
+					</section>
+
+
+
+
+
+
+
+
+
+
+
+				<!-- Visualization -->
+					<section id="visualization">
+						<header class="major">
+							<h3>PART 4: VISUALIZATION</h3>
+						</header>
+						
+						<p>
+							In this section, various types of plots are created using <mark><b>ggplot2</b></mark>.
+						</p>
+
+
+						<header class="major">
+							<h4>1. Bar Plot - Number of Non-Mega, Non-Legendary Pokemon Per Main Type (Continuous vs Categorical Variables):</h4>
+						</header>
+
+						<p>
+							The data is made into a bar plot using <mark><b>ggplot2::ggplot()</b></mark> and <mark><b>geom_bar()</b></mark>. Each bar represents a single Type1 type and has a color fill specified by <mark><b>scale_color_manual()</b></mark>. <mark><b>coord_flip()</b></mark> is used to flip the axes for better readability—Type1 is on the y-axis and Count is on x-axis. A label with the count is added to the side of each bar using <mark><b>geom_text()</b></mark>. Plot title is created using <mark><b>labs()</b></mark>. Gaps between the y-axis and bars are removed, and the limits for the y-axis are established using <mark><b>scale_y_continuous</b></mark>. The legend's order is reversed so that it matches with the order of the y-axis using <mark><b>guides()</b></mark>.</br>
+
+							The theme of the plot is set to a built-in ggplot2 theme with <mark><b>theme_minimal()</b></mark>. Details of the theme are edited using <mark><b>theme()</b></mark>: plot title is centered, bolded, and size-adjusted; grid lines are removed or changed color; axis lines' colors and sizes are changed; the legend's title is centered and a box around it is created.</br>
+
+							Each bar represents the count of non-Mega, non-legendary Pokemon with a specific Type1 type.
+						</p>
+
+						<!-- CODE TEXT BOX -->
+						<p>
+							<p style="padding:2px 6px 4px 6px; color: #555555; background-color: #eeeeee; border: #dddddd 2px solid">
+								ggplot(non_legendaries, aes(Type1, fill = Type1)) +</br>
+									&nbsp; &nbsp; &nbsp; geom_bar() +</br>
+									&nbsp; &nbsp; &nbsp; scale_fill_manual(values = c(</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Bug = "khaki3",</br>
+    									&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Dark = "mediumpurple4",</br>
+    									&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Dragon = "dodgerblue4",</br>
+    									&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Electric = "goldenrod3",</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Fairy = "lightpink1",</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Fighting = "sienna2",</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Fire = "indianred3",</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Flying = "skyblue",</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Ghost = "grey43",</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Grass = "paleturquoise4",</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Ground = "rosybrown4",</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Ice = "lightsteelblue1",</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Normal = "mistyrose2",</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Poison = "plum4",</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Psychic = "hotpink3",</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Rock = "mistyrose4",</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Steel = "slategray3",</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Water = "steelblue3"</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; )</br>
+									&nbsp; &nbsp; &nbsp; ) +</br>
+									&nbsp; &nbsp; &nbsp; coord_flip() +</br>
+									&nbsp; &nbsp; &nbsp; geom_text(stat = "count", aes(label = after_stat(count)), hjust = -0.25) +</br>
+									&nbsp; &nbsp; &nbsp; labs(title="Number of Non-Legendary Pokemon Per Main Type") +</br>
+									&nbsp; &nbsp; &nbsp; scale_y_continuous("Count", expand = c(0,0), limits = c(0, 110)) +</br>
+									&nbsp; &nbsp; &nbsp; guides(fill = guide_legend(reverse = TRUE)) +</br>
+									&nbsp; &nbsp; &nbsp; theme_minimal() +</br>
+									&nbsp; &nbsp; &nbsp; theme(</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; plot.title = element_text(hjust = 0.5, face = "bold", size = 15),</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; panel.grid.major.y = element_blank(),</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; panel.grid.major.x = element_line(color = "gray80"),</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; axis.line = element_line(color = "gray80", size = 1),</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; legend.title.align = 0.5,</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; legend.background = element_rect(color = "gray80", size = 1)</br>
+									&nbsp; &nbsp; &nbsp; )
+							</p>
+						</p>
+
+						<p>
+							<a href="images_R_Pokemon/R_Pokemon/count_per_type1.png" class="image fit thumb"><img src="images_R_Pokemon/R_Pokemon/count_per_type1.png"
+								/>
+							</a>
+						</p>
+
+						<p>
+							Water is the most common main type a Pokemon can be, with 103 Pokemon being Water type. Flying is the least common main type, with only 2 Pokemon.
+						</p>
+
+
+
+						<header class="major">
+							<h4>2. Bar Plot - Number of Non-Mega, Non-Legendary Pokemon Per Secondary Type (Continuous vs Categorical Variables):</h4>
+						</header>
+
+						<p>
+							The previous code is duplicated and Type1 is swapped out for Type2 instead.</br>
+
+							Pokemon that do not have a second type are ignored when building the plot—as we are not interested in comparing whether or not a Pokemon has a secondary type and, instead, are just concerned about looking at those that do have one, this is not an issue.
+						</p>
+
+						<p>
+							<a href="images_R_Pokemon/R_Pokemon/count_per_type2.png" class="image fit thumb"><img src="images_R_Pokemon/R_Pokemon/count_per_type2.png"
+								/>
+							</a>
+						</p>
+
+						<p>
+							Despite having the lowest primary type count, Flying is the most common secondary type, with 79 Pokemon. Bug is the lowest, with only 3 Pokemon.
+						</p>
+
+
+
+
+						<header class="major">
+							<h4>3. Box Plot - Attack Stats of Non-Mega, Non-Legendary Pokemon Per Main Type (Continuous vs Categorical Variables):</h4>
+						</header>
+
+						<p>
+							A box plot is created using <mark><b>ggplot2::ggplot()</b></mark> and <mark><b>geom_boxplot()</b></mark>. Each box represents one Type1 type, filled with a color given using <mark><b>scale_color_manual()</b></mark>. Plot title is added using <mark><b>labs()</b></mark> and theme is altered using <mark><b>theme_minimal()</b></mark> and <mark><b>theme()</b></mark>.</br>
+
+							The Attack stat of each Type1 type is plotted—giving a representation of the five-number summary and outliers.
+						</p>
+
+						<!-- CODE TEXT BOX -->
+						<p>
+							<p style="padding:2px 6px 4px 6px; color: #555555; background-color: #eeeeee; border: #dddddd 2px solid">
+								ggplot(non_legendaries, aes(Type1, Attack, fill = Type1)) +</br>
+									&nbsp; &nbsp; &nbsp;  geom_boxplot() +</br>
+									&nbsp; &nbsp; &nbsp; scale_fill_manual(values = c(</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Bug = "khaki3",</br>
+    									&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Dark = "mediumpurple4",</br>
+    									&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Dragon = "dodgerblue4",</br>
+    									&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Electric = "goldenrod3",</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Fairy = "lightpink1",</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Fighting = "sienna2",</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Fire = "indianred3",</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Flying = "skyblue",</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Ghost = "grey43",</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Grass = "paleturquoise4",</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Ground = "rosybrown4",</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Ice = "lightsteelblue1",</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Normal = "mistyrose2",</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Poison = "plum4",</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Psychic = "hotpink3",</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Rock = "mistyrose4",</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Steel = "slategray3",</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Water = "steelblue3"</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; )</br>
+									&nbsp; &nbsp; &nbsp; ) +</br>
+									&nbsp; &nbsp; &nbsp; labs(title="Attack Stats of Non-Legendary Pokemon Per Main Type") +</br>
+									&nbsp; &nbsp; &nbsp; theme_minimal() +</br>
+									&nbsp; &nbsp; &nbsp; theme(</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; plot.title = element_text(hjust = 0.5, face = "bold", size = 15),</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; axis.line = element_line(color = "gray80", size = 1),</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; legend.title.align = 0.5,</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; legend.background = element_rect(color = "gray80", size = 1)</br>
+									&nbsp; &nbsp; &nbsp; )
+							</p>
+						</p>
+
+						<p>
+							<a href="images_R_Pokemon/R_Pokemon/attack_per_type1.png" class="image fit thumb"><img src="images_R_Pokemon/R_Pokemon/attack_per_type1.png"
+								/>
+							</a>
+						</p>
+
+						<p>
+							Fighting types have the highest median Attack stats, while Psychic types have the lowest.
+						</p>
+
+
+
+
+
+						<header class="major">
+							<h4>4. Stacked Bar Plot - Number of Non-Mega, Non-Legendary Pokemon Per Main Type By Generation (Categorical vs Categorical Variables):</h4>
+						</header>
+
+						<p>
+							A stacked bar plot is created using <mark><b>ggplot2::ggplot()</b></mark> and <mark><b>geom_bar()</b></mark>, with Type1 as <mark><b>ggplot()</b></mark>'s <mark><b>aes()</b></mark> parameter and Generation as <mark><b>geom_bar()</b></mark>'s <mark><b>aes()</b></mark> parameter. Each bar represents a Generation and are comprised of stacked bars that display all the Type1 types within the Generation. Each Type1 has a color fill specified by <mark><b>scale_color_manual()</b></mark>. <mark><b>coord_flip()</b></mark> is used to flip the axes for better readability—Generation is on the y-axis and Count is on x-axis. Similar to the previous plots, a plot title is added using <mark><b>labs()</b></mark>, a legend is created and legend order is flipped using <mark><b>guides()</b></mark>, axes are customized using <mark><b>scale_x_continuous</b></mark> and <mark><b>scale_y_continuous</b></mark>, and theme is adjusted using <mark><b>theme_minimal()</b></mark> and <mark><b>theme()</b></mark>.
+						</p>
+
+						<!-- CODE TEXT BOX -->
+						<p>
+							<p style="padding:2px 6px 4px 6px; color: #555555; background-color: #eeeeee; border: #dddddd 2px solid">
+								ggplot(non_legendaries, aes(Type1, fill = Type1)) +</br>
+									&nbsp; &nbsp; &nbsp; geom_bar(aes(Generation)) +</br>
+									&nbsp; &nbsp; &nbsp; scale_fill_manual(values = c(</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Bug = "khaki3",</br>
+    									&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Dark = "mediumpurple4",</br>
+    									&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Dragon = "dodgerblue4",</br>
+    									&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Electric = "goldenrod3",</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Fairy = "lightpink1",</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Fighting = "sienna2",</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Fire = "indianred3",</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Flying = "skyblue",</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Ghost = "grey43",</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Grass = "paleturquoise4",</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Ground = "rosybrown4",</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Ice = "lightsteelblue1",</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Normal = "mistyrose2",</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Poison = "plum4",</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Psychic = "hotpink3",</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Rock = "mistyrose4",</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Steel = "slategray3",</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Water = "steelblue3"</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; )</br>
+									&nbsp; &nbsp; &nbsp; ) +</br>
+									&nbsp; &nbsp; &nbsp; coord_flip() +</br>
+									&nbsp; &nbsp; &nbsp; labs(title="Number of Non-Legendary Pokemon Per Main Type By Generation") +</br>
+									&nbsp; &nbsp; &nbsp; scale_y_continuous("Count", expand = c(0,0), limits = c(0, 155)) +</br>
+									&nbsp; &nbsp; &nbsp; scale_x_continuous("Generation", breaks = seq(1, 6, by = 1)) +</br>
+									&nbsp; &nbsp; &nbsp; theme_minimal() +</br>
+									&nbsp; &nbsp; &nbsp; theme(</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; plot.title = element_text(hjust = 0.5, face = "bold", size = 13),</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; panel.grid.major.y = element_blank(),</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; panel.grid.major.x = element_line(color = "gray80"),</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; axis.line = element_line(color = "gray80", size = 1),</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; legend.title.align = 0.5,</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; legend.background = element_rect(color = "gray80", size = 1)</br>
+									&nbsp; &nbsp; &nbsp; )
+							</p>
+						</p>
+
+						<p>
+							<a href="images_R_Pokemon/R_Pokemon/count_type1_per_gen.png" class="image fit thumb"><img src="images_R_Pokemon/R_Pokemon/count_type1_per_gen.png"
+								/>
+							</a>
+						</p>
+
+						<p>
+							This type of plot is useful in displaying the distribution of the main types within each Generation. Water and Normal types tend to comprise a big portion of Pokemon introduced in a Generation.
+						</p>
+
+
+
+
+						<header class="major">
+							<h4>5. Scatterplot - Attack Stats vs Defense Stats of Non-Mega, Non-Legendary Pokemon Per Main Type (Continuous vs Continuous Variables):</h4>
+						</header>
+
+						<p>
+							A scatterplot is created using <mark><b>ggplot2::ggplot()</b></mark> and <mark><b>geom_point()</b></mark>, with Attack and Denfense as <mark><b>ggplot()</b></mark>'s <mark><b>aes()</b></mark> parameters and Type1 as <mark><b>geom_point()</b></mark>'s <mark><b>aes()</b></mark> parameter. Once again, the colors denoting Type1 are picked using <mark><b>scale_color_manual()</b></mark>. A plot title is added using <mark><b>labs()</b></mark> and the theme is adjusted using <mark><b>theme_minimal()</b></mark> and <mark><b>theme()</b></mark>. A regression line is added using <mark><b>geom_smooth(method = "lm")</b></mark>.
+						</p>
+
+						<!-- CODE TEXT BOX -->
+						<p>
+							<p style="padding:2px 6px 4px 6px; color: #555555; background-color: #eeeeee; border: #dddddd 2px solid">
+								ggplot(non_legendaries, aes(Attack, Defense)) +</br>
+									&nbsp; &nbsp; &nbsp; geom_point(aes(color = Type1)) +</br>
+									&nbsp; &nbsp; &nbsp; scale_fill_manual(values = c(</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Bug = "khaki3",</br>
+    									&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Dark = "mediumpurple4",</br>
+    									&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Dragon = "dodgerblue4",</br>
+    									&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Electric = "goldenrod3",</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Fairy = "lightpink1",</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Fighting = "sienna2",</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Fire = "indianred3",</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Flying = "skyblue",</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Ghost = "grey43",</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Grass = "paleturquoise4",</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Ground = "rosybrown4",</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Ice = "lightsteelblue1",</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Normal = "mistyrose2",</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Poison = "plum4",</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Psychic = "hotpink3",</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Rock = "mistyrose4",</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Steel = "slategray3",</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Water = "steelblue3"</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; )</br>
+									&nbsp; &nbsp; &nbsp; ) +</br>
+									&nbsp; &nbsp; &nbsp; geom_smooth(method = "lm") +</br>
+									&nbsp; &nbsp; &nbsp; labs(title="Attack vs. Defense Stats of Non-Legendary Pokemon Per Main Type") +</br>
+									&nbsp; &nbsp; &nbsp; theme_minimal() +</br>
+									&nbsp; &nbsp; &nbsp; theme(</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; plot.title = element_text(hjust = 0.5, face = "bold", size = 15),</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; axis.line = element_line(color = "gray80", size = 1),</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; legend.title.align = 0.5,</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; legend.background = element_rect(color = "gray80", size = 1)</br>
+									&nbsp; &nbsp; &nbsp; )
+							</p>
+						</p>
+
+						<p>
+							<a href="images_R_Pokemon/R_Pokemon/attack_vs_defense_per_type1.png" class="image fit thumb"><img src="images_R_Pokemon/R_Pokemon/attack_vs_defense_per_type1.png"
+								/>
+							</a>
+						</p>
+
+						<p>
+							Attack and Defense tend to have a slight positive linear relationship, as the line of best fit shows—as the Attack stat increases, the Pokemon tends to also have a higher Defense stat. However, the data is not tightly clustered along the line and does not seem to have a clear linear path, visually, so the correlation does not seem to be that strong. Additional correlation testing must be done to determine the actual relationship between the two.
+						</p>
+
+
+						<header class="major">
+							<h4>6. Histogram - Distribution of Attack Stats of Non-Mega, Non-Legendary Pokemon Per Main Type by Generation (Continuous Variable, Multiple Plots):</h4>
+						</header>
+
+						<p>
+							A histogram is created using <mark><b>ggplot2::ggplot()</b></mark> and <mark><b>geom_histogram()</b></mark>. Each bar represents the number of Pokemon that have an Attack stat within a certain bin size—each color coded according to which Type1 type they are, using <mark><b>scale_color_manual()</b></mark> to pick the colors. Multiple histograms—one for each Generation—are compiled together into one graph using <mark><b>facet_wrap()</b></mark> for easier comparision. <mark><b>labs()</b></mark> establishes the plot title and <mark><b>theme()</b></mark> customizes the theme's look.
+						</p>
+
+						<!-- CODE TEXT BOX -->
+						<p>
+							<p style="padding:2px 6px 4px 6px; color: #555555; background-color: #eeeeee; border: #dddddd 2px solid">
+								ggplot(non_legendaries, aes(Attack, fill = Type1)) +</br>
+									&nbsp; &nbsp; &nbsp; geom_histogram() +</br>
+									&nbsp; &nbsp; &nbsp; scale_fill_manual(values = c(</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Bug = "khaki3",</br>
+    									&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Dark = "mediumpurple4",</br>
+    									&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Dragon = "dodgerblue4",</br>
+    									&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Electric = "goldenrod3",</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Fairy = "lightpink1",</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Fighting = "sienna2",</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Fire = "indianred3",</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Flying = "skyblue",</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Ghost = "grey43",</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Grass = "paleturquoise4",</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Ground = "rosybrown4",</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Ice = "lightsteelblue1",</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Normal = "mistyrose2",</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Poison = "plum4",</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Psychic = "hotpink3",</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Rock = "mistyrose4",</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Steel = "slategray3",</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Water = "steelblue3"</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; )</br>
+									&nbsp; &nbsp; &nbsp; ) +</br>
+									&nbsp; &nbsp; &nbsp; labs(title="Distribution of Attack Stats of Non-Legendary Pokemon Per Main Type by Generation") +</br>
+									&nbsp; &nbsp; &nbsp; theme(</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; plot.title = element_text(hjust = 0.5, face = "bold", size = 15),</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; axis.line = element_line(color = "gray80", size = 1),</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; legend.title.align = 0.5,</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; legend.background = element_rect(color = "gray80", size = 1)</br>
+									&nbsp; &nbsp; &nbsp; )
+							</p>
+						</p>
+
+						<p>
+							<a href="images_R_Pokemon/R_Pokemon/attack_per_type1_per_gen.png" class="image fit thumb"><img src="images_R_Pokemon/R_Pokemon/attack_per_type1_per_gen.png"
+								/>
+							</a>
+						</p>
+						
+						<p>
+							In general, the Generations tend to follow a normal distribution—the Attack stat of the most Pokemon is usually in the middle ranges and less Pokemon have an Attack in the extremes. Bin size can be adjusted in the future to get more granular and helpful insights.
+						</p>
+
+
+					</section>
+
+
+
+
+
+				<!-- Six -->
+				<!--
+					<section id="six">
+						<h2>Elements</h2>
+
+						<section>
+							<h4>Text</h4>
+							<p>This is <b>bold</b> and this is <strong>strong</strong>. This is <i>italic</i> and this is <em>emphasized</em>.
+							This is <sup>superscript</sup> text and this is <sub>subscript</sub> text.
+							This is <u>underlined</u> and this is code: <code>for (;;) { ... }</code>. Finally, <a href="#">this is a link</a>.</p>
+							<hr />
+							<header>
+								<h4>Heading with a Subtitle</h4>
+								<p>Lorem ipsum dolor sit amet nullam id egestas urna aliquam</p>
+							</header>
+							<p>Nunc lacinia ante nunc ac lobortis. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus ornare mi ut ante amet placerat aliquet. Volutpat eu sed ante lacinia sapien lorem accumsan varius montes viverra nibh in adipiscing blandit tempus accumsan.</p>
+							<header>
+								<h5>Heading with a Subtitle</h5>
+								<p>Lorem ipsum dolor sit amet nullam id egestas urna aliquam</p>
+							</header>
+							<p>Nunc lacinia ante nunc ac lobortis. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus ornare mi ut ante amet placerat aliquet. Volutpat eu sed ante lacinia sapien lorem accumsan varius montes viverra nibh in adipiscing blandit tempus accumsan.</p>
+							<hr />
+							<h2>Heading Level 2</h2>
+							<h3>Heading Level 3</h3>
+							<h4>Heading Level 4</h4>
+							<h5>Heading Level 5</h5>
+							<h6>Heading Level 6</h6>
+							<hr />
+							<h5>Blockquote</h5>
+							<blockquote>Fringilla nisl. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan faucibus. Vestibulum ante ipsum primis in faucibus lorem ipsum dolor sit amet nullam adipiscing eu felis.</blockquote>
+							<h5>Preformatted</h5>
+							<pre><code>i = 0;
+
+while (!deck.isInOrder()) {
+print 'Iteration ' + i;
+deck.shuffle();
+i++;
+}
+
+print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
+						</section>
+
+						<section>
+							<h4>Lists</h4>
+							<div class="row">
+								<div class="col-6 col-12-xsmall">
+									<h5>Unordered</h5>
+									<ul>
+										<li>Dolor pulvinar etiam magna etiam.</li>
+										<li>Sagittis adipiscing lorem eleifend.</li>
+										<li>Felis enim feugiat dolore viverra.</li>
+									</ul>
+									<h5>Alternate</h5>
+									<ul class="alt">
+										<li>Dolor pulvinar etiam magna etiam.</li>
+										<li>Sagittis adipiscing lorem eleifend.</li>
+										<li>Felis enim feugiat dolore viverra.</li>
+									</ul>
+								</div>
+								<div class="col-6 col-12-xsmall">
+									<h5>Ordered</h5>
+									<ol>
+										<li>Dolor pulvinar etiam magna etiam.</li>
+										<li>Etiam vel felis at lorem sed viverra.</li>
+										<li>Felis enim feugiat dolore viverra.</li>
+										<li>Dolor pulvinar etiam magna etiam.</li>
+										<li>Etiam vel felis at lorem sed viverra.</li>
+										<li>Felis enim feugiat dolore viverra.</li>
+									</ol>
+									<h5>Icons</h5>
+									<ul class="icons">
+										<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+										<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+										<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+										<li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
+										<li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>
+										<li><a href="#" class="icon brands fa-tumblr"><span class="label">Tumblr</span></a></li>
+									</ul>
+								</div>
+							</div>
+							<h5>Actions</h5>
+							<ul class="actions">
+								<li><a href="#" class="button primary">Default</a></li>
+								<li><a href="#" class="button">Default</a></li>
+							</ul>
+							<ul class="actions small">
+								<li><a href="#" class="button primary small">Small</a></li>
+								<li><a href="#" class="button small">Small</a></li>
+							</ul>
+							<div class="row">
+								<div class="col-6 col-12-small">
+									<ul class="actions stacked">
+										<li><a href="#" class="button primary">Default</a></li>
+										<li><a href="#" class="button">Default</a></li>
+									</ul>
+								</div>
+								<div class="col-6 col-12-small">
+									<ul class="actions stacked">
+										<li><a href="#" class="button primary small">Small</a></li>
+										<li><a href="#" class="button small">Small</a></li>
+									</ul>
+								</div>
+								<div class="col-6 col-12-small">
+									<ul class="actions stacked">
+										<li><a href="#" class="button primary fit">Default</a></li>
+										<li><a href="#" class="button fit">Default</a></li>
+									</ul>
+								</div>
+								<div class="col-6 col-12-small">
+									<ul class="actions stacked">
+										<li><a href="#" class="button primary small fit">Small</a></li>
+										<li><a href="#" class="button small fit">Small</a></li>
+									</ul>
+								</div>
+							</div>
+						</section>
+
+						<section>
+							<h4>Table</h4>
+							<h5>Default</h5>
+							<div class="table-wrapper">
+								<table>
+									<thead>
+										<tr>
+											<th>Name</th>
+											<th>Description</th>
+											<th>Price</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>Item One</td>
+											<td>Ante turpis integer aliquet porttitor.</td>
+											<td>29.99</td>
+										</tr>
+										<tr>
+											<td>Item Two</td>
+											<td>Vis ac commodo adipiscing arcu aliquet.</td>
+											<td>19.99</td>
+										</tr>
+										<tr>
+											<td>Item Three</td>
+											<td> Morbi faucibus arcu accumsan lorem.</td>
+											<td>29.99</td>
+										</tr>
+										<tr>
+											<td>Item Four</td>
+											<td>Vitae integer tempus condimentum.</td>
+											<td>19.99</td>
+										</tr>
+										<tr>
+											<td>Item Five</td>
+											<td>Ante turpis integer aliquet porttitor.</td>
+											<td>29.99</td>
+										</tr>
+									</tbody>
+									<tfoot>
+										<tr>
+											<td colspan="2"></td>
+											<td>100.00</td>
+										</tr>
+									</tfoot>
+								</table>
+							</div>
+
+							<h5>Alternate</h5>
+							<div class="table-wrapper">
+								<table class="alt">
+									<thead>
+										<tr>
+											<th>Name</th>
+											<th>Description</th>
+											<th>Price</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>Item One</td>
+											<td>Ante turpis integer aliquet porttitor.</td>
+											<td>29.99</td>
+										</tr>
+										<tr>
+											<td>Item Two</td>
+											<td>Vis ac commodo adipiscing arcu aliquet.</td>
+											<td>19.99</td>
+										</tr>
+										<tr>
+											<td>Item Three</td>
+											<td> Morbi faucibus arcu accumsan lorem.</td>
+											<td>29.99</td>
+										</tr>
+										<tr>
+											<td>Item Four</td>
+											<td>Vitae integer tempus condimentum.</td>
+											<td>19.99</td>
+										</tr>
+										<tr>
+											<td>Item Five</td>
+											<td>Ante turpis integer aliquet porttitor.</td>
+											<td>29.99</td>
+										</tr>
+									</tbody>
+									<tfoot>
+										<tr>
+											<td colspan="2"></td>
+											<td>100.00</td>
+										</tr>
+									</tfoot>
+								</table>
+							</div>
+						</section>
+
+						<section>
+							<h4>Buttons</h4>
+							<ul class="actions">
+								<li><a href="#" class="button primary">Primary</a></li>
+								<li><a href="#" class="button">Default</a></li>
+							</ul>
+							<ul class="actions">
+								<li><a href="#" class="button large">Large</a></li>
+								<li><a href="#" class="button">Default</a></li>
+								<li><a href="#" class="button small">Small</a></li>
+							</ul>
+							<ul class="actions fit">
+								<li><a href="#" class="button primary fit">Fit</a></li>
+								<li><a href="#" class="button fit">Fit</a></li>
+							</ul>
+							<ul class="actions fit small">
+								<li><a href="#" class="button primary fit small">Fit + Small</a></li>
+								<li><a href="#" class="button fit small">Fit + Small</a></li>
+							</ul>
+							<ul class="actions">
+								<li><a href="#" class="button primary icon solid fa-download">Icon</a></li>
+								<li><a href="#" class="button icon solid fa-download">Icon</a></li>
+							</ul>
+							<ul class="actions">
+								<li><span class="button primary disabled">Primary</span></li>
+								<li><span class="button disabled">Default</span></li>
+							</ul>
+						</section>
+
+						<section>
+							<h4>Form</h4>
+							<form method="post" action="#">
+								<div class="row gtr-uniform gtr-50">
+									<div class="col-6 col-12-xsmall">
+										<input type="text" name="demo-name" id="demo-name" value="" placeholder="Name" />
+									</div>
+									<div class="col-6 col-12-xsmall">
+										<input type="email" name="demo-email" id="demo-email" value="" placeholder="Email" />
+									</div>
+									<div class="col-12">
+										<select name="demo-category" id="demo-category">
+											<option value="">- Category -</option>
+											<option value="1">Manufacturing</option>
+											<option value="1">Shipping</option>
+											<option value="1">Administration</option>
+											<option value="1">Human Resources</option>
+										</select>
+									</div>
+									<div class="col-4 col-12-small">
+										<input type="radio" id="demo-priority-low" name="demo-priority" checked>
+										<label for="demo-priority-low">Low Priority</label>
+									</div>
+									<div class="col-4 col-12-small">
+										<input type="radio" id="demo-priority-normal" name="demo-priority">
+										<label for="demo-priority-normal">Normal Priority</label>
+									</div>
+									<div class="col-4 col-12-small">
+										<input type="radio" id="demo-priority-high" name="demo-priority">
+										<label for="demo-priority-high">High Priority</label>
+									</div>
+									<div class="col-6 col-12-small">
+										<input type="checkbox" id="demo-copy" name="demo-copy">
+										<label for="demo-copy">Email me a copy of this message</label>
+									</div>
+									<div class="col-6 col-12-small">
+										<input type="checkbox" id="demo-human" name="demo-human" checked>
+										<label for="demo-human">I am a human and not a robot</label>
+									</div>
+									<div class="col-12">
+										<textarea name="demo-message" id="demo-message" placeholder="Enter your message" rows="6"></textarea>
+									</div>
+									<div class="col-12">
+										<ul class="actions">
+											<li><input type="submit" value="Send Message" class="primary" /></li>
+											<li><input type="reset" value="Reset" /></li>
+										</ul>
+									</div>
+								</div>
+							</form>
+						</section>
+
+						<section>
+							<h4>Image</h4>
+							<h5>Fit</h5>
+							<div class="box alt">
+								<div class="row gtr-50 gtr-uniform">
+									<div class="col-12"><span class="image fit"><img src="images_R_Pokemon/fulls/05.jpg" alt="" /></span></div>
+									<div class="col-4"><span class="image fit"><img src="images_R_Pokemon/thumbs/01.jpg" alt="" /></span></div>
+									<div class="col-4"><span class="image fit"><img src="images_R_Pokemon/thumbs/02.jpg" alt="" /></span></div>
+									<div class="col-4"><span class="image fit"><img src="images_R_Pokemon/thumbs/03.jpg" alt="" /></span></div>
+									<div class="col-4"><span class="image fit"><img src="images_R_Pokemon/thumbs/04.jpg" alt="" /></span></div>
+									<div class="col-4"><span class="image fit"><img src="images_R_Pokemon/thumbs/05.jpg" alt="" /></span></div>
+									<div class="col-4"><span class="image fit"><img src="images_R_Pokemon/thumbs/06.jpg" alt="" /></span></div>
+									<div class="col-4"><span class="image fit"><img src="images_R_Pokemon/thumbs/03.jpg" alt="" /></span></div>
+									<div class="col-4"><span class="image fit"><img src="images_R_Pokemon/thumbs/02.jpg" alt="" /></span></div>
+									<div class="col-4"><span class="image fit"><img src="images_R_Pokemon/thumbs/01.jpg" alt="" /></span></div>
+								</div>
+							</div>
+							<h5>Left &amp; Right</h5>
+							<p><span class="image left"><img src="images_R_Pokemon/avatar.jpg" alt="" /></span>Fringilla nisl. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent.</p>
+							<p><span class="image right"><img src="images_R_Pokemon/avatar.jpg" alt="" /></span>Fringilla nisl. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent.</p>
+						</section>
+
+					</section>
+				-->
+
+			</div>
+
+		<!-- Footer -->
+			<footer id="footer">
+				<div class="inner">
+					<ul class="icons">
+						<li><a href="https://www.linkedin.com/in/kristenhaduca/" target="_blank" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+						<li><a href="https://github.com/kristenhaduca" class="icon brands fa-github"><span class="label">Github</span></a></li>
+					</ul>
+					<ul class="copyright">
+						<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.poptrox.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
