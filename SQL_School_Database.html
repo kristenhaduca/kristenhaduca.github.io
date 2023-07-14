@@ -1,0 +1,1403 @@
+<!DOCTYPE HTML>
+<!--
+	Strata by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Kristen Haduca Portfolio</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Header -->
+			<header id="header">
+				<div class="inner">
+					<a href="index.html">
+						<h1><strong>KRISTEN HADUCA</strong><br />
+						Data Analysis Portfolio<br />
+						</h1>
+					</a>
+				</div>
+			</header>
+
+		<!-- Main -->
+			<div id="main">
+
+				<!-- One -->
+					<section id="one">
+						<header class="major">
+							<h1>Creating a School Database [SQL (SSMS)]</h1>
+						</header>
+						<p>A database for a fictitious school is created by importing data from multiple Excel workbooks into SQL Server Management Studio. Data is cleaned and wrangled for clean formatting. Excessive, duplicated information between multiple tables are culled and only included in the most appropriate tables. Relationships between each entity are managed, additional lookup tables are created, and views and stored procedures are made for further reporting purposes.</p>
+						
+						<header class="major">
+							<h5>LANGUAGE USED: <span style='font-weight: bold;'>SQL</span></h5>
+						</header>
+
+						<header class="major">
+							<h5>SKILLS USED:
+								<a href="directory.html#datacleaning">#Data Cleaning</a>,
+									<a href="directory.html#datawrangling">#Data Wrangling</a>,
+									<a href="directory.html#database">#Database Management</a>,
+									<a href="directory.html#SQLDataImport">#SQL Data Import</a>,
+									<a href="directory.html#SQLConstraints">#SQL Add Constraints</a>,
+									<a href="directory.html#SQLViews">#SQL Views</a>,
+									<a href="directory.html#SQLProcedures">#SQL Stored Procedures</a>,
+									<a href="directory.html#SQLGenerateScripts">#SQL Generate Scripts</a>
+							</h5>
+						</header>
+
+						<header class="major">
+							<h5>MAIN FUNCTIONS USED: <span style='font-weight: bold;'>CREATE DATABASE, UPDATE, SET, CREATE TABLE, ALTER TABLE, ALTER COLUMN, ADD, ADD CONSTRAINT, PRIMARY KEY(), SECONDARY KEY(), IDENTITY(), GROUP BY, ORDER BY, DELETE, JOIN, UNION, CONCAT(), CASE, DROP COLUMN, COUNT(), SUM(), CREATE VIEW, COALESCE(), CREATE PROCEDURE, INSERT INTO</span></h5>
+						</header>
+					</section>
+
+
+
+				<!-- Navigation -->
+				<section id="navigation">
+					<header class="major">
+						<h5>QUICK NAVIGATION:</h5>
+					</header>
+					<ul>
+						<li>
+							<a href="SQL_School_Database.html#data">PART 1: Understanding the Data</a>
+						</li>
+						<li>
+							<a href="SQL_School_Database.html#stagingtables">PART 2: Importing the Staging Tables</a>
+						</li>
+						<li>
+							<a href="SQL_School_Database.html#editstagingtables">PART 3: Editing the Staging Tables</a>
+						</li>
+						<li>
+							<a href="SQL_School_Database.html#destinationtables">PART 4: Destination Tables</a>
+						</li>
+						<li>
+							<a href="SQL_School_Database.html#views_storedprocedures">PART 5: Creating Views and Stored Procedures</a>
+						</li>
+						<li>
+							<a href="SQL_School_Database.html#erd">PART 6: Entity Relationship Diagram</a>
+						</li>
+					</ul>
+				</section>
+				
+
+
+
+
+
+					<!-- Two -->
+					<section id="data">
+						<header class="major">
+							<h3>PART 1: UNDERSTANDING THE DATA</h3>
+						</header>
+						<p>
+							The fictitious school has been in operation for about 8 years. Prior to now, they have been using Excel workbooks to track all information regarding the school and are now interested in using a database backend instead.</br>
+							The data for the school was provided, consisting of two Excel workbooks that span about a 4 year duration each (SU11-SU15 and FA15-SU19). The school uses a quarter system for its enrollment.
+						</p>
+
+						<p>
+							Within each Excel workbook are 7 worksheets:
+								<li>
+									<b>Sections</b> - Contains information about each section of a course offered, including where and when a section is taught and instructor information for each section.
+								</li>
+								<li>
+									<b>ClassList</b> - Contains information about the students that attend each section, including contact information, grades, and amount of tuition paid.
+								</li>
+								<li>
+									<b>Terms</b> - Contains information about each term, including term codes and which year it takes place in.
+								</li>
+								<li>
+									<b>Persons</b> - Contains information about all students, including contact information and home addresses.
+								</li>
+								<li>
+									<b>Rooms</b> - Contains information about the school's rooms and capacity of each.
+								</li>
+								<li>
+									<b>Courses</b> - Contains information about the courses offered, including the time frame, tuition fee amount, and course description.
+								</li>
+								<li>
+									<b>Faculty</b> - Contains information about the school's faculty, including contact information and home addresses.
+								</li>
+						</p>
+
+						<p>
+							The primary relationships between the entities consist of:
+							<li>
+								A <b>Section</b> can belong to only one individual <b>Course</b>, but there can be multiple <b>Sections</b> within a single <b>Course</b> (e.g. the Course "Beginner I" can have multiple Sections: Section 10002, Section 10006, etc. Section 10002 can only correspond to the Course "Beginner I").
+							</li>
+							<li>
+								There can be multiple <b>Faculty</b> teaching an individual <b>Section</b>, and each <b>Faculty</b> member can teach multiple <b>Sections</b> (e.g. Section 10002 of "Beginner I" can be taught by multiple instructors, and instructor Octavia Livius can teach multiple Sections of "Beginner I").
+							</li>
+							<li>
+								There can be multiple <b>Persons</b> (students) within the same <b>Section</b>, and each <b>Person</b> (student) can be enrolled in multiple <b>Sections</b> (e.g. multiple students can be enrolled in Section 10002, and student Abel Richardson can enroll in both Section 10198 and Section 10233).
+							</li>
+						</p>
+
+						<p>
+							The school currently only stores a single address for each person, but they would like to include the option to add both a Home and Work address in the future. Any existing address is considered a Home address.
+						</p>
+
+						<!-- IMAGE -->
+						<p>
+							Sample Excel Workbook:</br>
+							<a href="images_SQL_School_Database/SQL_School_Database/1_Excel_RawData.png" class="image fit thumb"><img src="images_SQL_School_Database/SQL_School_Database/1_Excel_RawData.png"
+								/>
+							</a>
+						</p>
+
+					</section>
+
+
+
+
+
+				<!-- Three -->
+					<section id="stagingtables">
+						<header class="major">
+							<h3>PART 2: IMPORTING STAGING TABLES</h3>
+						</header>
+						<p>
+							A new database is created using <mark><b>CREATE DATABASE</b></mark> to house the staging tables (staging tables are useful for editing data prior to them being added to the final destination tables). Data is imported from the Excel workbooks using SSMS's Import Wizard. Delimiter types are established and appropriate data types are designated during import.
+						</p>
+
+
+						<header class="major">
+							<h4><u>ClassList19 Table</u></h4>
+						</header>
+
+						<p>
+							Columns that contained blank cells or zeroes are altered to be filled with NULL instead. This is done to all the subsequent tables that also have blank cells.
+						</p>
+
+						<!-- CODE TEXT BOX -->
+						<p>
+							<p style="padding:2px 6px 4px 6px; color: #555555; background-color: #eeeeee; border: #dddddd 2px solid">
+								UPDATE ClassList19 SET TuitionAmount = NULL WHERE TuitionAmount = 0</br>
+								UPDATE ClassList19 SET Grade = NULL WHERE Grade = ''
+						</p>
+
+						<!-- IMAGE -->
+						<p>
+								<a href="images_SQL_School_Database/SQL_School_Database/2_Staging_FS15-SU19_ClassList19_Updates.png" class="image fit thumb"><img src="images_SQL_School_Database/SQL_School_Database/2_Staging_FS15-SU19_ClassList19_Updates.png"
+									/>
+								</a>
+						</p>
+						
+
+						<header class="major">
+								<h4><u>Courses19 Table</u></h4>
+						</header>
+						
+						<p>
+							Because the Import Wizard truncates cells containing more than 255 characters unless they are within the first eight rows by default, the data must first be sorted by character length in descending order within Excel.</br>
+							Maximum character length is established by checking each column with <mark><b>MAX(LEN())</b></mark>.
+						</p>
+
+						<!-- CODE TEXT BOX -->
+						<p>
+							<p style="padding:2px 6px 4px 6px; color: #555555; background-color: #eeeeee; border: #dddddd 2px solid">
+								=MAX(LEN(F2:F124))
+						</p>
+
+						<!-- IMAGE -->
+						<p>
+							<a href="images_SQL_School_Database/SQL_School_Database/3_Staging_FS15-SU19_Courses19_CourseDesc.png" class="image fit thumb"><img src="images_SQL_School_Database/SQL_School_Database/3_Staging_FS15-SU19_Courses19_CourseDesc.png"
+								/>
+							</a>
+						</p>
+
+						<p>
+							A helper column is created using <mark><b>LEN()</b></mark> to establish the character length of each column. Then, all data including the new helper column is turned into a table.
+						</p>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_SQL_School_Database/SQL_School_Database/4_Staging_FS15-SU19_Courses19_TruncateFix_HelperCol.png" class="image fit thumb"><img src="images_SQL_School_Database/SQL_School_Database/4_Staging_FS15-SU19_Courses19_TruncateFix_HelperCol.png"
+								/>
+							</a>
+						</p>
+
+						<p>
+							Data is sorted largest to smallest by the helper column.
+						</p>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_SQL_School_Database/SQL_School_Database/5_Staging_FS15-SU19_Courses19_TruncateFix_SortHelperCol.png" class="image fit thumb"><img src="images_SQL_School_Database/SQL_School_Database/5_Staging_FS15-SU19_Courses19_TruncateFix_SortHelperCol.png"
+								/>
+							</a>
+						</p>
+
+						<p>
+							Because that the rows with the longest character length are at the top of the data, the helper column can be deleted and the data can be imported without any truncation issues.
+						</p>
+
+						<p>
+							Columns that contained blank cells or zeroes are altered to be filled with NULL instead.
+						</p>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_SQL_School_Database/SQL_School_Database/6_Staging_FS15-SU19_Courses19_Updates.png" class="image fit thumb"><img src="images_SQL_School_Database/SQL_School_Database/6_Staging_FS15-SU19_Courses19_Updates.png"
+								/>
+							</a>
+						</p>
+
+
+						<header class="major">
+							<h4><u>Persons19 Table</u></h4>
+						</header>
+
+						<p>
+							PostalCode must be a string data type because some cells have hyphens.</br>
+							Columns that contained blank cells or zeroes are altered to be filled with NULL instead.
+						</p>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_SQL_School_Database/SQL_School_Database/7_Staging_FS15-SU19_Persons19_Updates.png" class="image fit thumb"><img src="images_SQL_School_Database/SQL_School_Database/7_Staging_FS15-SU19_Persons19_Updates.png"
+								/>
+							</a>
+						</p>
+
+						<p>
+							There was a formatting issue in the original Excel file for PersonID = 242 where the City was listed as "San Diego, CA". <mark><b>UPDATE</b></mark> and <mark><b>SET</b></mark> are used to change the City to just "San Diego"
+						</p>
+						<!-- CODE TEXT BOX -->
+						<p>
+							<p style="padding:2px 6px 4px 6px; color: #555555; background-color: #eeeeee; border: #dddddd 2px solid">
+								UPDATE Persons19 SET City = 'San Diego', State = 'CA', PostalCode = 92103 WHERE PersonID = 242
+						</p>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_SQL_School_Database/SQL_School_Database/8_Staging_FS15-SU19_Persons19_FixPersonID242.png" class="image fit thumb"><img src="images_SQL_School_Database/SQL_School_Database/8_Staging_FS15-SU19_Persons19_FixPersonID242.png"
+								/>
+							</a>
+						</p>
+
+					</section>
+
+
+
+
+
+				<!-- Four -->
+					<section id="editstagingtables">
+						<header class="major">
+							<h3>PART 3: EDITING THE STAGING TABLES</h3>
+						</header>
+						
+						<p>
+							Corresponding tables from both workbooks are combined into one table using <mark><b>SELECT INTO</b></mark> and <mark><b>UNION</b></mark>.
+						</p>
+
+						<p>
+							Identity Columns are created if one did not previously exist within a table using <mark><b>ALTER TABLE</b></mark> and <mark><b>ADD ... IDENTITY()</b></mark>.
+						</p>
+						<!-- CODE TEXT BOX -->
+						<p>
+							<p style="padding:2px 6px 4px 6px; color: #555555; background-color: #eeeeee; border: #dddddd 2px solid">
+								ALTER TABLE TableName</br>
+								&nbsp; &nbsp; &nbsp; ADD IdentityName INT IDENTITY()
+							</p>
+						</p>
+
+						<p>
+							Primary Keys are created using <mark><b>ALTER TABLE</b></mark> and <mark><b>ADD CONSTRAINT ... PRIMARY KEY()</b></mark>.
+						</p>
+						<!-- CODE TEXT BOX -->
+						<p>
+							<p style="padding:2px 6px 4px 6px; color: #555555; background-color: #eeeeee; border: #dddddd 2px solid">
+								ALTER TABLE TableName</br>
+								&nbsp; &nbsp; &nbsp; ADD CONSTRAINT PKName PRIMARY KEY()
+							</p>
+						</p>
+
+						<p>
+							Foreign Keys are created using <mark><b>ALTER TABLE</b></mark> and <mark><b>ADD CONSTRAINT ... FOREIGN KEY()</b></mark>.
+						</p>
+						<!-- CODE TEXT BOX -->
+						<p>
+							<p style="padding:2px 6px 4px 6px; color: #555555; background-color: #eeeeee; border: #dddddd 2px solid">
+								ALTER TABLE TableName</br>
+								&nbsp; &nbsp; &nbsp; ADD CONSTRAINT FKName FOREIGN KEY()</br>
+								&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; REFERENCES SecondTableName()
+							</p>
+						</p>
+
+						<p>
+							The combined tables with their added keys are as follows:
+						</p>
+
+						<header class="major">
+							<h4><u>ClassList Table</u></h4>
+						</header>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_SQL_School_Database/SQL_School_Database/9_Staging_ClassList.png" class="image fit thumb"><img src="images_SQL_School_Database/SQL_School_Database/9_Staging_ClassList.png"
+								/>
+							</a>
+						</p>
+
+						<header class="major">
+							<h4><u>Courses Table</u></h4>
+						</header>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_SQL_School_Database/SQL_School_Database/10_Staging_Courses.png" class="image fit thumb"><img src="images_SQL_School_Database/SQL_School_Database/10_Staging_Courses.png"
+								/>
+							</a>
+						</p>
+
+						<header class="major">
+							<h4><u>Faculty Table</u></h4>
+						</header>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_SQL_School_Database/SQL_School_Database/11_Staging_Faculty.png" class="image fit thumb"><img src="images_SQL_School_Database/SQL_School_Database/11_Staging_Faculty.png"
+								/>
+							</a>
+						</p>
+
+						<header class="major">
+							<h4><u>Persons Table</u></h4>
+						</header>
+
+						<p>
+							There is an error when trying to create the Primary Key due to a duplicate entry of PersonID = 971. The duplicate is deleted using <mark><b>DELETE</b></mark>.
+						</p>
+						<!-- CODE TEXT BOX -->
+						<p>
+							<p style="padding:2px 6px 4px 6px; color: #555555; background-color: #eeeeee; border: #dddddd 2px solid">
+								DELETE FROM Persons WHERE PersonID = 971 AND LastName = ''
+							</p>
+						</p>
+
+						<!-- IMAGE -->
+						<p>
+							<a href="images_SQL_School_Database/SQL_School_Database/12_Staging_Persons_PKError.png" class="image fit thumb"><img src="images_SQL_School_Database/SQL_School_Database/12_Staging_Persons_PKError.png"
+								/>
+							</a>
+						</p>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_SQL_School_Database/SQL_School_Database/13_Staging_Persons_CheckDups.png" class="image fit thumb"><img src="images_SQL_School_Database/SQL_School_Database/13_Staging_Persons_CheckDups.png"
+								/>
+							</a>
+						</p>
+
+						<p>
+							The Primary Key can now be created without error.
+						</p>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_SQL_School_Database/SQL_School_Database/14_Staging_Persons.png" class="image fit thumb"><img src="images_SQL_School_Database/SQL_School_Database/14_Staging_Persons.png"
+								/>
+							</a>
+						</p>
+
+						<header class="major">
+							<h4><u>Rooms Table</u></h4>
+						</header>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_SQL_School_Database/SQL_School_Database/15_Staging_Rooms.png" class="image fit thumb"><img src="images_SQL_School_Database/SQL_School_Database/15_Staging_Rooms.png"
+								/>
+							</a>
+						</p>
+
+						<header class="major">
+							<h4><u>Sections Table</u></h4>
+						</header>
+						
+						<p>
+							There is a duplicate entry where SectionID = 10050. It is deleted using <mark><b>DELETE</b></mark>.
+						</p>
+
+						<!-- IMAGE -->
+						<p>
+							<a href="images_SQL_School_Database/SQL_School_Database/16_Staging_Sections_CheckDups.png" class="image fit thumb"><img src="images_SQL_School_Database/SQL_School_Database/16_Staging_Sections_CheckDups.png"
+								/>
+							</a>
+						</p>
+
+						<p>
+							The Sections table requires a new Foreign Key called CourseID, corresponding to the column Courses.CourseID. The CourseID column is created using <mark><b>ALTER TABLE ... ADD</b></mark>. Data from Courses.CourseID is populated into Sections.CourseID using <mark><b>UPDATE ... SET</b></mark>, along with a <mark><b>JOIN</b></mark>.
+						</p>
+						
+						<!-- CODE TEXT BOX -->
+						<p>
+							<p style="padding:2px 6px 4px 6px; color: #555555; background-color: #eeeeee; border: #dddddd 2px solid">
+								ALTER TABLE Sections</br>
+								&nbsp; &nbsp; &nbsp; ADD CourseID INT</br>
+								</br>
+								UPDATE Sections</br>
+								&nbsp; &nbsp; &nbsp; SET CourseID = Courses.CourseID</br>
+								FROM Sections</br>
+								JOIN Courses</br>
+								&nbsp; &nbsp; &nbsp; ON Courses.CourseCode = Sections.CourseCode</br>
+
+							</p>
+						</p>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_SQL_School_Database/SQL_School_Database/17_Staging_Sections_AddCourseIDCol.png" class="image fit thumb"><img src="images_SQL_School_Database/SQL_School_Database/17_Staging_Sections_AddCourseIDCol.png"
+								/>
+							</a>
+						</p>
+
+						<p>
+							Accuracy is checked by ordering the data by CourseCode and TermCode, then comparing it with Courses.CourseID.
+						</p>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_SQL_School_Database/SQL_School_Database/18_Staging_Sections_CompareCourseID.png" class="image fit thumb"><img src="images_SQL_School_Database/SQL_School_Database/18_Staging_Sections_CompareCourseID.png"
+								/>
+							</a>
+						</p>
+
+						<p>
+							A similar process is done to create a new Foreign Key called RoomID, which corresponds to Rooms.RoomID.
+						</p>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_SQL_School_Database/SQL_School_Database/19_Staging_Sections_AddRoomIDCol.png" class="image fit thumb"><img src="images_SQL_School_Database/SQL_School_Database/19_Staging_Sections_AddRoomIDCol.png"
+								/>
+							</a>
+						</p>
+
+						<p>
+							The final table is as follows:
+						</p>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_SQL_School_Database/SQL_School_Database/20_Staging_Sections.png" class="image fit thumb"><img src="images_SQL_School_Database/SQL_School_Database/20_Staging_Sections.png"
+								/>
+							</a>
+						</p>
+
+						<header class="major">
+							<h4><u>Terms Table</u></h4>
+						</header>
+
+						<!-- IMAGE -->
+						<p>
+							<a href="images_SQL_School_Database/SQL_School_Database/21_Staging_Terms.png" class="image fit thumb"><img src="images_SQL_School_Database/SQL_School_Database/21_Staging_Terms.png"
+								/>
+							</a>
+						</p>
+
+						<header class="major">
+							<h4><u>FacultyPayment Table</u></h4>
+						</header>
+
+						<p>
+							Two new tables, FacultyPayment and Address, are also created to house important information.</br>
+							FacultyPayment lists the instructors that teach each section along with their payment amounts, and is required to join the Faculty table with the Sections table.
+						</p>
+
+						<p>
+							First, the new table, FacultyPayment, is populated using data from the Faculty and Sections tables with <mark><b>SELECT ... INTO</b></mark>.</br>
+							The Sections table has the faculty names listed as the first initial of the first name, followed by a period, then the last name.</br>
+							The Faculty table has the faculty names listed as the first name and the last name as two separate columns.</br>
+							<mark><b>CONCAT()</b></mark> is used to make Faculty's name scheme the same as Sections in order to <mark><b>JOIN</b></mark> on the PrimaryInstructor column. <mark><b>LEFT()</b></mark> is used to extract the first character starting from the left-hand side of FacultyFirstName.
+						</p>
+						<!-- CODE TEXT BOX -->
+						<p>
+							<p style="padding:2px 6px 4px 6px; color: #555555; background-color: #eeeeee; border: #dddddd 2px solid">
+								SELECT</br>
+								&nbsp; &nbsp; &nbsp; Sections.SectionID</br>
+								&nbsp; &nbsp; &nbsp; ,Sections.PrimaryInstructor</br>
+								&nbsp; &nbsp; &nbsp; ,Sections.PrimaryPayment</br>
+								&nbsp; &nbsp; &nbsp; ,Faculty.FacultyID</br>
+								&nbsp; &nbsp; &nbsp; ,Sections.SecondaryInstructor</br>
+								&nbsp; &nbsp; &nbsp; ,Sections.SecondaryPayment</br>
+								INTO FacultyPayment</br>
+								FROM Sections</br>
+								LEFT JOIN Faculty</br>
+								&nbsp; &nbsp; &nbsp; ON CONCAT(</br>
+								&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; LEFT(FacultyFirstName, 1),</br>
+								&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; '. ',</br>
+								&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; FacultyLastName</br>
+								&nbsp; &nbsp; &nbsp; )</br>
+								&nbsp; &nbsp; &nbsp; = Sections.PrimaryInstructor</br>
+								ORDER BY SectionID
+							</p>
+						</p>
+
+						<!-- IMAGE -->
+						<p>
+							<a href="images_SQL_School_Database/SQL_School_Database/22_Staging_FacultyPayment_CreateTable.png" class="image fit thumb"><img src="images_SQL_School_Database/SQL_School_Database/22_Staging_FacultyPayment_CreateTable.png"
+								/>
+							</a>
+						</p>
+
+						<p>
+							Because there is a PrimaryInstructor and SecondaryInstructor differentiation, but the Faculty table only has a single FacultyID column, the previous query's FacultyID column only represents the PrimaryInstructor's ID. To list SecondaryInstructor's ID, a new column called SecondaryFacultyID is made, then it is populated by the FacultyID corresponding to the name under SecondaryInstructor.
+						</p>
+
+						<!-- CODE TEXT BOX -->
+						<p>
+							<p style="padding:2px 6px 4px 6px; color: #555555; background-color: #eeeeee; border: #dddddd 2px solid">
+								ALTER TABLE FacultyPayment</br>
+								&nbsp; &nbsp; &nbsp; ADD SecondaryPaymentID INT</br>
+								</br>
+								UPDATE FacultyPayment</br>
+								&nbsp; &nbsp; &nbsp; SET SecondaryPaymentID = Faculty.FacultyID</br>
+								FROM FacultyPayment</br>
+								JOIN Faculty</br>
+								&nbsp; &nbsp; &nbsp; ON CONCAT(</br>
+								&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; LEFT(FacultyFirstName, 1),</br>
+								&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; '. ',</br>
+								&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; FacultyLastName</br>
+								&nbsp; &nbsp; &nbsp; )</br>
+								&nbsp; &nbsp; &nbsp; = FacultyPayment.SecondaryInstructor
+							</p>
+						</p>
+
+						<!-- IMAGE -->
+						<p>
+							<a href="images_SQL_School_Database/SQL_School_Database/23_Staging_FacultyPayment_SecondaryFacultyID.png" class="image fit thumb"><img src="images_SQL_School_Database/SQL_School_Database/23_Staging_FacultyPayment_SecondaryFacultyID.png"
+								/>
+							</a>
+						</p>
+
+						<p>
+							A new Identity Column is created using <mark><b>ALTER TABLE</b></mark> and <mark><b>ADD ... IDENTITY()</b></mark>. This new Identity Column is then assigned as the Primary Key using <mark><b>ALTER TABLE</b></mark> and <mark><b>ADD CONSTRAINT ... PRIMARY KEY()</b></mark>. Foreign Keys are also set using <mark><b>ALTER TABLE</b></mark> and <mark><b>ADD CONSTRAINT ... FOREIGN KEY()</b></mark>.
+						</p>
+						
+						<p>
+							The final FacultyPayment table is as follows:
+						</p>
+						
+						<!-- IMAGE -->
+						<p>
+							<a href="images_SQL_School_Database/SQL_School_Database/24_Staging_FacultyPayment.png" class="image fit thumb"><img src="images_SQL_School_Database/SQL_School_Database/24_Staging_FacultyPayment.png"
+								/>
+							</a>
+						</p>
+
+
+						<header class="major">
+							<h4><u>Address Table</u></h4>
+						</header>
+
+						<p>
+							The Address table contains address information for each PersonID and will include the new AddressType column requested in order to differentiate between Home and Work addresses going forward.
+						</p>
+
+						<p>
+							The new table, Address, is created and populated using data from the Persons table with <mark><b>SELECT ... INTO</b></mark>. A new Identity Column is created using <mark><b>ALTER TABLE</b></mark> and <mark><b>ADD ... IDENTITY()</b></mark>. This new Identity Column is then assigned as the Primary Key using <mark><b>ALTER TABLE</b></mark> and <mark><b>ADD CONSTRAINT ... PRIMARY KEY()</b></mark>. Foreign Keys are also set using <mark><b>ALTER TABLE</b></mark> and <mark><b>ADD CONSTRAINT ... FOREIGN KEY()</b></mark>.
+						</p>
+							
+						<p>
+							A new column, AddressType, is created using <mark><b>ALTER TABLE</b></mark> and <mark><b>ADD</b></mark> in order to differentiate between Home and Work addresses. All existing addresses are assigned the "Home" value, else they are labeled as "Work". This is established using <mark><b>UPDATE ... SET</b></mark> and <mark><b>CASE</b></mark>.
+						</p>
+
+						<!-- CODE TEXT BOX -->
+						<p>
+							<p style="padding:2px 6px 4px 6px; color: #555555; background-color: #eeeeee; border: #dddddd 2px solid">
+								UPDATE Address</br>
+								&nbsp; &nbsp; &nbsp; SET AddressType =</br>
+								&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; CASE</br>
+								&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; WHEN AddressLine IS NOT NULL THEN 'Home'</br>
+								&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ELSE 'Work'</br>
+								&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; END
+							</p>
+						</p>
+
+						<!-- IMAGE -->
+						<p>
+							<a href="images_SQL_School_Database/SQL_School_Database/25_Staging_Address.png" class="image fit thumb"><img src="images_SQL_School_Database/SQL_School_Database/25_Staging_Address.png"
+								/>
+							</a>
+						</p>
+
+					</section>
+
+
+
+
+
+				<!-- Five -->
+					<section id="destinationtables">
+						<header class="major">
+							<h3>PART 4: DESTINATION TABLES</h3>
+						</header>
+
+						<header class="major">
+							<h4>Generate Scripts to Create Destination Tables</h4>
+						</header>
+
+						<p>
+							The <b>Generate Scripts</b> option is used to create a script of the entire staging database: all data and schema (identity column designations, primary keys, and foreign keys are preserved) are included. A new database is created to house all this information in order to make final destination tables using <mark><b>CREATE DATABASE</b></mark> before running the script.
+						</p>
+
+						<!-- IMAGE -->
+						<p>
+							<a href="images_SQL_School_Database/SQL_School_Database/26_Destination_CreateDatabase.png" class="image fit thumb"><img src="images_SQL_School_Database/SQL_School_Database/26_Destination_CreateDatabase.png"
+								/>
+							</a>
+						</p>
+
+
+
+						<header class="major">
+							<h4>Remove Redundant Information</h4>
+						</header>
+
+						<p>
+							In order to get the final tables, redundant or duplicate information that appears in multiple tables is removed. Some data types are also corrected. The final destination tables are as follows:
+						</p>
+
+						<header class="major">
+							<h4><u>Address Table</u></h4>
+						</header>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_SQL_School_Database/SQL_School_Database/27_Final_Address.png" class="image fit thumb"><img src="images_SQL_School_Database/SQL_School_Database/27_Final_Address.png"
+								/>
+							</a>
+						</p>
+					
+						<header class="major">
+							<h4><u>ClassList Table</u></h4>
+						</header>
+						<p>
+							The LastName, FirstName, Phone, and Email columns are also included in the Persons table, and can be dropped using <mark><b>ALTER TABLE</b></mark> and <mark><b>DROP COLUMN</b></mark>.
+						</p>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_SQL_School_Database/SQL_School_Database/28_Final_ClassList.png" class="image fit thumb"><img src="images_SQL_School_Database/SQL_School_Database/28_Final_ClassList.png"
+								/>
+							</a>
+						</p>
+					
+						<header class="major">
+							<h4><u>Courses Table</u></h4>
+						</header>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_SQL_School_Database/SQL_School_Database/29_Final_Courses.png" class="image fit thumb"><img src="images_SQL_School_Database/SQL_School_Database/29_Final_Courses.png"
+								/>
+							</a>
+						</p>
+					
+						<header class="major">
+							<h4><u>Faculty Table</u></h4>
+						</header>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_SQL_School_Database/SQL_School_Database/30_Final_Faculty.png" class="image fit thumb"><img src="images_SQL_School_Database/SQL_School_Database/30_Final_Faculty.png"
+								/>
+							</a>
+						</p>
+
+						<header class="major">
+							<h4><u>FacultyPayment Table</u></h4>
+						</header>
+						
+						<p>
+							NOTE: The TotalPayment column gets added later <a href="SQL_School_Database.html#views_storedprocedures">when Views are created in Example 2.</a>
+						</p>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_SQL_School_Database/SQL_School_Database/31_Final_FacultyPayment.png" class="image fit thumb"><img src="images_SQL_School_Database/SQL_School_Database/31_Final_FacultyPayment.png"
+								/>
+							</a>
+						</p>
+
+						<header class="major">
+							<h4><u>Persons Table</u></h4>
+						</header>
+						
+						<p>
+							The AddressLine, City, State, and PostalCode columns are also included in the Address table, and can be removed using <mark><b>ALTER TABLE</b></mark> and <mark><b>DROP COLUMN</b></mark>.
+						</p>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_SQL_School_Database/SQL_School_Database/32_Final_Persons.png" class="image fit thumb"><img src="images_SQL_School_Database/SQL_School_Database/32_Final_Persons.png"
+								/>
+							</a>
+						</p>
+
+						<header class="major">
+							<h4><u>Rooms Table</u></h4>
+						</header>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_SQL_School_Database/SQL_School_Database/33_Final_Rooms.png" class="image fit thumb"><img src="images_SQL_School_Database/SQL_School_Database/33_Final_Rooms.png"
+								/>
+							</a>
+						</p>
+
+						<header class="major">
+							<h4><u>Sections Table</u></h4>
+						</header>
+						
+						<p>
+							The CourseTitle, PrimaryPayment, SecondaryPayment, RoomName, and TermCode columns are also included in the Address table, and can be dropped using <mark><b>ALTER TABLE</b></mark> and <mark><b>DROP COLUMN</b></mark>.
+						</p>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_SQL_School_Database/SQL_School_Database/34_Final_Sections.png" class="image fit thumb"><img src="images_SQL_School_Database/SQL_School_Database/34_Final_Sections.png"
+								/>
+							</a>
+						</p>
+
+						<header class="major">
+							<h4><u>Terms Table</u></h4>
+						</header>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_SQL_School_Database/SQL_School_Database/35_Final_Terms.png" class="image fit thumb"><img src="images_SQL_School_Database/SQL_School_Database/35_Final_Terms.png"
+								/>
+							</a>
+						</p>
+					
+					
+					</section>
+
+
+
+
+				<!-- Six -->
+					<section id="views_storedprocedures">
+						<header class="major">
+							<h3>PART 5: CREATING VIEWS AND STORED PROCEDURES</h3>
+						</header>
+
+						<header class="major">
+							<h4><u>1. VIEW - Number of Times Course Has Been Offered And Its Revenue</u></h4>
+						</header>
+
+						<p>
+							A view is created that displays how many times a course has been offered over the entire history of the school, the total gross revenue of each course, and the average revenue garnered per section of a course. Cancelled sections (SectionStatus = CN) are not included.
+						</p>
+
+
+						<header class="major">
+							<h5>SECTION COUNT</h5>
+						</header>
+						<p>
+							To find the section count of a course, the <b>SectionCount</b>, <mark><b>COUNT()</b></mark> is used in tandem with <mark><b>DISTINCT</b></mark> in order to count each distinct SectionID that has been offered.
+						</p>
+
+						<!-- CODE TEXT BOX -->
+						<p>
+							<p style="padding:2px 6px 4px 6px; color: #555555; background-color: #eeeeee; border: #dddddd 2px solid">
+								COUNT(DISTINCT Sections.SectionID) AS SectionCount
+							</p>
+						</p>
+
+
+						<header class="major">
+							<h5>TOTAL GROSS REVENUE</h5>
+						</header>
+						<p>
+							To find the total gross revenue of each course, the <b>TotalGrossRevenue</b>, the <mark><b>SUM()</b></mark> of the TuitionAmount column within the ClassList table is calculated. Later in the query, everything is grouped by the CourseCode and the CourseTitle, so the sum is grouped within each individual course.
+						</p>
+						<!-- CODE TEXT BOX -->
+						<p>
+							<p style="padding:2px 6px 4px 6px; color: #555555; background-color: #eeeeee; border: #dddddd 2px solid">
+								SUM(ClassList.TuitionAmount) AS TotalGrossRevenue
+							</p>
+						</p>
+						
+						<p>
+							To see this illustrated further, we look at Sections.CourseCode = LAT-108. Each Course can have multiple Sections; within LAT-108, there are two SectionIDs: 10968 and 11216. Within each Section, there are multiple Persons, each with their own tuitions paid. <mark><b>SUM()</b></mark> adds up all TuitionAmounts of every Person within each Section of a single Course.
+						</p>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_SQL_School_Database/SQL_School_Database/36_Question1_SUM.png" class="image fit thumb"><img src="images_SQL_School_Database/SQL_School_Database/36_Question1_SUM.png"
+								/>
+							</a>
+						</p>
+
+						<header class="major">
+							<h5>AVERAGE REVENUE PER SECTION</h5>
+						</header>
+						<p>
+							The <b>AverageRevenue</b> is found by dividing the <mark><b>SUM()</b></mark> of TuitionAmount within each class (a.k.a. the <b>TotalGrossRevenue)</b> by the <mark><b>COUNT()</b></mark> of distinct SectionIDs. <mark><b>CAST(... AS NUMERIC(9,2))</b></mark> is used to allow this value to be listed as a numeric with 9 total digits and 2 decimal places.
+						</p>
+						<!-- CODE TEXT BOX -->
+						<p>
+							<p style="padding:2px 6px 4px 6px; color: #555555; background-color: #eeeeee; border: #dddddd 2px solid">
+								CAST(</br>
+									&nbsp; &nbsp; &nbsp; SUM(ClassList.TuitionAmount)</br>
+									&nbsp; &nbsp; &nbsp; /</br>
+									&nbsp; &nbsp; &nbsp; COUNT(DISTINCT Sections.SectionID)</br>
+								AS NUMERIC(9,2)</br>
+								) AS AvgRevenue
+
+							</p>
+						</p>
+
+						
+						
+						<header class="major">
+							<h5>FINAL CODE</h5>
+						</header>
+						<!-- CODE TEXT BOX -->
+						<p>
+							<p style="padding:2px 6px 4px 6px; color: #555555; background-color: #eeeeee; border: #dddddd 2px solid">
+								GO</br>
+								CREATE VIEW CourseRevenue_v AS</br>
+								SELECT</br>
+									&nbsp; &nbsp; &nbsp; Courses.CourseCode</br>
+									&nbsp; &nbsp; &nbsp; ,Courses.CourseTitle</br>
+									&nbsp; &nbsp; &nbsp; ,COUNT(DISTINCT Sections.SectionID) AS SectionCount</br>
+									&nbsp; &nbsp; &nbsp; ,SUM(ClassList.TuitionAmount) AS TotalGrossRevenue</br>
+									&nbsp; &nbsp; &nbsp; ,CAST(</br>
+									&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; SUM(ClassList.TuitionAmount)</br>
+									&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; /</br>
+									&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; COUNT(DISTINCT Sections.SectionID)</br>
+									&nbsp; &nbsp; &nbsp; AS NUMERIC(9,2)</br>
+									&nbsp; &nbsp; &nbsp; ) AS AvgRevenue</br>
+									FROM Courses</br>
+									LEFT JOIN Sections</br>
+										&nbsp; &nbsp; &nbsp; ON Sections.CourseID = Courses.CourseID</br>
+									LEFT JOIN ClassList</br>
+										&nbsp; &nbsp; &nbsp; ON ClassList.SectionID = Sections.SectionID</br>
+									WHERE Sections.SectionStatus != 'CN'</br>
+									GROUP BY Courses.CourseCode, Courses.CourseTitle</br>							
+							</p>
+						</p>
+
+						<!-- IMAGE -->
+						<p>
+							<a href="images_SQL_School_Database/SQL_School_Database/37_Question1.png" class="image fit thumb"><img src="images_SQL_School_Database/SQL_School_Database/37_Question1.png"
+								/>
+							</a>
+						</p>
+
+
+
+
+
+						<header class="major">
+							<h4><u>2. VIEW - Gross Tuition Revenue and Faculty Salary Payments</u></h4>
+						</header>
+
+						<p>
+							A view is created in order to calculate the gross tuition revenue and faculty salary payments for each academic year.
+						</p>
+
+						<header class="major">
+							<h5>CREATING CTE</h5>
+						</header>
+						<p>
+							A CTE is created that selects SectionID and the TotalTuition. TotalTuition is the sum of all TuitionAmounts, grouped by their SectionIDs (a.k.a. the total tuition paid per individual section).
+						</p>
+						<!-- CODE TEXT BOX -->
+						<p>
+							<p style="padding:2px 6px 4px 6px; color: #555555; background-color: #eeeeee; border: #dddddd 2px solid">
+								SELECT</br>
+									&nbsp; &nbsp; &nbsp; Sections.SectionID</br>
+									&nbsp; &nbsp; &nbsp; SUM(ClassList.TuitionAmount) AS TotalTuition</br>
+								FROM Sections</br>
+								JOIN ClassList</br>
+									&nbsp; &nbsp; &nbsp; ON ClassList.SectionID = Sections.SectionID</br>
+								GROUP BY Sections.SectionID
+							</p>
+						</p>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_SQL_School_Database/SQL_School_Database/38_Question2_CTE.png" class="image fit thumb"><img src="images_SQL_School_Database/SQL_School_Database/38_Question2_CTE.png"
+								/>
+							</a>
+						</p>
+
+						<header class="major">
+							<h5>CREATE TOTALPAYMENT COLUMN</h5>
+						</header>
+						<p>
+							In the FacultyPayment table, payments to the faculty are broken up into two columns, PrimaryPayment and SecondaryPayment. In order to get the full payment total for each faculty member, a new column called TotalPayment is created. <mark><b>SET()</b></mark> is used to update the new TotalPayment column to be the added amounts of PrimaryPayment and SecondaryPayment. <mark><b>COALESCE()</b></mark> is wrapped around SecondPayment to say if SecondaryPayment is a NULL value, it should be used as a 0 value instead.
+						</p>
+						<!-- CODE TEXT BOX -->
+						<p>
+							<p style="padding:2px 6px 4px 6px; color: #555555; background-color: #eeeeee; border: #dddddd 2px solid">
+								ALTER TABLE FacultyPayment</br>
+									&nbsp; &nbsp; &nbsp; ADD TotalPayment INT</br>
+								</br>
+								UPDATE FacultyPayment</br>
+								SET TotalPayment =</br>
+									&nbsp; &nbsp; &nbsp; (PrimaryPayment +</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; COALESCE(SecondaryPayment, 0)</br>
+									&nbsp; &nbsp; &nbsp; )</br>
+							</p>
+						</p>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_SQL_School_Database/SQL_School_Database/39_Question2_TotalPaymentCol.png" class="image fit thumb"><img src="images_SQL_School_Database/SQL_School_Database/39_Question2_TotalPaymentCol.png"
+								/>
+							</a>
+						</p>
+
+						<header class="major">
+							<h5>FINAL CODE</h5>
+						</header>
+						<p>
+							The Q2_CTE.TotalTuition column from the CTE (total tuition paid per section), grouped by AcademicYear, is summed—resulting in the total tuition paid per academic year. The FacultyPayment.TotalPayment column, grouped by AcademicYear, is summed—resulting in the total faculty payments per academic year.
+						</p>
+
+						<!-- CODE TEXT BOX -->
+						<p>
+							<p style="padding:2px 6px 4px 6px; color: #555555; background-color: #eeeeee; border: #dddddd 2px solid">
+								GO</br>
+									&nbsp; &nbsp; &nbsp; CREATE VIEW AnnualRevenue_v AS</br>
+								WITH Q2_CTE AS</br>
+								(</br>
+								SELECT</br>
+									&nbsp; &nbsp; &nbsp; Sections.SectionID</br>
+									&nbsp; &nbsp; &nbsp; ,SUM(ClassList.TuitionAmount) AS TotalTuition</br>
+								FROM Sections</br>
+								JOIN ClassList</br>
+									&nbsp; &nbsp; &nbsp; ON ClassList.SectionID = Sections.SectionID</br>
+								GROUP BY Sections.SectionID</br>
+								)</br>
+								SELECT</br>
+									&nbsp; &nbsp; &nbsp; Terms.AcademicYear</br>
+									&nbsp; &nbsp; &nbsp; ,SUM(Q2_CTE.TotalTuition) AS TotalTuition</br>
+									&nbsp; &nbsp; &nbsp; ,SUM(FacultyPayment.TotalPayment) AS TotalFacultyPayment</br>
+								FROM Courses</br>
+								JOIN Sections</br>
+									&nbsp; &nbsp; &nbsp; ON Sections.CourseID = Courses.CourseID</br>
+								JOIN Terms</br>
+									&nbsp; &nbsp; &nbsp; ON Terms.TermID = Sections.TermID</br>
+								LEFT JOIN FacultyPayment</br>
+									&nbsp; &nbsp; &nbsp; ON FacultyPayment.SectionID = Sections.SectionID</br>
+								LEFT JOIN Q2_CTE</br>
+									&nbsp; &nbsp; &nbsp; ON Q2_CTE.SectionID = Sections.SectionID</br>
+								GROUP BY Terms.AcademicYear</br>
+							</p>
+						</p>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_SQL_School_Database/SQL_School_Database/40_Question2.png" class="image fit thumb"><img src="images_SQL_School_Database/SQL_School_Database/40_Question2.png"
+								/>
+							</a>
+						</p>
+
+
+
+
+						<header class="major">
+							<h4><u>3. STORED PROCEDURE - Course History of a Student</u></h4>
+						</header>
+
+						<p>
+							A stored procedure is created that shows the course history of a student when supplied with the primary key number (a.k.a the StudentID) of the student.</br>
+							<mark><b>CASE()</b></mark> is used to say if there is a middle name supplied for the student, StudentName will be written as "FirstName MiddleName LastName", else it will be written as "FirstName LastName".
+						</p>
+
+						<!-- CODE TEXT BOX -->
+						<p>
+							<p style="padding:2px 6px 4px 6px; color: #555555; background-color: #eeeeee; border: #dddddd 2px solid">
+								GO</br>
+								</br>
+								CREATE PROCEDURE StudentHistory_p</br>
+									&nbsp; &nbsp; &nbsp; @StudentPK INT</br>
+								AS</br>
+								SELECT</br>
+									&nbsp; &nbsp; &nbsp; CASE</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; WHEN Persons.MiddleName IS NOT NULL THEN CONCAT(Persons.FirstName, ' ', Persons.MiddleName, ' ',  Persons.LastName)</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ELSE CONCAT(Persons.FirstName, ' ', Persons.LastName)</br>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; END AS StudentName</br>
+									&nbsp; &nbsp; &nbsp; ,ClassList.SectionID</br>
+									&nbsp; &nbsp; &nbsp; ,Sections.CourseCode</br>
+									&nbsp; &nbsp; &nbsp; ,Courses.CourseTitle</br>
+									&nbsp; &nbsp; &nbsp; ,Sections.PrimaryInstructor</br>
+									&nbsp; &nbsp; &nbsp; ,Terms.TermCode</br>
+									&nbsp; &nbsp; &nbsp; ,Sections.StartDate</br>
+									&nbsp; &nbsp; &nbsp; ,ClassList.TuitionAmount</br>
+									&nbsp; &nbsp; &nbsp; ,ClassList.Grade</br>
+								FROM Persons</br>
+								JOIN ClassList</br>
+									&nbsp; &nbsp; &nbsp; ON ClassList.PersonID = Persons.PersonID</br>
+								JOIN Sections</br>
+									&nbsp; &nbsp; &nbsp; ON Sections.SectionID = ClassList.SectionID</br>
+								JOIN Courses</br>
+									&nbsp; &nbsp; &nbsp; ON Courses.CourseID = Sections.CourseID</br>
+								JOIN Terms</br>
+									&nbsp; &nbsp; &nbsp; ON Terms.TermID = Sections.TermID</br>
+								WHERE Persons.PersonID = @StudentPK</br>
+								ORDER BY Sections.StartDate</br>
+								</br>
+								GO</br>
+							</p>
+						</p>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_SQL_School_Database/SQL_School_Database/41_Question3.png" class="image fit thumb"><img src="images_SQL_School_Database/SQL_School_Database/41_Question3.png"
+								/>
+							</a>
+						</p>
+
+
+					</section>
+
+
+				<!-- Seven -->
+				<section id="erd">
+					<header class="major">
+						<h3>PART 6: ENTITY RELATIONSHIP DIAGRAM</h3>
+					</header>
+
+						<p>
+							An Entity Relationship Diagram is also created.
+						</p>
+						<!-- IMAGE -->
+						<p>
+							<a href="images_SQL_School_Database/SQL_School_Database/42_Entity Relationship Diagram.png" class="image fit thumb"><img src="images_SQL_School_Database/SQL_School_Database/42_Entity Relationship Diagram.png"
+								/>
+							</a>
+						</p>
+
+				</section>
+				
+				
+					<!-- Six -->
+				<!--
+					<section id="six">
+						<h2>Elements</h2>
+
+						<section>
+							<h4>Text</h4>
+							<p>This is <b>bold</b> and this is <strong>strong</strong>. This is <i>italic</i> and this is <em>emphasized</em>.
+							This is <sup>superscript</sup> text and this is <sub>subscript</sub> text.
+							This is <u>underlined</u> and this is code: <code>for (;;) { ... }</code>. Finally, <a href="#">this is a link</a>.</p>
+							<hr />
+							<header>
+								<h4>Heading with a Subtitle</h4>
+								<p>Lorem ipsum dolor sit amet nullam id egestas urna aliquam</p>
+							</header>
+							<p>Nunc lacinia ante nunc ac lobortis. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus ornare mi ut ante amet placerat aliquet. Volutpat eu sed ante lacinia sapien lorem accumsan varius montes viverra nibh in adipiscing blandit tempus accumsan.</p>
+							<header>
+								<h5>Heading with a Subtitle</h5>
+								<p>Lorem ipsum dolor sit amet nullam id egestas urna aliquam</p>
+							</header>
+							<p>Nunc lacinia ante nunc ac lobortis. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus ornare mi ut ante amet placerat aliquet. Volutpat eu sed ante lacinia sapien lorem accumsan varius montes viverra nibh in adipiscing blandit tempus accumsan.</p>
+							<hr />
+							<h2>Heading Level 2</h2>
+							<h3>Heading Level 3</h3>
+							<h4>Heading Level 4</h4>
+							<h5>Heading Level 5</h5>
+							<h6>Heading Level 6</h6>
+							<hr />
+							<h5>Blockquote</h5>
+							<blockquote>Fringilla nisl. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan faucibus. Vestibulum ante ipsum primis in faucibus lorem ipsum dolor sit amet nullam adipiscing eu felis.</blockquote>
+							<h5>Preformatted</h5>
+							<pre><code>i = 0;
+
+while (!deck.isInOrder()) {
+print 'Iteration ' + i;
+deck.shuffle();
+i++;
+}
+
+print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
+						</section>
+
+						<section>
+							<h4>Lists</h4>
+							<div class="row">
+								<div class="col-6 col-12-xsmall">
+									<h5>Unordered</h5>
+									<ul>
+										<li>Dolor pulvinar etiam magna etiam.</li>
+										<li>Sagittis adipiscing lorem eleifend.</li>
+										<li>Felis enim feugiat dolore viverra.</li>
+									</ul>
+									<h5>Alternate</h5>
+									<ul class="alt">
+										<li>Dolor pulvinar etiam magna etiam.</li>
+										<li>Sagittis adipiscing lorem eleifend.</li>
+										<li>Felis enim feugiat dolore viverra.</li>
+									</ul>
+								</div>
+								<div class="col-6 col-12-xsmall">
+									<h5>Ordered</h5>
+									<ol>
+										<li>Dolor pulvinar etiam magna etiam.</li>
+										<li>Etiam vel felis at lorem sed viverra.</li>
+										<li>Felis enim feugiat dolore viverra.</li>
+										<li>Dolor pulvinar etiam magna etiam.</li>
+										<li>Etiam vel felis at lorem sed viverra.</li>
+										<li>Felis enim feugiat dolore viverra.</li>
+									</ol>
+									<h5>Icons</h5>
+									<ul class="icons">
+										<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+										<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+										<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+										<li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
+										<li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>
+										<li><a href="#" class="icon brands fa-tumblr"><span class="label">Tumblr</span></a></li>
+									</ul>
+								</div>
+							</div>
+							<h5>Actions</h5>
+							<ul class="actions">
+								<li><a href="#" class="button primary">Default</a></li>
+								<li><a href="#" class="button">Default</a></li>
+							</ul>
+							<ul class="actions small">
+								<li><a href="#" class="button primary small">Small</a></li>
+								<li><a href="#" class="button small">Small</a></li>
+							</ul>
+							<div class="row">
+								<div class="col-6 col-12-small">
+									<ul class="actions stacked">
+										<li><a href="#" class="button primary">Default</a></li>
+										<li><a href="#" class="button">Default</a></li>
+									</ul>
+								</div>
+								<div class="col-6 col-12-small">
+									<ul class="actions stacked">
+										<li><a href="#" class="button primary small">Small</a></li>
+										<li><a href="#" class="button small">Small</a></li>
+									</ul>
+								</div>
+								<div class="col-6 col-12-small">
+									<ul class="actions stacked">
+										<li><a href="#" class="button primary fit">Default</a></li>
+										<li><a href="#" class="button fit">Default</a></li>
+									</ul>
+								</div>
+								<div class="col-6 col-12-small">
+									<ul class="actions stacked">
+										<li><a href="#" class="button primary small fit">Small</a></li>
+										<li><a href="#" class="button small fit">Small</a></li>
+									</ul>
+								</div>
+							</div>
+						</section>
+
+						<section>
+							<h4>Table</h4>
+							<h5>Default</h5>
+							<div class="table-wrapper">
+								<table>
+									<thead>
+										<tr>
+											<th>Name</th>
+											<th>Description</th>
+											<th>Price</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>Item One</td>
+											<td>Ante turpis integer aliquet porttitor.</td>
+											<td>29.99</td>
+										</tr>
+										<tr>
+											<td>Item Two</td>
+											<td>Vis ac commodo adipiscing arcu aliquet.</td>
+											<td>19.99</td>
+										</tr>
+										<tr>
+											<td>Item Three</td>
+											<td> Morbi faucibus arcu accumsan lorem.</td>
+											<td>29.99</td>
+										</tr>
+										<tr>
+											<td>Item Four</td>
+											<td>Vitae integer tempus condimentum.</td>
+											<td>19.99</td>
+										</tr>
+										<tr>
+											<td>Item Five</td>
+											<td>Ante turpis integer aliquet porttitor.</td>
+											<td>29.99</td>
+										</tr>
+									</tbody>
+									<tfoot>
+										<tr>
+											<td colspan="2"></td>
+											<td>100.00</td>
+										</tr>
+									</tfoot>
+								</table>
+							</div>
+
+							<h5>Alternate</h5>
+							<div class="table-wrapper">
+								<table class="alt">
+									<thead>
+										<tr>
+											<th>Name</th>
+											<th>Description</th>
+											<th>Price</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>Item One</td>
+											<td>Ante turpis integer aliquet porttitor.</td>
+											<td>29.99</td>
+										</tr>
+										<tr>
+											<td>Item Two</td>
+											<td>Vis ac commodo adipiscing arcu aliquet.</td>
+											<td>19.99</td>
+										</tr>
+										<tr>
+											<td>Item Three</td>
+											<td> Morbi faucibus arcu accumsan lorem.</td>
+											<td>29.99</td>
+										</tr>
+										<tr>
+											<td>Item Four</td>
+											<td>Vitae integer tempus condimentum.</td>
+											<td>19.99</td>
+										</tr>
+										<tr>
+											<td>Item Five</td>
+											<td>Ante turpis integer aliquet porttitor.</td>
+											<td>29.99</td>
+										</tr>
+									</tbody>
+									<tfoot>
+										<tr>
+											<td colspan="2"></td>
+											<td>100.00</td>
+										</tr>
+									</tfoot>
+								</table>
+							</div>
+						</section>
+
+						<section>
+							<h4>Buttons</h4>
+							<ul class="actions">
+								<li><a href="#" class="button primary">Primary</a></li>
+								<li><a href="#" class="button">Default</a></li>
+							</ul>
+							<ul class="actions">
+								<li><a href="#" class="button large">Large</a></li>
+								<li><a href="#" class="button">Default</a></li>
+								<li><a href="#" class="button small">Small</a></li>
+							</ul>
+							<ul class="actions fit">
+								<li><a href="#" class="button primary fit">Fit</a></li>
+								<li><a href="#" class="button fit">Fit</a></li>
+							</ul>
+							<ul class="actions fit small">
+								<li><a href="#" class="button primary fit small">Fit + Small</a></li>
+								<li><a href="#" class="button fit small">Fit + Small</a></li>
+							</ul>
+							<ul class="actions">
+								<li><a href="#" class="button primary icon solid fa-download">Icon</a></li>
+								<li><a href="#" class="button icon solid fa-download">Icon</a></li>
+							</ul>
+							<ul class="actions">
+								<li><span class="button primary disabled">Primary</span></li>
+								<li><span class="button disabled">Default</span></li>
+							</ul>
+						</section>
+
+						<section>
+							<h4>Form</h4>
+							<form method="post" action="#">
+								<div class="row gtr-uniform gtr-50">
+									<div class="col-6 col-12-xsmall">
+										<input type="text" name="demo-name" id="demo-name" value="" placeholder="Name" />
+									</div>
+									<div class="col-6 col-12-xsmall">
+										<input type="email" name="demo-email" id="demo-email" value="" placeholder="Email" />
+									</div>
+									<div class="col-12">
+										<select name="demo-category" id="demo-category">
+											<option value="">- Category -</option>
+											<option value="1">Manufacturing</option>
+											<option value="1">Shipping</option>
+											<option value="1">Administration</option>
+											<option value="1">Human Resources</option>
+										</select>
+									</div>
+									<div class="col-4 col-12-small">
+										<input type="radio" id="demo-priority-low" name="demo-priority" checked>
+										<label for="demo-priority-low">Low Priority</label>
+									</div>
+									<div class="col-4 col-12-small">
+										<input type="radio" id="demo-priority-normal" name="demo-priority">
+										<label for="demo-priority-normal">Normal Priority</label>
+									</div>
+									<div class="col-4 col-12-small">
+										<input type="radio" id="demo-priority-high" name="demo-priority">
+										<label for="demo-priority-high">High Priority</label>
+									</div>
+									<div class="col-6 col-12-small">
+										<input type="checkbox" id="demo-copy" name="demo-copy">
+										<label for="demo-copy">Email me a copy of this message</label>
+									</div>
+									<div class="col-6 col-12-small">
+										<input type="checkbox" id="demo-human" name="demo-human" checked>
+										<label for="demo-human">I am a human and not a robot</label>
+									</div>
+									<div class="col-12">
+										<textarea name="demo-message" id="demo-message" placeholder="Enter your message" rows="6"></textarea>
+									</div>
+									<div class="col-12">
+										<ul class="actions">
+											<li><input type="submit" value="Send Message" class="primary" /></li>
+											<li><input type="reset" value="Reset" /></li>
+										</ul>
+									</div>
+								</div>
+							</form>
+						</section>
+
+						<section>
+							<h4>Image</h4>
+							<h5>Fit</h5>
+							<div class="box alt">
+								<div class="row gtr-50 gtr-uniform">
+									<div class="col-12"><span class="image fit"><img src="images_SQL_School_Database/fulls/05.jpg" alt="" /></span></div>
+									<div class="col-4"><span class="image fit"><img src="images_SQL_School_Database/thumbs/01.jpg" alt="" /></span></div>
+									<div class="col-4"><span class="image fit"><img src="images_SQL_School_Database/thumbs/02.jpg" alt="" /></span></div>
+									<div class="col-4"><span class="image fit"><img src="images_SQL_School_Database/thumbs/03.jpg" alt="" /></span></div>
+									<div class="col-4"><span class="image fit"><img src="images_SQL_School_Database/thumbs/04.jpg" alt="" /></span></div>
+									<div class="col-4"><span class="image fit"><img src="images_SQL_School_Database/thumbs/05.jpg" alt="" /></span></div>
+									<div class="col-4"><span class="image fit"><img src="images_SQL_School_Database/thumbs/06.jpg" alt="" /></span></div>
+									<div class="col-4"><span class="image fit"><img src="images_SQL_School_Database/thumbs/03.jpg" alt="" /></span></div>
+									<div class="col-4"><span class="image fit"><img src="images_SQL_School_Database/thumbs/02.jpg" alt="" /></span></div>
+									<div class="col-4"><span class="image fit"><img src="images_SQL_School_Database/thumbs/01.jpg" alt="" /></span></div>
+								</div>
+							</div>
+							<h5>Left &amp; Right</h5>
+							<p><span class="image left"><img src="images_SQL_School_Database/avatar.jpg" alt="" /></span>Fringilla nisl. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent.</p>
+							<p><span class="image right"><img src="images_SQL_School_Database/avatar.jpg" alt="" /></span>Fringilla nisl. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent.</p>
+						</section>
+
+					</section>
+				-->
+
+			</div>
+
+		<!-- Footer -->
+			<footer id="footer">
+				<div class="inner">
+					<ul class="icons">
+						<li><a href="https://www.linkedin.com/in/kristenhaduca/" target="_blank" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+						<li><a href="https://github.com/kristenhaduca" class="icon brands fa-github"><span class="label">Github</span></a></li>
+					</ul>
+					<ul class="copyright">
+						<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.poptrox.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
