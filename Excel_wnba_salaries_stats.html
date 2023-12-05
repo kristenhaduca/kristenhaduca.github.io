@@ -163,7 +163,7 @@
 							<h4>Combining Both Tables Into One Table</h4>
 						</header>
 						<p>
-							The game statistics of interest (Games Played, Minutes Per Game, and Points Per Game) from the 2020 Statistics Table are appended to the Salary Table on the WNBA Main worksheet using <mark><b>INDEX()</b></mark> and <mark><b>MATCH()</b></mark> to index the statistics and match them by player name. These functions are nested within the <mark><b>IF()</b></mark> and <mark><b>ISERROR()</b></mark> functions to return a blank cell if there is an #N/A error after the INDEX()/MATCH()--this error being caused by no statistics information in the 2020 Statistics Table because of things such as the player having been in college or not playing during the 2020 season. The table containing both the salaries and statistics will now be referred to as the Full WNBA Table.
+							The game statistics of interest (Games Played, Minutes Per Game, and Points Per Game) from the 2020 Statistics Table are appended to the Salary Table on the WNBA Main worksheet using <mark><b>INDEX()</b></mark> and <mark><b>MATCH()</b></mark> to index the statistics and match them by player name. These functions are nested within the <mark><b>IF()</b></mark> and <mark><b>ISERROR()</b></mark> functions to return a blank cell if there is an #N/A error after the INDEX()/MATCH()—this error being caused by no statistics information in the 2020 Statistics Table because of things such as the player having been in college or not playing during the 2020 season. The table containing both the salaries and statistics will now be referred to as the Full WNBA Table.
 						</p>
 						<p>
 							<p style="padding:2px 6px 4px 6px; color: #555555; background-color: #eeeeee; border: #dddddd 2px solid">
@@ -187,7 +187,7 @@
 						</p>
 
 						<p>
-							These two values are compared using <mark><b>IF()</b></mark>--labeled "Same" if they are the same, and "Different" if they are different. #N/A errors designate those players without salaries listed on the 2020 statistics page.
+							These two values are compared using <mark><b>IF()</b></mark>—labeled "Same" if they are the same, and "Different" if they are different. #N/A errors designate those players without salaries listed on the 2020 statistics page.
 						</p>
 						<p>
 							<p style="padding:2px 6px 4px 6px; color: #555555; background-color: #eeeeee; border: #dddddd 2px solid">
@@ -283,10 +283,10 @@
 							<h4>Adding Missing Data for Big Players</h4>
 						</header>
 						<p>
-							Because the 2020 WNBA season took place inside the pandemic Bubble, many key players did not play due to health concerns. I acknowledge that mixing 2019 stats with 2020 stats would skew the data a bit (for example, certain players who are filling in for these players would have altered stats in 2020 that they wouldn't have in previous years due to limited playing time). While it would be best practice to use a comparison of 2018 and 2019 stats to give a more accurate picture of a normal season, for the sake of this project's scope and including the newer, evolving salary negotiations--in addition to there only being a handful of players (all important WNBA figures whose absence in this data would be remiss) who opted out--it was easiest to include their 2019 stats with the rest of the 2020 stats to give a general overlook.
+							Because the 2020 WNBA season took place inside the pandemic Bubble, many key players did not play due to health concerns. I acknowledge that mixing 2019 stats with 2020 stats would skew the data a bit (for example, certain players who are filling in for these players would have altered stats in 2020 that they wouldn't have in previous years due to limited playing time). While it would be best practice to use a comparison of 2018 and 2019 stats to give a more accurate picture of a normal season, for the sake of this project's scope and including the newer, evolving salary negotiations—in addition to there only being a handful of players (all important WNBA figures whose absence in this data would be remiss) who opted out—it was easiest to include their 2019 stats with the rest of the 2020 stats to give a general overlook.
 						</p>
 						<p>
-							These players are included in the 2021 salary data, but have blanks within the 2020 statistics data. A new column containing an <mark><b>IF()</b></mark> statement is used to find those players that had a salary listed but no stats from 2020--and to differentiate them from the rookies coming out of college. If the Games Played column cell is blank and the 2020 Salary column cell is "College", then "College" will be listed. If the Games Played column cell is blank and the 2020 Salary column cell is a number (using <mark><b>ISNUMBER()</b></mark>), then "Blank" will be listed--the desired outcome for filtering those players who have salaries listed but no stats data. Otherwise, both salary and stats data is fully listed (or are listed as waived, suspended, or otherwise did not play and will not be looked at later in this project) and a 0 will be returned.
+							These players are included in the 2021 salary data, but have blanks within the 2020 statistics data. A new column containing an <mark><b>IF()</b></mark> statement is used to find those players that had a salary listed but no stats from 2020—and to differentiate them from the rookies coming out of college. If the Games Played column cell is blank and the 2020 Salary column cell is "College", then "College" will be listed. If the Games Played column cell is blank and the 2020 Salary column cell is a number (using <mark><b>ISNUMBER()</b></mark>), then "Blank" will be listed—the desired outcome for filtering those players who have salaries listed but no stats data. Otherwise, both salary and stats data is fully listed (or are listed as waived, suspended, or otherwise did not play and will not be looked at later in this project) and a 0 will be returned.
 						</p>
 						<p>
 							<p style="padding:2px 6px 4px 6px; color: #555555; background-color: #eeeeee; border: #dddddd 2px solid">
@@ -406,7 +406,7 @@
 							The maximum salary for rookies in the WNBA in 2021 is about <b>$70,040</b>.
 						</p>
 						<p>
-							NOTE: The previous note applies again--the WNBA has a minimum salary floor for rookies at $58,710 in 2021 (source: <a href="https://herhoopstats.com/salary-cap-sheet/wnba/summary/2021/">Her Hoops Stats</a>).
+							NOTE: The previous note applies again—the WNBA has a minimum salary floor for rookies at $58,710 in 2021 (source: <a href="https://herhoopstats.com/salary-cap-sheet/wnba/summary/2021/">Her Hoops Stats</a>).
 						</p>
 						<p>
 							Average salary (affected by large outliers) for rookies in the WNBA is about <b>$49,716</b> in 2021, with a standard deviation of about <b>$25,551</b>.
@@ -434,7 +434,7 @@
 							The maximum salary for all WNBA players is $215,000 in 2020 and $221,450 in 2021.
 						</p>
 						<p>
-							NOTE: The previous note applies once again--the minimum salary listed is not entirely accurate because WNBA has a minimum salary floor for players with 0-2 years experience at $58,710 in 2021 and players with 3+ years experience at $70,040 in 2021.
+							NOTE: The previous note applies once again—the minimum salary listed is not entirely accurate because WNBA has a minimum salary floor for players with 0-2 years experience at $58,710 in 2021 and players with 3+ years experience at $70,040 in 2021.
 						</p>
 						<p>
 							Average salary (affected by large outliers) for all WNBA players is about <b>$103,557</b> in 2020 and <b>$117,880</b> in 2021, with a standard deviation of about <b>$50,026</b> in 2020 and <b>$58,910</b> in 2021.
@@ -1375,7 +1375,7 @@
 						This exploration looked at the salaries of WNBA players, and at the relationships between salaries and three game statistics (Games Played, Minutes Per Game, and Points Per Game). More granular exploration was also done to see the differences between veterans (5/+ years experience in the WNBA) and the entirety of players in the WNBA.
 					</p>
 					<p>
-						In 2020, median salary was $118,510 for veterans and $88,850 for all WNBA players. In 2021, median salary was $167,500 for veterans and $110,00 for all WNBA players. As one would expect, veterans have a higher median salary than the general WNBA due to them having more experience and, therefore, more of them getting paid on the higher range of salaries. With increases in team budgets afforded to the WNBA league in 2021, median salaries increased between 2020 and 2021--showing that more players were getting higher salaries (as opposed to only veterans or a few star players getting salary increases).
+						In 2020, median salary was $118,510 for veterans and $88,850 for all WNBA players. In 2021, median salary was $167,500 for veterans and $110,00 for all WNBA players. As one would expect, veterans have a higher median salary than the general WNBA due to them having more experience and, therefore, more of them getting paid on the higher range of salaries. With increases in team budgets afforded to the WNBA league in 2021, median salaries increased between 2020 and 2021—showing that more players were getting higher salaries (as opposed to only veterans or a few star players getting salary increases).
 					</p>
 					<p>
 						Veterans tend to have a stronger relationship between their salaries and their game statistics than the general WNBA. In 2021, the percent of variation in salary that is explained by variation in Minutes Per Game was 33.6% for the veterans and 23.02% in the general WNBA. In 2021, the percent of variation in salary that is explained by variation in Points Per Game was 44% for veterans and 23.2% in the general WNBA. However, correlation does not equal causation, and there could be a lot of different reasons why there are relationships between salary and the various game stats. For the veterans, it could be that veterans tend to have the most experience so they get the highest salaries while also playing the most time and scoring the most points—the relationship between salary and these stats are tighter because those contributing the most for the longest amount of time get compensated for that effort. The relationship between salary and the game stats might be weaker in the general WNBA players group because there is such a spread of who gets to play (limited playing time with only five players on the court at once), how well they perform when they actually play (if they are brought in from the bench, are they consistent enough in their performance to have their skills accurately portrayed?), and the base salaries they can get. Due to salary budgets, players can not get up to the supermax salaries veterans can receive until they reach a certain number of years played; superstar new players who are putting in the most on the stats sheets might not be able to be properly compensated for their efforts the way veteran players can already be. 2021 allowed for higher team budgets and increased individual player salaries, so the relationships with salary probably were closer compared to 2020 because teams were allowed to more equitably distribute salaries to those who contributed more.
